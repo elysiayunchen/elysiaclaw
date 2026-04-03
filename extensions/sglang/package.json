@@ -1,0 +1,12 @@
+{
+  "name": "@elysiaclaw/sglang-provider",
+  "version": "2026.3.13",
+  "private": true,
+  "description": "OpenClaw SGLang provider plugin",
+  "type": "module",
+  "elysiaclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

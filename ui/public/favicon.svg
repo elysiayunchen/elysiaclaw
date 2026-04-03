@@ -1,0 +1,27 @@
+<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sakura-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffb7c5"/>
+      <stop offset="100%" stop-color="#ff69b4"/>
+    </linearGradient>
+    <radialGradient id="center-gradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff5f5"/>
+      <stop offset="100%" stop-color="#ffccd5"/>
+    </radialGradient>
+  </defs>
+  <!-- Petals -->
+  <ellipse cx="60" cy="30" rx="18" ry="25" fill="url(#sakura-gradient)" transform="rotate(0 60 60)"/>
+  <ellipse cx="60" cy="30" rx="18" ry="25" fill="url(#sakura-gradient)" transform="rotate(72 60 60)"/>
+  <ellipse cx="60" cy="30" rx="18" ry="25" fill="url(#sakura-gradient)" transform="rotate(144 60 60)"/>
+  <ellipse cx="60" cy="30" rx="18" ry="25" fill="url(#sakura-gradient)" transform="rotate(216 60 60)"/>
+  <ellipse cx="60" cy="30" rx="18" ry="25" fill="url(#sakura-gradient)" transform="rotate(288 60 60)"/>
+  <!-- Center -->
+  <circle cx="60" cy="60" r="15" fill="url(#center-gradient)"/>
+  <circle cx="60" cy="60" r="8" fill="#ffccd5"/>
+  <!-- Stamen dots -->
+  <circle cx="57" cy="57" r="2" fill="#ffd700"/>
+  <circle cx="63" cy="57" r="2" fill="#ffd700"/>
+  <circle cx="60" cy="63" r="2" fill="#ffd700"/>
+  <circle cx="55" cy="62" r="1.5" fill="#ffd700"/>
+  <circle cx="65" cy="62" r="1.5" fill="#ffd700"/>
+</svg>

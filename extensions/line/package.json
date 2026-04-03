@@ -1,0 +1,27 @@
+{
+  "name": "@elysiaclaw/line",
+  "version": "2026.3.13",
+  "private": true,
+  "description": "OpenClaw LINE channel plugin",
+  "type": "module",
+  "elysiaclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "channel": {
+      "id": "line",
+      "label": "LINE",
+      "selectionLabel": "LINE (Messaging API)",
+      "docsPath": "/channels/line",
+      "docsLabel": "line",
+      "blurb": "LINE Messaging API bot for Japan/Taiwan/Thailand markets.",
+      "order": 75,
+      "quickstartAllowFrom": true
+    },
+    "install": {
+      "npmSpec": "@elysiaclaw/line",
+      "localPath": "extensions/line",
+      "defaultChoice": "npm"
+    }
+  }
+}

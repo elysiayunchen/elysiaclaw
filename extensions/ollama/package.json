@@ -1,0 +1,12 @@
+{
+  "name": "@elysiaclaw/ollama-provider",
+  "version": "2026.3.13",
+  "private": true,
+  "description": "OpenClaw Ollama provider plugin",
+  "type": "module",
+  "elysiaclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}
