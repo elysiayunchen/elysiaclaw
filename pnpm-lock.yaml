@@ -348,7 +348,7 @@ importers:
         specifier: ^10.6.1
         version: 10.6.1
     devDependencies:
-      openclaw:
+      elysiaclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -409,7 +409,7 @@ importers:
 
   extensions/memory-core:
     devDependencies:
-      openclaw:
+      elysiaclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -541,13 +541,13 @@ importers:
 
   packages/clawdbot:
     dependencies:
-      openclaw:
+      elysiaclaw:
         specifier: workspace:*
         version: link:../..
 
   packages/moltbot:
     dependencies:
-      openclaw:
+      elysiaclaw:
         specifier: workspace:*
         version: link:../..
 

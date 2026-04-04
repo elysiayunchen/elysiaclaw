@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/mattermost";
+import type { OpenClawConfig } from "elysiaclaw/plugin-sdk/mattermost";
 import { resolveMattermostAccount } from "./accounts.js";
 import {
   createMattermostClient,

@@ -1,5 +1,5 @@
-import { AllowFromListSchema, DmPolicySchema } from "openclaw/plugin-sdk/compat";
-import { MarkdownConfigSchema, buildChannelConfigSchema } from "openclaw/plugin-sdk/nostr";
+import { AllowFromListSchema, DmPolicySchema } from "elysiaclaw/plugin-sdk/compat";
+import { MarkdownConfigSchema, buildChannelConfigSchema } from "elysiaclaw/plugin-sdk/nostr";
 import { z } from "zod";
 
 /**

@@ -2,7 +2,6 @@ import { isNonSecretApiKeyMarker } from "./model-auth-markers.js";
 import type { ProviderConfig } from "./models-config.providers.js";
 
 export type ExistingProviderConfig = ProviderConfig & {
-  apiKey?: string;
   baseUrl?: string;
   api?: string;
 };
@@ -166,9 +165,7 @@ function resolveModelApiSurface(entry: { models?: unknown } | undefined): string
   return apis.length > 0 ? JSON.stringify(apis) : undefined;
 }
 
-function resolveProviderApiSurface(
-  entry: ExistingProviderConfig   | undefined,
-): string | undefined {
+function resolveProviderApiSurface(entry: ExistingProviderConfig | undefined): string | undefined {
   return resolveProviderApi(entry) ?? resolveModelApiSurface(entry);
 }
 
@@ -213,7 +210,7 @@ function shouldPreserveExistingBaseUrl(params: {
 
 export function mergeWithExistingProviderSecrets(params: {
   nextProviders: Record<string, ProviderConfig>;
-  existingProviders: Record<string, ExistingProviderConfig>;
+  existingProviders: Record<string, ProviderConfig>;
   secretRefManagedProviders: ReadonlySet<string>;
   explicitBaseUrlProviders: ReadonlySet<string>;
 }): Record<string, ProviderConfig> {

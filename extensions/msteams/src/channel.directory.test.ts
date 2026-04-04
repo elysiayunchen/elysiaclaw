@@ -1,4 +1,4 @@
-import type { OpenClawConfig, RuntimeEnv } from "openclaw/plugin-sdk/msteams";
+import type { OpenClawConfig, RuntimeEnv } from "elysiaclaw/plugin-sdk/msteams";
 import { describe, expect, it } from "vitest";
 import { createDirectoryTestRuntime, expectDirectorySurface } from "../../test-utils/directory.js";
 import { msteamsPlugin } from "./channel.js";

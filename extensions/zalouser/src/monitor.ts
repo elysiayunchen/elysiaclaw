@@ -7,13 +7,13 @@ import {
   clearHistoryEntriesIfEnabled,
   recordPendingHistoryEntryIfEnabled,
   resolveDmGroupAccessWithLists,
-} from "openclaw/plugin-sdk/compat";
+} from "elysiaclaw/plugin-sdk/compat";
 import type {
   MarkdownTableMode,
   OpenClawConfig,
   OutboundReplyPayload,
   RuntimeEnv,
-} from "openclaw/plugin-sdk/zalouser";
+} from "elysiaclaw/plugin-sdk/zalouser";
 import {
   createTypingCallbacks,
   createScopedPairingAccess,
@@ -30,7 +30,7 @@ import {
   sendMediaWithLeadingCaption,
   summarizeMapping,
   warnMissingProviderGroupPolicyFallbackOnce,
-} from "openclaw/plugin-sdk/zalouser";
+} from "elysiaclaw/plugin-sdk/zalouser";
 import { createDeferred } from "../../shared/deferred.js";
 import {
   buildZalouserGroupCandidates,

@@ -1,4 +1,4 @@
-import type { ReplyPayload } from "openclaw/plugin-sdk/zalo";
+import type { ReplyPayload } from "elysiaclaw/plugin-sdk/zalo";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
   installSendPayloadContractSuite,

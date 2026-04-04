@@ -6,7 +6,7 @@ import {
   promptAndConfigureOpenAICompatibleSelfHostedProviderAuth,
   type OpenClawPluginApi,
   type ProviderAuthMethodNonInteractiveContext,
-} from "openclaw/plugin-sdk/core";
+} from "elysiaclaw/plugin-sdk/core";
 
 const PROVIDER_ID = "sglang";
 const DEFAULT_BASE_URL = "http://127.0.0.1:30000/v1";

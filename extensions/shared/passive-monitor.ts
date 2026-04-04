@@ -1,4 +1,4 @@
-import { runPassiveAccountLifecycle } from "openclaw/plugin-sdk";
+import { runPassiveAccountLifecycle } from "elysiaclaw/plugin-sdk";
 
 type StoppableMonitor = {
   stop: () => void;

@@ -1,5 +1,5 @@
-import type { OpenClawPluginApi } from "openclaw/plugin-sdk/slack";
-import { emptyPluginConfigSchema } from "openclaw/plugin-sdk/slack";
+import type { OpenClawPluginApi } from "elysiaclaw/plugin-sdk/slack";
+import { emptyPluginConfigSchema } from "elysiaclaw/plugin-sdk/slack";
 import { slackPlugin } from "./src/channel.js";
 import { setSlackRuntime } from "./src/runtime.js";
 

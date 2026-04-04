@@ -1,4 +1,4 @@
-import type { RuntimeEnv, WizardPrompter } from "openclaw/plugin-sdk/irc";
+import type { RuntimeEnv, WizardPrompter } from "elysiaclaw/plugin-sdk/irc";
 import { describe, expect, it, vi } from "vitest";
 import { createRuntimeEnv } from "../../test-utils/runtime-env.js";
 import { ircOnboardingAdapter } from "./onboarding.js";

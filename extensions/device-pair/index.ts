@@ -1,5 +1,5 @@
 import os from "node:os";
-import type { OpenClawPluginApi } from "openclaw/plugin-sdk/device-pair";
+import type { OpenClawPluginApi } from "elysiaclaw/plugin-sdk/device-pair";
 import {
   approveDevicePairing,
   issueDeviceBootstrapToken,
@@ -7,7 +7,7 @@ import {
   resolveGatewayBindUrl,
   runPluginCommandWithTimeout,
   resolveTailnetHostWithRunner,
-} from "openclaw/plugin-sdk/device-pair";
+} from "elysiaclaw/plugin-sdk/device-pair";
 import qrcode from "qrcode-terminal";
 import {
   armPairNotifyOnce,

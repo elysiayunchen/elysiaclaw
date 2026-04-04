@@ -1,4 +1,4 @@
-import type { OpenClawConfig, RuntimeEnv } from "openclaw/plugin-sdk/zalo";
+import type { OpenClawConfig, RuntimeEnv } from "elysiaclaw/plugin-sdk/zalo";
 import { describe, expect, it } from "vitest";
 import { createDirectoryTestRuntime, expectDirectorySurface } from "../../test-utils/directory.js";
 import { zaloPlugin } from "./channel.js";

@@ -6,7 +6,7 @@ import {
   formatPairingApproveHint,
   mapAllowFromEntries,
   type ChannelPlugin,
-} from "openclaw/plugin-sdk/nostr";
+} from "elysiaclaw/plugin-sdk/nostr";
 import {
   buildPassiveChannelStatusSummary,
   buildTrafficStatusSummary,

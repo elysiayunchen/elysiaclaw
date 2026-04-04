@@ -1,5 +1,5 @@
-import type { OpenClawPluginApi } from "openclaw/plugin-sdk/memory-core";
-import { emptyPluginConfigSchema } from "openclaw/plugin-sdk/memory-core";
+import type { OpenClawPluginApi } from "elysiaclaw/plugin-sdk/memory-core";
+import { emptyPluginConfigSchema } from "elysiaclaw/plugin-sdk/memory-core";
 
 const memoryCorePlugin = {
   id: "memory-core",

@@ -5,7 +5,7 @@ import {
   createAccountStatusSink,
   formatAllowFromLowercase,
   mapAllowFromEntries,
-} from "openclaw/plugin-sdk/compat";
+} from "elysiaclaw/plugin-sdk/compat";
 import {
   applyAccountNameToChannelSection,
   buildBaseChannelStatusSummary,
@@ -19,7 +19,7 @@ import {
   type ChannelPlugin,
   type OpenClawConfig,
   type ChannelSetupInput,
-} from "openclaw/plugin-sdk/nextcloud-talk";
+} from "elysiaclaw/plugin-sdk/nextcloud-talk";
 import { runStoppablePassiveMonitor } from "../../shared/passive-monitor.js";
 import {
   listNextcloudTalkAccountIds,

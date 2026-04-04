@@ -2,7 +2,7 @@ import { Type } from "@sinclair/typebox";
 import type {
   GatewayRequestHandlerOptions,
   OpenClawPluginApi,
-} from "openclaw/plugin-sdk/voice-call";
+} from "elysiaclaw/plugin-sdk/voice-call";
 import { registerVoiceCallCli } from "./src/cli.js";
 import {
   VoiceCallConfigSchema,

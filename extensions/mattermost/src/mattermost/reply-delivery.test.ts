@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/mattermost";
+import type { OpenClawConfig } from "elysiaclaw/plugin-sdk/mattermost";
 import { describe, expect, it, vi } from "vitest";
 import { deliverMattermostReplyPayload } from "./reply-delivery.js";
 

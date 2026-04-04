@@ -1,5 +1,5 @@
-import type { PluginRuntime } from "openclaw/plugin-sdk/test-utils";
-import { removeAckReactionAfterReply, shouldAckReaction } from "openclaw/plugin-sdk/test-utils";
+import type { PluginRuntime } from "elysiaclaw/plugin-sdk/test-utils";
+import { removeAckReactionAfterReply, shouldAckReaction } from "elysiaclaw/plugin-sdk/test-utils";
 import { vi } from "vitest";
 
 type DeepPartial<T> = {

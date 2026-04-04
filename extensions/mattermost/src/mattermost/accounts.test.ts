@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/mattermost";
+import type { OpenClawConfig } from "elysiaclaw/plugin-sdk/mattermost";
 import { describe, expect, it } from "vitest";
 import {
   resolveDefaultMattermostAccountId,
