@@ -85,7 +85,7 @@ Pairing state is stored under the Gateway state directory (default `~/.elysiacla
 - `~/.elysiaclaw/nodes/paired.json`
 - `~/.elysiaclaw/nodes/pending.json`
 
-If you override `OPENCLAW_STATE_DIR`, the `nodes/` folder moves with it.
+If you override `ELYSIACLAW_STATE_DIR`, the `nodes/` folder moves with it.
 
 Security notes:
 

@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { resolvePreferredElysiaClawTmpDir } from "../infra/tmp-openclaw-dir.js";
+import { resolvePreferredElysiaClawTmpDir } from "../infra/tmp-elysiaclaw-dir.js";
 import { buildRandomTempFilePath, withTempDownloadPath } from "./temp-path.js";
 
 describe("buildRandomTempFilePath", () => {

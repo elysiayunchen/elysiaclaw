@@ -30,8 +30,8 @@ ElysiaClaw 的 Gateway 网关暴露了一个简单的 HTTP 端点用于直接调
 
 说明：
 
-- 当 `gateway.auth.mode="token"` 时，使用 `gateway.auth.token`（或 `OPENCLAW_GATEWAY_TOKEN`）。
-- 当 `gateway.auth.mode="password"` 时，使用 `gateway.auth.password`（或 `OPENCLAW_GATEWAY_PASSWORD`）。
+- 当 `gateway.auth.mode="token"` 时，使用 `gateway.auth.token`（或 `ELYSIACLAW_GATEWAY_TOKEN`）。
+- 当 `gateway.auth.mode="password"` 时，使用 `gateway.auth.password`（或 `ELYSIACLAW_GATEWAY_PASSWORD`）。
 
 ## 请求体
 

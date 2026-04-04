@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { resolveElysiaClawPackageRoot } from "../infra/openclaw-root.js";
+import { resolveElysiaClawPackageRoot } from "../infra/elysiaclaw-root.js";
 
 export async function resolveElysiaClawDocsPath(params: {
   workspaceDir?: string;

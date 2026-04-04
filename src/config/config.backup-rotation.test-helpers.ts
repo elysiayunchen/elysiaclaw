@@ -3,7 +3,7 @@ import { expect } from "vitest";
 
 export const IS_WINDOWS = process.platform === "win32";
 
-export function resolveConfigPathFromTempState(fileName = "openclaw.json"): string {
+export function resolveConfigPathFromTempState(fileName = "elysiaclaw.json"): string {
   const stateDir = process.env.ELYSIACLAW_STATE_DIR?.trim();
   if (!stateDir) {
     throw new Error("Expected ELYSIACLAW_STATE_DIR to be set by withTempHome");

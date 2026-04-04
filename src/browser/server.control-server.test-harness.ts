@@ -181,7 +181,7 @@ export function getChromeMcpMocks(): Record<string, MockFn> {
   return chromeMcpMocks as unknown as Record<string, MockFn>;
 }
 
-const chromeUserDataDir = vi.hoisted(() => ({ dir: "/tmp/openclaw" }));
+const chromeUserDataDir = vi.hoisted(() => ({ dir: "/tmp/elysiaclaw" }));
 installChromeUserDataDirHooks(chromeUserDataDir);
 
 function makeProc(pid = 123) {
@@ -209,7 +209,7 @@ const proc = makeProc();
 
 function defaultProfilesForState(testPort: number): HarnessState["cfgProfiles"] {
   return {
-    openclaw: { cdpPort: testPort + 9, color: "#FF4500" },
+    elysiaclaw: { cdpPort: testPort + 9, color: "#FF4500" },
   };
 }
 

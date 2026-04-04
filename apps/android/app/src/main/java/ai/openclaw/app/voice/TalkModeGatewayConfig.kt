@@ -1,6 +1,6 @@
-package ai.openclaw.app.voice
+package ai.elysiaclaw.app.voice
 
-import ai.openclaw.app.normalizeMainKey
+import ai.elysiaclaw.app.normalizeMainKey
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive

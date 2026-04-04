@@ -171,7 +171,10 @@ function applyProviderOnly(config: ElysiaClawConfig, provider: SearchProvider): 
   };
 }
 
-function preserveDisabledState(original: ElysiaClawConfig, result: ElysiaClawConfig): ElysiaClawConfig {
+function preserveDisabledState(
+  original: ElysiaClawConfig,
+  result: ElysiaClawConfig,
+): ElysiaClawConfig {
   if (original.tools?.web?.search?.enabled !== false) {
     return result;
   }
@@ -233,7 +236,7 @@ export async function setupSearch(
       {
         value: "__skip__" as const,
         label: "Skip for now",
-        hint: "Configure later with openclaw configure --section web",
+        hint: "Configure later with elysiaclaw configure --section web",
       },
     ],
     initialValue: defaultProvider as PickerValue,

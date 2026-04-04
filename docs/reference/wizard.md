@@ -61,7 +61,7 @@ For a high-level overview, see [Onboarding Wizard](/start/wizard).
     - More detail: [/concepts/oauth](/concepts/oauth)
     <Note>
     Headless/server tip: complete OAuth on a machine with a browser, then copy
-    `~/.elysiaclaw/credentials/oauth.json` (or `$OPENCLAW_STATE_DIR/credentials/oauth.json`) to the
+    `~/.elysiaclaw/credentials/oauth.json` (or `$ELYSIACLAW_STATE_DIR/credentials/oauth.json`) to the
     gateway host.
     </Note>
   </Step>
@@ -153,12 +153,12 @@ Add `--json` for a machine‑readable summary.
 Gateway token SecretRef in non-interactive mode:
 
 ```bash
-export OPENCLAW_GATEWAY_TOKEN="your-token"
+export ELYSIACLAW_GATEWAY_TOKEN="your-token"
 elysiaclaw onboard --non-interactive \
   --mode local \
   --auth-choice skip \
   --gateway-auth token \
-  --gateway-token-ref-env OPENCLAW_GATEWAY_TOKEN
+  --gateway-token-ref-env ELYSIACLAW_GATEWAY_TOKEN
 ```
 
 `--gateway-token` and `--gateway-token-ref-env` are mutually exclusive.

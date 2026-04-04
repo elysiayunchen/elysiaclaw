@@ -55,7 +55,7 @@ async function writeInboundMedia(
 
 describe("stageSandboxMedia", () => {
   it("stages allowed media and blocks unsafe paths", async () => {
-    await withSandboxMediaTempHome("openclaw-triggers-", async (home) => {
+    await withSandboxMediaTempHome("elysiaclaw-triggers-", async (home) => {
       const { cfg, workspaceDir, sandboxDir } = setupSandboxWorkspace(home);
 
       {
@@ -122,7 +122,7 @@ describe("stageSandboxMedia", () => {
   });
 
   it("blocks destination symlink escapes when staging into sandbox workspace", async () => {
-    await withSandboxMediaTempHome("openclaw-triggers-", async (home) => {
+    await withSandboxMediaTempHome("elysiaclaw-triggers-", async (home) => {
       const { cfg, workspaceDir, sandboxDir } = setupSandboxWorkspace(home);
 
       const mediaPath = await writeInboundMedia(home, "payload.txt", "PAYLOAD");
@@ -153,7 +153,7 @@ describe("stageSandboxMedia", () => {
   });
 
   it("skips oversized media staging and keeps original media paths", async () => {
-    await withSandboxMediaTempHome("openclaw-triggers-", async (home) => {
+    await withSandboxMediaTempHome("elysiaclaw-triggers-", async (home) => {
       const { cfg, workspaceDir, sandboxDir } = setupSandboxWorkspace(home);
 
       const mediaPath = await writeInboundMedia(

@@ -1,4 +1,4 @@
-package ai.openclaw.app.ui
+package ai.elysiaclaw.app.ui
 
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -7,7 +7,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import ai.openclaw.app.R
+import ai.elysiaclaw.app.R
 
 internal val mobileBackgroundGradient =
   Brush.verticalGradient(

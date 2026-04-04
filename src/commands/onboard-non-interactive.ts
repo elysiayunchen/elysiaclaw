@@ -14,13 +14,17 @@ export async function runNonInteractiveOnboarding(
   const snapshot = await readConfigFileSnapshot();
   if (snapshot.exists && !snapshot.valid) {
     runtime.error(
-      `Config invalid. Run \`${formatCliCommand("openclaw doctor")}\` to repair it, then re-run onboarding.`,
+      `Config invalid. Run \`${formatCliCommand("elysiaclaw doctor")}\` to repair it, then re-run onboarding.`,
     );
     runtime.exit(1);
     return;
   }
 
-  const baseConfig: ElysiaClawConfig = snapshot.valid ? (snapshot.exists ? snapshot.config : {}) : {};
+  const baseConfig: ElysiaClawConfig = snapshot.valid
+    ? snapshot.exists
+      ? snapshot.config
+      : {}
+    : {};
   const mode = opts.mode ?? "local";
   if (mode !== "local" && mode !== "remote") {
     runtime.error(`Invalid --mode "${String(mode)}" (use local|remote).`);

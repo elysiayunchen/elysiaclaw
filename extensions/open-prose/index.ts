@@ -1,5 +1,5 @@
-import type { OpenClawPluginApi } from "elysiaclaw/plugin-sdk/open-prose";
+import type { ElysiaClawPluginApi } from "elysiaclaw/plugin-sdk/open-prose";
 
-export default function register(_api: OpenClawPluginApi) {
+export default function register(_api: ElysiaClawPluginApi) {
   // OpenProse is delivered via plugin-shipped skills.
 }

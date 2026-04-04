@@ -1,4 +1,4 @@
-import type { OpenClawPluginApi } from "elysiaclaw/plugin-sdk/synology-chat";
+import type { ElysiaClawPluginApi } from "elysiaclaw/plugin-sdk/synology-chat";
 import { emptyPluginConfigSchema } from "elysiaclaw/plugin-sdk/synology-chat";
 import { createSynologyChatPlugin } from "./src/channel.js";
 import { setSynologyRuntime } from "./src/runtime.js";
@@ -6,9 +6,9 @@ import { setSynologyRuntime } from "./src/runtime.js";
 const plugin = {
   id: "synology-chat",
   name: "Synology Chat",
-  description: "Native Synology Chat channel plugin for OpenClaw",
+  description: "Native Synology Chat channel plugin for ElysiaClaw",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: ElysiaClawPluginApi) {
     setSynologyRuntime(api.runtime);
     api.registerChannel({ plugin: createSynologyChatPlugin() });
   },

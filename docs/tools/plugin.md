@@ -311,10 +311,10 @@ Performance note:
 
 - Plugin discovery and manifest metadata use short in-process caches to reduce
   bursty startup/reload work.
-- Set `OPENCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE=1` or
-  `OPENCLAW_DISABLE_PLUGIN_MANIFEST_CACHE=1` to disable these caches.
-- Tune cache windows with `OPENCLAW_PLUGIN_DISCOVERY_CACHE_MS` and
-  `OPENCLAW_PLUGIN_MANIFEST_CACHE_MS`.
+- Set `ELYSIACLAW_DISABLE_PLUGIN_DISCOVERY_CACHE=1` or
+  `ELYSIACLAW_DISABLE_PLUGIN_MANIFEST_CACHE=1` to disable these caches.
+- Tune cache windows with `ELYSIACLAW_PLUGIN_DISCOVERY_CACHE_MS` and
+  `ELYSIACLAW_PLUGIN_MANIFEST_CACHE_MS`.
 
 ## Discovery & precedence
 
@@ -463,7 +463,7 @@ registry export). Drop a JSON file at one of:
 - `~/.elysiaclaw/mpm/catalog.json`
 - `~/.elysiaclaw/plugins/catalog.json`
 
-Or point `OPENCLAW_PLUGIN_CATALOG_PATHS` (or `OPENCLAW_MPM_CATALOG_PATHS`) at
+Or point `ELYSIACLAW_PLUGIN_CATALOG_PATHS` (or `ELYSIACLAW_MPM_CATALOG_PATHS`) at
 one or more JSON files (comma/semicolon/`PATH`-delimited). Each file should
 contain `{ "entries": [ { "name": "@scope/pkg", "elysiaclaw": { "channel": {...}, "install": {...} } } ] }`.
 

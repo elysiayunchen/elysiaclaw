@@ -56,7 +56,7 @@ function mkdirSafe(dir: string) {
   chmodSafeDir(dir);
 }
 
-const fixtureRoot = mkdtempSafe(path.join(os.tmpdir(), "openclaw-plugin-"));
+const fixtureRoot = mkdtempSafe(path.join(os.tmpdir(), "elysiaclaw-plugin-"));
 let tempDirIndex = 0;
 const prevBundledDir = process.env.ELYSIACLAW_BUNDLED_PLUGINS_DIR;
 const EMPTY_PLUGIN_SCHEMA = { type: "object", additionalProperties: false, properties: {} };
@@ -104,7 +104,7 @@ function writePlugin(params: {
   const file = path.join(dir, filename);
   fs.writeFileSync(file, params.body, "utf-8");
   fs.writeFileSync(
-    path.join(dir, "openclaw.plugin.json"),
+    path.join(dir, "elysiaclaw.plugin.json"),
     JSON.stringify(
       {
         id: params.id,
@@ -153,7 +153,7 @@ function loadBundledMemoryPluginRegistry(options?: {
           name: options.packageMeta.name,
           version: options.packageMeta.version,
           description: options.packageMeta.description,
-          openclaw: { extensions: [`./${pluginFilename}`] },
+          elysiaclaw: { extensions: [`./${pluginFilename}`] },
         },
         null,
         2,
@@ -255,7 +255,7 @@ function createEscapingEntryFixture(params: { id: string; sourceBody: string }) 
   const linkedEntry = path.join(pluginDir, "entry.cjs");
   fs.writeFileSync(outsideEntry, params.sourceBody, "utf-8");
   fs.writeFileSync(
-    path.join(pluginDir, "openclaw.plugin.json"),
+    path.join(pluginDir, "elysiaclaw.plugin.json"),
     JSON.stringify(
       {
         id: params.id,
@@ -398,7 +398,7 @@ describe("loadElysiaClawPlugins", () => {
   it("preserves package.json metadata for bundled memory plugins", () => {
     const registry = loadBundledMemoryPluginRegistry({
       packageMeta: {
-        name: "@openclaw/memory-core",
+        name: "@elysiaclaw/memory-core",
         version: "1.2.3",
         description: "Memory plugin package",
       },
@@ -587,10 +587,10 @@ describe("loadElysiaClawPlugins", () => {
 
   it("does not reuse cached registries when env-resolved install paths change", () => {
     useNoBundledPlugins();
-    const openclawHome = makeTempDir();
+    const elysiaclawHome = makeTempDir();
     const ignoredHome = makeTempDir();
     const stateDir = makeTempDir();
-    const pluginDir = path.join(openclawHome, "plugins", "tracked-install-cache");
+    const pluginDir = path.join(elysiaclawHome, "plugins", "tracked-install-cache");
     mkdirSafe(pluginDir);
     const plugin = writePlugin({
       id: "tracked-install-cache",
@@ -619,7 +619,7 @@ describe("loadElysiaClawPlugins", () => {
       ...options,
       env: {
         ...process.env,
-        ELYSIACLAW_HOME: openclawHome,
+        ELYSIACLAW_HOME: elysiaclawHome,
         HOME: ignoredHome,
         ELYSIACLAW_STATE_DIR: stateDir,
         CLAWDBOT_STATE_DIR: undefined,
@@ -721,32 +721,32 @@ describe("loadElysiaClawPlugins", () => {
 
   it("prefers ELYSIACLAW_HOME over HOME for env-expanded load paths", () => {
     const ignoredHome = makeTempDir();
-    const openclawHome = makeTempDir();
+    const elysiaclawHome = makeTempDir();
     const stateDir = makeTempDir();
     const bundledDir = makeTempDir();
     const plugin = writePlugin({
-      id: "openclaw-home-demo",
-      dir: path.join(openclawHome, "plugins", "openclaw-home-demo"),
+      id: "elysiaclaw-home-demo",
+      dir: path.join(elysiaclawHome, "plugins", "elysiaclaw-home-demo"),
       filename: "index.cjs",
-      body: `module.exports = { id: "openclaw-home-demo", register() {} };`,
+      body: `module.exports = { id: "elysiaclaw-home-demo", register() {} };`,
     });
 
     const registry = loadElysiaClawPlugins({
       env: {
         ...process.env,
         HOME: ignoredHome,
-        ELYSIACLAW_HOME: openclawHome,
+        ELYSIACLAW_HOME: elysiaclawHome,
         ELYSIACLAW_STATE_DIR: stateDir,
         ELYSIACLAW_BUNDLED_PLUGINS_DIR: bundledDir,
       },
       config: {
         plugins: {
-          allow: ["openclaw-home-demo"],
+          allow: ["elysiaclaw-home-demo"],
           entries: {
-            "openclaw-home-demo": { enabled: true },
+            "elysiaclaw-home-demo": { enabled: true },
           },
           load: {
-            paths: ["~/plugins/openclaw-home-demo"],
+            paths: ["~/plugins/elysiaclaw-home-demo"],
           },
         },
       },
@@ -754,7 +754,7 @@ describe("loadElysiaClawPlugins", () => {
 
     expect(
       fs.realpathSync(
-        registry.plugins.find((entry) => entry.id === "openclaw-home-demo")?.source ?? "",
+        registry.plugins.find((entry) => entry.id === "elysiaclaw-home-demo")?.source ?? "",
       ),
     ).toBe(fs.realpathSync(plugin.file));
   });
@@ -1400,7 +1400,7 @@ describe("loadElysiaClawPlugins", () => {
       body: `module.exports = { id: "memory-b", kind: "memory", register() {} };`,
     });
     fs.writeFileSync(
-      path.join(memoryADir, "openclaw.plugin.json"),
+      path.join(memoryADir, "elysiaclaw.plugin.json"),
       JSON.stringify(
         {
           id: "memory-a",
@@ -1413,7 +1413,7 @@ describe("loadElysiaClawPlugins", () => {
       "utf-8",
     );
     fs.writeFileSync(
-      path.join(memoryBDir, "openclaw.plugin.json"),
+      path.join(memoryBDir, "elysiaclaw.plugin.json"),
       JSON.stringify(
         {
           id: "memory-b",
@@ -1593,7 +1593,12 @@ describe("loadElysiaClawPlugins", () => {
   it("does not auto-load workspace-discovered plugins unless explicitly trusted", () => {
     useNoBundledPlugins();
     const workspaceDir = makeTempDir();
-    const workspaceExtDir = path.join(workspaceDir, ".elysiaclaw", "extensions", "workspace-helper");
+    const workspaceExtDir = path.join(
+      workspaceDir,
+      ".elysiaclaw",
+      "extensions",
+      "workspace-helper",
+    );
     mkdirSafe(workspaceExtDir);
     writePlugin({
       id: "workspace-helper",
@@ -1621,7 +1626,12 @@ describe("loadElysiaClawPlugins", () => {
   it("loads workspace-discovered plugins when plugins.allow explicitly trusts them", () => {
     useNoBundledPlugins();
     const workspaceDir = makeTempDir();
-    const workspaceExtDir = path.join(workspaceDir, ".elysiaclaw", "extensions", "workspace-helper");
+    const workspaceExtDir = path.join(
+      workspaceDir,
+      ".elysiaclaw",
+      "extensions",
+      "workspace-helper",
+    );
     mkdirSafe(workspaceExtDir);
     writePlugin({
       id: "workspace-helper",
@@ -1721,10 +1731,10 @@ describe("loadElysiaClawPlugins", () => {
 
   it("does not warn about missing provenance for env-resolved load paths", () => {
     useNoBundledPlugins();
-    const openclawHome = makeTempDir();
+    const elysiaclawHome = makeTempDir();
     const ignoredHome = makeTempDir();
     const stateDir = makeTempDir();
-    const pluginDir = path.join(openclawHome, "plugins", "tracked-load-path");
+    const pluginDir = path.join(elysiaclawHome, "plugins", "tracked-load-path");
     mkdirSafe(pluginDir);
     const plugin = writePlugin({
       id: "tracked-load-path",
@@ -1739,7 +1749,7 @@ describe("loadElysiaClawPlugins", () => {
       logger: createWarningLogger(warnings),
       env: {
         ...process.env,
-        ELYSIACLAW_HOME: openclawHome,
+        ELYSIACLAW_HOME: elysiaclawHome,
         HOME: ignoredHome,
         ELYSIACLAW_STATE_DIR: stateDir,
         CLAWDBOT_STATE_DIR: undefined,
@@ -1763,10 +1773,10 @@ describe("loadElysiaClawPlugins", () => {
 
   it("does not warn about missing provenance for env-resolved install paths", () => {
     useNoBundledPlugins();
-    const openclawHome = makeTempDir();
+    const elysiaclawHome = makeTempDir();
     const ignoredHome = makeTempDir();
     const stateDir = makeTempDir();
-    const pluginDir = path.join(openclawHome, "plugins", "tracked-install-path");
+    const pluginDir = path.join(elysiaclawHome, "plugins", "tracked-install-path");
     mkdirSafe(pluginDir);
     const plugin = writePlugin({
       id: "tracked-install-path",
@@ -1781,7 +1791,7 @@ describe("loadElysiaClawPlugins", () => {
       logger: createWarningLogger(warnings),
       env: {
         ...process.env,
-        ELYSIACLAW_HOME: openclawHome,
+        ELYSIACLAW_HOME: elysiaclawHome,
         HOME: ignoredHome,
         ELYSIACLAW_STATE_DIR: stateDir,
         CLAWDBOT_STATE_DIR: undefined,
@@ -1962,7 +1972,7 @@ describe("loadElysiaClawPlugins", () => {
       filename: "legacy-root-import.cjs",
       body: `module.exports = {
   id: "legacy-root-import",
-  configSchema: (require("openclaw/plugin-sdk").emptyPluginConfigSchema)(),
+  configSchema: (require("elysiaclaw/plugin-sdk").emptyPluginConfigSchema)(),
   register() {},
 };`,
     });

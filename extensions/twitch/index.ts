@@ -1,4 +1,4 @@
-import type { OpenClawPluginApi } from "elysiaclaw/plugin-sdk/twitch";
+import type { ElysiaClawPluginApi } from "elysiaclaw/plugin-sdk/twitch";
 import { emptyPluginConfigSchema } from "elysiaclaw/plugin-sdk/twitch";
 import { twitchPlugin } from "./src/plugin.js";
 import { setTwitchRuntime } from "./src/runtime.js";
@@ -10,7 +10,7 @@ const plugin = {
   name: "Twitch",
   description: "Twitch channel plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: ElysiaClawPluginApi) {
     setTwitchRuntime(api.runtime);
     // oxlint-disable-next-line typescript/no-explicit-any
     api.registerChannel({ plugin: twitchPlugin as any });

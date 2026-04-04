@@ -61,8 +61,8 @@ incompatible, update the global CLI to match the app version.
 ```bash
 elysiaclaw --version
 
-OPENCLAW_SKIP_CHANNELS=1 \
-OPENCLAW_SKIP_CANVAS_HOST=1 \
+ELYSIACLAW_SKIP_CHANNELS=1 \
+ELYSIACLAW_SKIP_CANVAS_HOST=1 \
 elysiaclaw gateway --port 18999 --bind loopback
 ```
 

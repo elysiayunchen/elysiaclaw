@@ -58,7 +58,7 @@ function candidateBinDirs(opts: EnsureElysiaClawPathOpts): { prepend: string[]; 
   const prepend: string[] = [];
   const append: string[] = [];
 
-  // Bundled macOS app: `openclaw` lives next to the executable (process.execPath).
+  // Bundled macOS app: `elysiaclaw` lives next to the executable (process.execPath).
   try {
     const execDir = path.dirname(execPath);
     const siblingCli = path.join(execDir, "elysiaclaw");
@@ -106,7 +106,7 @@ function candidateBinDirs(opts: EnsureElysiaClawPathOpts): { prepend: string[]; 
 }
 
 /**
- * Best-effort PATH bootstrap so skills that require the `openclaw` CLI can run
+ * Best-effort PATH bootstrap so skills that require the `elysiaclaw` CLI can run
  * under launchd/minimal environments (and inside the macOS app bundle).
  */
 export function ensureElysiaClawCliOnPath(opts: EnsureElysiaClawPathOpts = {}) {

@@ -2,7 +2,7 @@
 // Keep this list additive and scoped to symbols used under extensions/diffs.
 
 export type { ElysiaClawConfig } from "../config/config.js";
-export { resolvePreferredElysiaClawTmpDir } from "../infra/tmp-openclaw-dir.js";
+export { resolvePreferredElysiaClawTmpDir } from "../infra/tmp-elysiaclaw-dir.js";
 export type {
   AnyAgentTool,
   ElysiaClawPluginApi,

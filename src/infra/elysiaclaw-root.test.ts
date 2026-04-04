@@ -4,8 +4,8 @@ import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
 type FakeFsEntry = { kind: "file"; content: string } | { kind: "dir" };
 
-const VITEST_FS_BASE = path.join(path.parse(process.cwd()).root, "__openclaw_vitest__");
-const FIXTURE_BASE = path.join(VITEST_FS_BASE, "openclaw-root");
+const VITEST_FS_BASE = path.join(path.parse(process.cwd()).root, "__elysiaclaw_vitest__");
+const FIXTURE_BASE = path.join(VITEST_FS_BASE, "elysiaclaw-root");
 
 const state = vi.hoisted(() => ({
   entries: new Map<string, FakeFsEntry>(),
@@ -90,12 +90,12 @@ vi.mock("node:fs/promises", async (importOriginal) => {
 });
 
 describe("resolveElysiaClawPackageRoot", () => {
-  let resolveElysiaClawPackageRoot: typeof import("./openclaw-root.js").resolveElysiaClawPackageRoot;
-  let resolveElysiaClawPackageRootSync: typeof import("./openclaw-root.js").resolveElysiaClawPackageRootSync;
+  let resolveElysiaClawPackageRoot: typeof import("./elysiaclaw-root.js").resolveElysiaClawPackageRoot;
+  let resolveElysiaClawPackageRootSync: typeof import("./elysiaclaw-root.js").resolveElysiaClawPackageRootSync;
 
   beforeAll(async () => {
     ({ resolveElysiaClawPackageRoot, resolveElysiaClawPackageRootSync } =
-      await import("./openclaw-root.js"));
+      await import("./elysiaclaw-root.js"));
   });
 
   beforeEach(() => {
@@ -117,7 +117,7 @@ describe("resolveElysiaClawPackageRoot", () => {
     const project = fx("symlink-scenario");
     const bin = path.join(project, "bin", "elysiaclaw");
     const realPkg = path.join(project, "real-pkg");
-    state.realpaths.set(abs(bin), abs(path.join(realPkg, "openclaw.mjs")));
+    state.realpaths.set(abs(bin), abs(path.join(realPkg, "elysiaclaw.mjs")));
     setFile(path.join(realPkg, "package.json"), JSON.stringify({ name: "elysiaclaw" }));
 
     expect(resolveElysiaClawPackageRootSync({ argv1: bin })).toBe(realPkg);
@@ -141,10 +141,10 @@ describe("resolveElysiaClawPackageRoot", () => {
     expect(resolveElysiaClawPackageRootSync({ moduleUrl })).toBe(pkgRoot);
   });
 
-  it("falls through from a non-openclaw moduleUrl candidate to cwd", async () => {
+  it("falls through from a non-elysiaclaw moduleUrl candidate to cwd", async () => {
     const wrongPkgRoot = fx("moduleurl-fallthrough", "wrong");
     const cwdPkgRoot = fx("moduleurl-fallthrough", "cwd");
-    setFile(path.join(wrongPkgRoot, "package.json"), JSON.stringify({ name: "not-openclaw" }));
+    setFile(path.join(wrongPkgRoot, "package.json"), JSON.stringify({ name: "not-elysiaclaw" }));
     setFile(path.join(cwdPkgRoot, "package.json"), JSON.stringify({ name: "elysiaclaw" }));
     const moduleUrl = pathToFileURL(path.join(wrongPkgRoot, "dist", "index.js")).toString();
 
@@ -166,9 +166,9 @@ describe("resolveElysiaClawPackageRoot", () => {
     ).resolves.toBe(pkgRoot);
   });
 
-  it("returns null for non-openclaw package roots", async () => {
-    const pkgRoot = fx("not-openclaw");
-    setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "not-openclaw" }));
+  it("returns null for non-elysiaclaw package roots", async () => {
+    const pkgRoot = fx("not-elysiaclaw");
+    setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "not-elysiaclaw" }));
 
     expect(resolveElysiaClawPackageRootSync({ cwd: pkgRoot })).toBeNull();
   });
@@ -176,7 +176,10 @@ describe("resolveElysiaClawPackageRoot", () => {
   it("falls back from a symlinked argv1 to the node_modules package root", () => {
     const project = fx("symlink-node-modules-fallback");
     const argv1 = path.join(project, "node_modules", ".bin", "elysiaclaw");
-    state.realpaths.set(abs(argv1), abs(path.join(project, "versions", "current", "openclaw.mjs")));
+    state.realpaths.set(
+      abs(argv1),
+      abs(path.join(project, "versions", "current", "elysiaclaw.mjs")),
+    );
     const pkgRoot = path.join(project, "node_modules", "elysiaclaw");
     setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "elysiaclaw" }));
 

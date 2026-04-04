@@ -85,7 +85,7 @@ elysiaclaw nodes rename --node <id|name|ip> --name "Living Room iPad"
 - `~/.elysiaclaw/nodes/paired.json`
 - `~/.elysiaclaw/nodes/pending.json`
 
-如果你覆盖了 `OPENCLAW_STATE_DIR`，`nodes/` 文件夹会随之移动。
+如果你覆盖了 `ELYSIACLAW_STATE_DIR`，`nodes/` 文件夹会随之移动。
 
 安全注意事项：
 

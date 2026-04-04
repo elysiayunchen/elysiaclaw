@@ -1,8 +1,8 @@
 import Foundation
-import OpenClawKit
+import ElysiaClawKit
 import os
 import Testing
-@testable import OpenClaw
+@testable import ElysiaClaw
 
 struct GatewayConnectionTests {
     private func makeConnection(

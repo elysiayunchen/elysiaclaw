@@ -99,7 +99,7 @@ vi.mock("../infra/provider-usage.js", () => ({
 }));
 
 import "./test-helpers/fast-core-tools.js";
-import { createElysiaClawTools } from "./openclaw-tools.js";
+import { createElysiaClawTools } from "./elysiaclaw-tools.js";
 
 function resetSessionStore(store: Record<string, unknown>) {
   loadSessionStoreMock.mockClear();

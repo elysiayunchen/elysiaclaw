@@ -86,7 +86,7 @@ describe("createProfileResetOps", () => {
   });
 
   it("stops local browser, closes playwright connection, and trashes profile dir", async () => {
-    const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-reset-"));
+    const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "elysiaclaw-reset-"));
     const profileDir = path.join(tempRoot, "elysiaclaw");
     fs.mkdirSync(profileDir, { recursive: true });
 
@@ -119,7 +119,7 @@ describe("createProfileResetOps", () => {
   });
 
   it("forces playwright disconnect when loopback cdp is occupied by non-owned process", async () => {
-    const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-reset-no-own-"));
+    const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "elysiaclaw-reset-no-own-"));
     const profileDir = path.join(tempRoot, "elysiaclaw");
     fs.mkdirSync(profileDir, { recursive: true });
 

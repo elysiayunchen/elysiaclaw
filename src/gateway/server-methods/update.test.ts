@@ -32,8 +32,8 @@ vi.mock("../../config/sessions.js", () => ({
   },
 }));
 
-vi.mock("../../infra/openclaw-root.js", () => ({
-  resolveElysiaClawPackageRoot: async () => "/tmp/openclaw",
+vi.mock("../../infra/elysiaclaw-root.js", () => ({
+  resolveElysiaClawPackageRoot: async () => "/tmp/elysiaclaw",
 }));
 
 vi.mock("../../infra/restart-sentinel.js", async (importOriginal) => {

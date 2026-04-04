@@ -1,11 +1,14 @@
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
-import { POSIX_ELYSIACLAW_TMP_DIR, resolvePreferredElysiaClawTmpDir } from "./tmp-openclaw-dir.js";
+import {
+  POSIX_ELYSIACLAW_TMP_DIR,
+  resolvePreferredElysiaClawTmpDir,
+} from "./tmp-elysiaclaw-dir.js";
 
 type TmpDirOptions = NonNullable<Parameters<typeof resolvePreferredElysiaClawTmpDir>[0]>;
 
 function fallbackTmp(uid = 501) {
-  return path.join("/var/fallback", `openclaw-${uid}`);
+  return path.join("/var/fallback", `elysiaclaw-${uid}`);
 }
 
 function nodeErrorWithCode(code: string) {
@@ -131,7 +134,7 @@ function resolveWithMocks(params: {
 }
 
 describe("resolvePreferredElysiaClawTmpDir", () => {
-  it("prefers /tmp/openclaw when it already exists and is writable", () => {
+  it("prefers /tmp/elysiaclaw when it already exists and is writable", () => {
     const lstatSync: NonNullable<TmpDirOptions["lstatSync"]> = vi.fn(() => ({
       isDirectory: () => true,
       isSymbolicLink: () => false,
@@ -146,7 +149,7 @@ describe("resolvePreferredElysiaClawTmpDir", () => {
     expect(tmpdir).not.toHaveBeenCalled();
   });
 
-  it("prefers /tmp/openclaw when it does not exist but /tmp is writable", () => {
+  it("prefers /tmp/elysiaclaw when it does not exist but /tmp is writable", () => {
     const lstatSyncMock = missingThenSecureLstat();
 
     const { resolved, accessSync, mkdirSync, tmpdir } = resolveWithMocks({
@@ -159,7 +162,7 @@ describe("resolvePreferredElysiaClawTmpDir", () => {
     expect(tmpdir).not.toHaveBeenCalled();
   });
 
-  it("falls back to os.tmpdir()/openclaw when /tmp/openclaw is not a directory", () => {
+  it("falls back to os.tmpdir()/elysiaclaw when /tmp/elysiaclaw is not a directory", () => {
     const lstatSync = vi.fn(() => makeDirStat({ isDirectory: false, mode: 0o100644 }));
     const { resolved, tmpdir } = resolveWithMocks({ lstatSync });
 
@@ -167,7 +170,7 @@ describe("resolvePreferredElysiaClawTmpDir", () => {
     expect(tmpdir).toHaveBeenCalled();
   });
 
-  it("falls back to os.tmpdir()/openclaw when /tmp is not writable", () => {
+  it("falls back to os.tmpdir()/elysiaclaw when /tmp is not writable", () => {
     const accessSync = vi.fn((target: string) => {
       if (target === "/tmp") {
         throw new Error("read-only");
@@ -185,7 +188,7 @@ describe("resolvePreferredElysiaClawTmpDir", () => {
     expect(tmpdir).toHaveBeenCalled();
   });
 
-  it("falls back when /tmp/openclaw exists but is not writable", () => {
+  it("falls back when /tmp/elysiaclaw exists but is not writable", () => {
     const accessSync = vi.fn((target: string) => {
       if (target === POSIX_ELYSIACLAW_TMP_DIR) {
         throw new Error("not writable");
@@ -200,19 +203,19 @@ describe("resolvePreferredElysiaClawTmpDir", () => {
     expect(tmpdir).toHaveBeenCalled();
   });
 
-  it("falls back when /tmp/openclaw is a symlink", () => {
+  it("falls back when /tmp/elysiaclaw is a symlink", () => {
     expectFallsBackToOsTmpDir({ lstatSync: symlinkTmpDirLstat() });
   });
 
-  it("falls back when /tmp/openclaw is not owned by the current user", () => {
+  it("falls back when /tmp/elysiaclaw is not owned by the current user", () => {
     expectFallsBackToOsTmpDir({ lstatSync: vi.fn(() => makeDirStat({ uid: 0 })) });
   });
 
-  it("falls back when /tmp/openclaw is group/other writable", () => {
+  it("falls back when /tmp/elysiaclaw is group/other writable", () => {
     expectFallsBackToOsTmpDir({ lstatSync: vi.fn(() => makeDirStat({ mode: 0o40777 })) });
   });
 
-  it("repairs existing /tmp/openclaw permissions when they are too broad", () => {
+  it("repairs existing /tmp/elysiaclaw permissions when they are too broad", () => {
     let preferredMode = 0o40777;
     const chmodSync = vi.fn((target: string, mode: number) => {
       if (target === POSIX_ELYSIACLAW_TMP_DIR && mode === 0o700) {
@@ -233,7 +236,7 @@ describe("resolvePreferredElysiaClawTmpDir", () => {
     expect(tmpdir).not.toHaveBeenCalled();
   });
 
-  it("repairs /tmp/openclaw after create when the initial mode stays too broad", () => {
+  it("repairs /tmp/elysiaclaw after create when the initial mode stays too broad", () => {
     let preferredMode = 0o40775;
     let chmodCalls = 0;
     const lstatSync = vi

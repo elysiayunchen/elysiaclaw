@@ -26,7 +26,7 @@ x-i18n:
 ## 默认位置
 
 - 默认：`~/.elysiaclaw/workspace`
-- 如果设置了 `OPENCLAW_PROFILE` 且不是 `"default"`，默认值变为
+- 如果设置了 `ELYSIACLAW_PROFILE` 且不是 `"default"`，默认值变为
   `~/.elysiaclaw/workspace-<profile>`。
 - 在 `~/.elysiaclaw/elysiaclaw.json` 中覆盖：
 

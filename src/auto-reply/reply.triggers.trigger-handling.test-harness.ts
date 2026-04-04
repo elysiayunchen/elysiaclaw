@@ -110,7 +110,7 @@ type TempHomeEnvSnapshot = {
   userProfile: string | undefined;
   homeDrive: string | undefined;
   homePath: string | undefined;
-  openclawHome: string | undefined;
+  elysiaclawHome: string | undefined;
   stateDir: string | undefined;
 };
 
@@ -123,7 +123,7 @@ function snapshotTempHomeEnv(): TempHomeEnvSnapshot {
     userProfile: process.env.USERPROFILE,
     homeDrive: process.env.HOMEDRIVE,
     homePath: process.env.HOMEPATH,
-    openclawHome: process.env.ELYSIACLAW_HOME,
+    elysiaclawHome: process.env.ELYSIACLAW_HOME,
     stateDir: process.env.ELYSIACLAW_STATE_DIR,
   };
 }
@@ -163,7 +163,7 @@ function setTempHomeEnv(home: string): void {
 }
 
 beforeAll(async () => {
-  suiteTempHomeRoot = await fs.mkdtemp(join(os.tmpdir(), "openclaw-triggers-suite-"));
+  suiteTempHomeRoot = await fs.mkdtemp(join(os.tmpdir(), "elysiaclaw-triggers-suite-"));
 });
 
 afterAll(async () => {

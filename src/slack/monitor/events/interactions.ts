@@ -12,7 +12,7 @@ import {
 } from "./interactions.modal.js";
 
 // Prefix for ElysiaClaw-generated action IDs to scope our handler
-const ELYSIACLAW_ACTION_PREFIX = "openclaw:";
+const ELYSIACLAW_ACTION_PREFIX = "elysiaclaw:";
 const SLACK_INTERACTION_EVENT_PREFIX = "Slack interaction: ";
 const REDACTED_INTERACTION_VALUE = "[redacted]";
 const SLACK_INTERACTION_EVENT_MAX_CHARS = 2400;

@@ -8,7 +8,7 @@ import { markdownToSignalTextChunks } from "../../signal/format.js";
 import { createOutboundTestPlugin, createTestRegistry } from "../../test-utils/channel-plugins.js";
 import { withEnvAsync } from "../../test-utils/env.js";
 import { createIMessageTestPlugin } from "../../test-utils/imessage-test-plugin.js";
-import { resolvePreferredElysiaClawTmpDir } from "../tmp-openclaw-dir.js";
+import { resolvePreferredElysiaClawTmpDir } from "../tmp-elysiaclaw-dir.js";
 import {
   clearDeliverTestRegistry,
   hookMocks,

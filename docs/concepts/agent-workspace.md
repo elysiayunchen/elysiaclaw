@@ -24,7 +24,7 @@ inside a sandbox workspace under `~/.elysiaclaw/sandboxes`, not your host worksp
 ## Default location
 
 - Default: `~/.elysiaclaw/workspace`
-- If `OPENCLAW_PROFILE` is set and not `"default"`, the default becomes
+- If `ELYSIACLAW_PROFILE` is set and not `"default"`, the default becomes
   `~/.elysiaclaw/workspace-<profile>`.
 - Override in `~/.elysiaclaw/elysiaclaw.json`:
 

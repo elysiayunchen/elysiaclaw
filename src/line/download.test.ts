@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { resolvePreferredElysiaClawTmpDir } from "../infra/tmp-openclaw-dir.js";
+import { resolvePreferredElysiaClawTmpDir } from "../infra/tmp-elysiaclaw-dir.js";
 
 const getMessageContentMock = vi.hoisted(() => vi.fn());
 

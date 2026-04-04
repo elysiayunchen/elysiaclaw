@@ -11,10 +11,10 @@ title: "Installer Internals"
 
 ElysiaClaw ships three installer scripts, served from `elysiaclaw.ai`.
 
-| Script                             | Platform             | What it does                                                                                 |
-| ---------------------------------- | -------------------- | -------------------------------------------------------------------------------------------- |
+| Script                             | Platform             | What it does                                                                                   |
+| ---------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------- |
 | [`install.sh`](#installsh)         | macOS / Linux / WSL  | Installs Node if needed, installs ElysiaClaw via npm (default) or git, and can run onboarding. |
-| [`install-cli.sh`](#install-clish) | macOS / Linux / WSL  | Installs Node + ElysiaClaw into a local prefix (`~/.elysiaclaw`). No root required.              |
+| [`install-cli.sh`](#install-clish) | macOS / Linux / WSL  | Installs Node + ElysiaClaw into a local prefix (`~/.elysiaclaw`). No root required.            |
 | [`install.ps1`](#installps1)       | Windows (PowerShell) | Installs Node if needed, installs ElysiaClaw via npm (default) or git, and can run onboarding. |
 
 ## Quick commands
@@ -126,39 +126,39 @@ The script exits with code `2` for invalid method selection or invalid `--instal
 <AccordionGroup>
   <Accordion title="Flags reference">
 
-| Flag                            | Description                                                |
-| ------------------------------- | ---------------------------------------------------------- |
-| `--install-method npm\|git`     | Choose install method (default: `npm`). Alias: `--method`  |
-| `--npm`                         | Shortcut for npm method                                    |
-| `--git`                         | Shortcut for git method. Alias: `--github`                 |
-| `--version <version\|dist-tag>` | npm version or dist-tag (default: `latest`)                |
-| `--beta`                        | Use beta dist-tag if available, else fallback to `latest`  |
+| Flag                            | Description                                                  |
+| ------------------------------- | ------------------------------------------------------------ |
+| `--install-method npm\|git`     | Choose install method (default: `npm`). Alias: `--method`    |
+| `--npm`                         | Shortcut for npm method                                      |
+| `--git`                         | Shortcut for git method. Alias: `--github`                   |
+| `--version <version\|dist-tag>` | npm version or dist-tag (default: `latest`)                  |
+| `--beta`                        | Use beta dist-tag if available, else fallback to `latest`    |
 | `--git-dir <path>`              | Checkout directory (default: `~/elysiaclaw`). Alias: `--dir` |
-| `--no-git-update`               | Skip `git pull` for existing checkout                      |
-| `--no-prompt`                   | Disable prompts                                            |
-| `--no-onboard`                  | Skip onboarding                                            |
-| `--onboard`                     | Enable onboarding                                          |
-| `--dry-run`                     | Print actions without applying changes                     |
-| `--verbose`                     | Enable debug output (`set -x`, npm notice-level logs)      |
-| `--help`                        | Show usage (`-h`)                                          |
+| `--no-git-update`               | Skip `git pull` for existing checkout                        |
+| `--no-prompt`                   | Disable prompts                                              |
+| `--no-onboard`                  | Skip onboarding                                              |
+| `--onboard`                     | Enable onboarding                                            |
+| `--dry-run`                     | Print actions without applying changes                       |
+| `--verbose`                     | Enable debug output (`set -x`, npm notice-level logs)        |
+| `--help`                        | Show usage (`-h`)                                            |
 
   </Accordion>
 
   <Accordion title="Environment variables reference">
 
-| Variable                                    | Description                                   |
-| ------------------------------------------- | --------------------------------------------- |
-| `OPENCLAW_INSTALL_METHOD=git\|npm`          | Install method                                |
-| `OPENCLAW_VERSION=latest\|next\|<semver>`   | npm version or dist-tag                       |
-| `OPENCLAW_BETA=0\|1`                        | Use beta if available                         |
-| `OPENCLAW_GIT_DIR=<path>`                   | Checkout directory                            |
-| `OPENCLAW_GIT_UPDATE=0\|1`                  | Toggle git updates                            |
-| `OPENCLAW_NO_PROMPT=1`                      | Disable prompts                               |
-| `OPENCLAW_NO_ONBOARD=1`                     | Skip onboarding                               |
-| `OPENCLAW_DRY_RUN=1`                        | Dry run mode                                  |
-| `OPENCLAW_VERBOSE=1`                        | Debug mode                                    |
-| `OPENCLAW_NPM_LOGLEVEL=error\|warn\|notice` | npm log level                                 |
-| `SHARP_IGNORE_GLOBAL_LIBVIPS=0\|1`          | Control sharp/libvips behavior (default: `1`) |
+| Variable                                      | Description                                   |
+| --------------------------------------------- | --------------------------------------------- |
+| `ELYSIACLAW_INSTALL_METHOD=git\|npm`          | Install method                                |
+| `ELYSIACLAW_VERSION=latest\|next\|<semver>`   | npm version or dist-tag                       |
+| `ELYSIACLAW_BETA=0\|1`                        | Use beta if available                         |
+| `ELYSIACLAW_GIT_DIR=<path>`                   | Checkout directory                            |
+| `ELYSIACLAW_GIT_UPDATE=0\|1`                  | Toggle git updates                            |
+| `ELYSIACLAW_NO_PROMPT=1`                      | Disable prompts                               |
+| `ELYSIACLAW_NO_ONBOARD=1`                     | Skip onboarding                               |
+| `ELYSIACLAW_DRY_RUN=1`                        | Dry run mode                                  |
+| `ELYSIACLAW_VERBOSE=1`                        | Debug mode                                    |
+| `ELYSIACLAW_NPM_LOGLEVEL=error\|warn\|notice` | npm log level                                 |
+| `SHARP_IGNORE_GLOBAL_LIBVIPS=0\|1`            | Control sharp/libvips behavior (default: `1`) |
 
   </Accordion>
 </AccordionGroup>
@@ -215,11 +215,11 @@ Designed for environments where you want everything under a local prefix (defaul
 
 | Flag                   | Description                                                                     |
 | ---------------------- | ------------------------------------------------------------------------------- |
-| `--prefix <path>`      | Install prefix (default: `~/.elysiaclaw`)                                         |
-| `--version <ver>`      | ElysiaClaw version or dist-tag (default: `latest`)                                |
+| `--prefix <path>`      | Install prefix (default: `~/.elysiaclaw`)                                       |
+| `--version <ver>`      | ElysiaClaw version or dist-tag (default: `latest`)                              |
 | `--node-version <ver>` | Node version (default: `22.22.0`)                                               |
 | `--json`               | Emit NDJSON events                                                              |
-| `--onboard`            | Run `elysiaclaw onboard` after install                                            |
+| `--onboard`            | Run `elysiaclaw onboard` after install                                          |
 | `--no-onboard`         | Skip onboarding (default)                                                       |
 | `--set-npm-prefix`     | On Linux, force npm prefix to `~/.npm-global` if current prefix is not writable |
 | `--help`               | Show usage (`-h`)                                                               |
@@ -228,15 +228,15 @@ Designed for environments where you want everything under a local prefix (defaul
 
   <Accordion title="Environment variables reference">
 
-| Variable                                    | Description                                                                       |
-| ------------------------------------------- | --------------------------------------------------------------------------------- |
-| `OPENCLAW_PREFIX=<path>`                    | Install prefix                                                                    |
-| `OPENCLAW_VERSION=<ver>`                    | ElysiaClaw version or dist-tag                                                      |
-| `OPENCLAW_NODE_VERSION=<ver>`               | Node version                                                                      |
-| `OPENCLAW_NO_ONBOARD=1`                     | Skip onboarding                                                                   |
-| `OPENCLAW_NPM_LOGLEVEL=error\|warn\|notice` | npm log level                                                                     |
-| `OPENCLAW_GIT_DIR=<path>`                   | Legacy cleanup lookup path (used when removing old `Peekaboo` submodule checkout) |
-| `SHARP_IGNORE_GLOBAL_LIBVIPS=0\|1`          | Control sharp/libvips behavior (default: `1`)                                     |
+| Variable                                      | Description                                                                       |
+| --------------------------------------------- | --------------------------------------------------------------------------------- |
+| `ELYSIACLAW_PREFIX=<path>`                    | Install prefix                                                                    |
+| `ELYSIACLAW_VERSION=<ver>`                    | ElysiaClaw version or dist-tag                                                    |
+| `ELYSIACLAW_NODE_VERSION=<ver>`               | Node version                                                                      |
+| `ELYSIACLAW_NO_ONBOARD=1`                     | Skip onboarding                                                                   |
+| `ELYSIACLAW_NPM_LOGLEVEL=error\|warn\|notice` | npm log level                                                                     |
+| `ELYSIACLAW_GIT_DIR=<path>`                   | Legacy cleanup lookup path (used when removing old `Peekaboo` submodule checkout) |
+| `SHARP_IGNORE_GLOBAL_LIBVIPS=0\|1`            | Control sharp/libvips behavior (default: `1`)                                     |
 
   </Accordion>
 </AccordionGroup>
@@ -299,26 +299,26 @@ Designed for environments where you want everything under a local prefix (defaul
 <AccordionGroup>
   <Accordion title="Flags reference">
 
-| Flag                      | Description                                            |
-| ------------------------- | ------------------------------------------------------ |
-| `-InstallMethod npm\|git` | Install method (default: `npm`)                        |
-| `-Tag <tag>`              | npm dist-tag (default: `latest`)                       |
+| Flag                      | Description                                              |
+| ------------------------- | -------------------------------------------------------- |
+| `-InstallMethod npm\|git` | Install method (default: `npm`)                          |
+| `-Tag <tag>`              | npm dist-tag (default: `latest`)                         |
 | `-GitDir <path>`          | Checkout directory (default: `%USERPROFILE%\elysiaclaw`) |
-| `-NoOnboard`              | Skip onboarding                                        |
-| `-NoGitUpdate`            | Skip `git pull`                                        |
-| `-DryRun`                 | Print actions only                                     |
+| `-NoOnboard`              | Skip onboarding                                          |
+| `-NoGitUpdate`            | Skip `git pull`                                          |
+| `-DryRun`                 | Print actions only                                       |
 
   </Accordion>
 
   <Accordion title="Environment variables reference">
 
-| Variable                           | Description        |
-| ---------------------------------- | ------------------ |
-| `OPENCLAW_INSTALL_METHOD=git\|npm` | Install method     |
-| `OPENCLAW_GIT_DIR=<path>`          | Checkout directory |
-| `OPENCLAW_NO_ONBOARD=1`            | Skip onboarding    |
-| `OPENCLAW_GIT_UPDATE=0`            | Disable git pull   |
-| `OPENCLAW_DRY_RUN=1`               | Dry run mode       |
+| Variable                             | Description        |
+| ------------------------------------ | ------------------ |
+| `ELYSIACLAW_INSTALL_METHOD=git\|npm` | Install method     |
+| `ELYSIACLAW_GIT_DIR=<path>`          | Checkout directory |
+| `ELYSIACLAW_NO_ONBOARD=1`            | Skip onboarding    |
+| `ELYSIACLAW_GIT_UPDATE=0`            | Disable git pull   |
+| `ELYSIACLAW_DRY_RUN=1`               | Dry run mode       |
 
   </Accordion>
 </AccordionGroup>
@@ -341,7 +341,7 @@ Use non-interactive flags/env vars for predictable runs.
   </Tab>
   <Tab title="install.sh (non-interactive git)">
     ```bash
-    OPENCLAW_INSTALL_METHOD=git OPENCLAW_NO_PROMPT=1 \
+    ELYSIACLAW_INSTALL_METHOD=git ELYSIACLAW_NO_PROMPT=1 \
       curl -fsSL --proto '=https' --tlsv1.2 https://elysiaclaw.ai/install.sh | bash
     ```
   </Tab>

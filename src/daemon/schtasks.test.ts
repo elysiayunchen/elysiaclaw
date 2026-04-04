@@ -126,9 +126,9 @@ describe("resolveTaskScriptPath", () => {
       env: {
         USERPROFILE: "C:\\Users\\test",
         ELYSIACLAW_PROFILE: "rescue",
-        ELYSIACLAW_STATE_DIR: "C:\\State\\openclaw",
+        ELYSIACLAW_STATE_DIR: "C:\\State\\elysiaclaw",
       },
-      expected: path.join("C:\\State\\openclaw", "gateway.cmd"),
+      expected: path.join("C:\\State\\elysiaclaw", "gateway.cmd"),
     },
     {
       name: "falls back to HOME when USERPROFILE is not set",
@@ -150,7 +150,7 @@ describe("readScheduledTaskCommand", () => {
     },
     run: (env: Record<string, string | undefined>) => Promise<void>,
   ) {
-    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-schtasks-test-"));
+    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-schtasks-test-"));
     try {
       const extraEnv = typeof options.env === "function" ? options.env(tmpDir) : options.env;
       const env = {
@@ -208,7 +208,7 @@ describe("readScheduledTaskCommand", () => {
         scriptLines: [
           "@echo off",
           "rem ElysiaClaw Gateway",
-          "cd /d C:\\Projects\\openclaw",
+          "cd /d C:\\Projects\\elysiaclaw",
           "set NODE_ENV=production",
           "set ELYSIACLAW_PORT=18789",
           "node gateway.js --verbose",
@@ -218,7 +218,7 @@ describe("readScheduledTaskCommand", () => {
         const result = await readScheduledTaskCommand(env);
         expect(result).toEqual({
           programArguments: ["node", "gateway.js", "--verbose"],
-          workingDirectory: "C:\\Projects\\openclaw",
+          workingDirectory: "C:\\Projects\\elysiaclaw",
           environment: {
             NODE_ENV: "production",
             ELYSIACLAW_PORT: "18789",
@@ -234,7 +234,7 @@ describe("readScheduledTaskCommand", () => {
       {
         scriptLines: [
           "@echo off",
-          '"C:\\Program Files\\nodejs\\node.exe" C:\\Users\\test\\AppData\\Roaming\\npm\\node_modules\\openclaw\\dist\\index.js gateway --port 18789',
+          '"C:\\Program Files\\nodejs\\node.exe" C:\\Users\\test\\AppData\\Roaming\\npm\\node_modules\\elysiaclaw\\dist\\index.js gateway --port 18789',
         ],
       },
       async (env) => {
@@ -242,7 +242,7 @@ describe("readScheduledTaskCommand", () => {
         expect(result).toEqual({
           programArguments: [
             "C:\\Program Files\\nodejs\\node.exe",
-            "C:\\Users\\test\\AppData\\Roaming\\npm\\node_modules\\openclaw\\dist\\index.js",
+            "C:\\Users\\test\\AppData\\Roaming\\npm\\node_modules\\elysiaclaw\\dist\\index.js",
             "gateway",
             "--port",
             "18789",

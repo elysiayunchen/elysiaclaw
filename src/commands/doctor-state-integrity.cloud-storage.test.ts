@@ -28,7 +28,14 @@ describe("detectMacCloudSyncedStateDir", () => {
   });
 
   it("detects state dir under Library/CloudStorage", () => {
-    const stateDir = path.join(home, "Library", "CloudStorage", "Dropbox", "ElysiaClaw", ".elysiaclaw");
+    const stateDir = path.join(
+      home,
+      "Library",
+      "CloudStorage",
+      "Dropbox",
+      "ElysiaClaw",
+      ".elysiaclaw",
+    );
 
     const result = detectMacCloudSyncedStateDir(stateDir, {
       platform: "darwin",
@@ -42,7 +49,7 @@ describe("detectMacCloudSyncedStateDir", () => {
   });
 
   it("detects cloud-synced target when state dir resolves via symlink", () => {
-    const symlinkPath = "/tmp/openclaw-state";
+    const symlinkPath = "/tmp/elysiaclaw-state";
     const resolvedCloudPath = path.join(
       home,
       "Library",
@@ -87,7 +94,7 @@ describe("detectMacCloudSyncedStateDir", () => {
   it("anchors cloud detection to OS homedir when ELYSIACLAW_HOME is overridden", () => {
     const stateDir = path.join(home, "Library", "CloudStorage", "iCloud Drive", ".elysiaclaw");
     const originalElysiaClawHome = process.env.ELYSIACLAW_HOME;
-    process.env.ELYSIACLAW_HOME = "/tmp/openclaw-home-override";
+    process.env.ELYSIACLAW_HOME = "/tmp/elysiaclaw-home-override";
     const homedirSpy = vi.spyOn(os, "homedir").mockReturnValue(home);
     try {
       const result = detectMacCloudSyncedStateDir(stateDir, {

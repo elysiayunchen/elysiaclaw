@@ -369,7 +369,7 @@ agents.list[].sandbox.prune.* > agents.defaults.sandbox.prune.*
 
 4. **监控日志：**
    ```exec
-   tail -f "${OPENCLAW_STATE_DIR:-$HOME/.elysiaclaw}/logs/gateway.log" | grep -E "routing|sandbox|tools"
+   tail -f "${ELYSIACLAW_STATE_DIR:-$HOME/.elysiaclaw}/logs/gateway.log" | grep -E "routing|sandbox|tools"
    ```
 
 ---

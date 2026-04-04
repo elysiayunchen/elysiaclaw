@@ -64,7 +64,7 @@ describe("formatPluginSourceForTable", () => {
 
   it("resolves source roots from an explicit env override", () => {
     const ignoredHome = path.resolve(path.sep, "tmp", "ignored-home");
-    const homeDir = path.resolve(path.sep, "tmp", "openclaw-home");
+    const homeDir = path.resolve(path.sep, "tmp", "elysiaclaw-home");
     const roots = withEnv(
       {
         ELYSIACLAW_BUNDLED_PLUGINS_DIR: path.join(ignoredHome, "ignored-bundled"),

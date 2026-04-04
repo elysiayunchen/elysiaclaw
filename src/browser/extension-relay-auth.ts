@@ -4,7 +4,7 @@ import { normalizeSecretInputString, resolveSecretInputRef } from "../config/typ
 import { secretRefKey } from "../secrets/ref-contract.js";
 import { resolveSecretRefValues } from "../secrets/resolve.js";
 
-const RELAY_TOKEN_CONTEXT = "openclaw-extension-relay-v1";
+const RELAY_TOKEN_CONTEXT = "elysiaclaw-extension-relay-v1";
 const DEFAULT_RELAY_PROBE_TIMEOUT_MS = 500;
 const ELYSIACLAW_RELAY_BROWSER = "ElysiaClaw/extension-relay";
 

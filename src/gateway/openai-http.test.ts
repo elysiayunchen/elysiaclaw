@@ -183,7 +183,7 @@ describe("OpenAI-compatible HTTP API (e2e)", () => {
       {
         await expectAgentSessionKeyMatch({
           body: { model: "elysiaclaw", messages: [{ role: "user", content: "hi" }] },
-          headers: { "x-openclaw-agent-id": "beta" },
+          headers: { "x-elysiaclaw-agent-id": "beta" },
           matcher: /^agent:beta:/,
         });
       }
@@ -191,7 +191,7 @@ describe("OpenAI-compatible HTTP API (e2e)", () => {
       {
         await expectAgentSessionKeyMatch({
           body: {
-            model: "openclaw:beta",
+            model: "elysiaclaw:beta",
             messages: [{ role: "user", content: "hi" }],
           },
           matcher: /^agent:beta:/,
@@ -201,10 +201,10 @@ describe("OpenAI-compatible HTTP API (e2e)", () => {
       {
         await expectAgentSessionKeyMatch({
           body: {
-            model: "openclaw:beta",
+            model: "elysiaclaw:beta",
             messages: [{ role: "user", content: "hi" }],
           },
-          headers: { "x-openclaw-agent-id": "alpha" },
+          headers: { "x-elysiaclaw-agent-id": "alpha" },
           matcher: /^agent:alpha:/,
         });
       }
@@ -215,8 +215,8 @@ describe("OpenAI-compatible HTTP API (e2e)", () => {
           port,
           { model: "elysiaclaw", messages: [{ role: "user", content: "hi" }] },
           {
-            "x-openclaw-agent-id": "beta",
-            "x-openclaw-session-key": "agent:beta:openai:custom",
+            "x-elysiaclaw-agent-id": "beta",
+            "x-elysiaclaw-session-key": "agent:beta:openai:custom",
           },
         );
         expect(res.status).toBe(200);

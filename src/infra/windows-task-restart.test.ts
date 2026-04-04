@@ -10,7 +10,7 @@ const resolvePreferredElysiaClawTmpDirMock = vi.hoisted(() => vi.fn(() => os.tmp
 vi.mock("node:child_process", () => ({
   spawn: (...args: unknown[]) => spawnMock(...args),
 }));
-vi.mock("./tmp-openclaw-dir.js", () => ({
+vi.mock("./tmp-elysiaclaw-dir.js", () => ({
   resolvePreferredElysiaClawTmpDir: () => resolvePreferredElysiaClawTmpDirMock(),
 }));
 
@@ -117,7 +117,7 @@ describe("relaunchGatewayScheduledTask", () => {
 
   it("quotes the cmd /c script path when temp paths contain metacharacters", () => {
     const unref = vi.fn();
-    const metacharTmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw&(restart)-"));
+    const metacharTmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "elysiaclaw&(restart)-"));
     createdTmpDirs.add(metacharTmpDir);
     resolvePreferredElysiaClawTmpDirMock.mockReturnValue(metacharTmpDir);
     spawnMock.mockReturnValue({ unref });

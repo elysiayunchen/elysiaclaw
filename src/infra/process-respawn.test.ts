@@ -227,7 +227,7 @@ describe("restartGatewayProcessWithFreshPid", () => {
   it("ignores node task script hints for gateway restart detection on Windows", () => {
     clearSupervisorHints();
     setPlatform("win32");
-    process.env.ELYSIACLAW_TASK_SCRIPT = "C:\\openclaw\\node.cmd";
+    process.env.ELYSIACLAW_TASK_SCRIPT = "C:\\elysiaclaw\\node.cmd";
     process.env.ELYSIACLAW_TASK_SCRIPT_NAME = "node.cmd";
     process.env.ELYSIACLAW_SERVICE_MARKER = "elysiaclaw";
     process.env.ELYSIACLAW_SERVICE_KIND = "node";

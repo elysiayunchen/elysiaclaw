@@ -1,5 +1,5 @@
 import { formatCliCommand } from "../cli/command-format.js";
-import { resolveElysiaClawPackageRoot } from "../infra/openclaw-root.js";
+import { resolveElysiaClawPackageRoot } from "../infra/elysiaclaw-root.js";
 import {
   checkUpdateStatus,
   compareSemverStrings,

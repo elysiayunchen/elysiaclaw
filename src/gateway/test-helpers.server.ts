@@ -109,8 +109,8 @@ function applyGatewaySkipEnv() {
   process.env.ELYSIACLAW_SKIP_CRON = "1";
   process.env.ELYSIACLAW_TEST_MINIMAL_GATEWAY = "1";
   process.env.ELYSIACLAW_BUNDLED_PLUGINS_DIR = tempHome
-    ? path.join(tempHome, "openclaw-test-no-bundled-extensions")
-    : "openclaw-test-no-bundled-extensions";
+    ? path.join(tempHome, "elysiaclaw-test-no-bundled-extensions")
+    : "elysiaclaw-test-no-bundled-extensions";
 }
 
 async function resetGatewayTestState(options: { uniqueConfigRoot: boolean }) {
@@ -250,8 +250,8 @@ type GatewayTestMessage = {
   [key: string]: unknown;
 };
 
-const CONNECT_CHALLENGE_NONCE_KEY = "__openclawTestConnectChallengeNonce";
-const CONNECT_CHALLENGE_TRACKED_KEY = "__openclawTestConnectChallengeTracked";
+const CONNECT_CHALLENGE_NONCE_KEY = "__elysiaclawTestConnectChallengeNonce";
+const CONNECT_CHALLENGE_TRACKED_KEY = "__elysiaclawTestConnectChallengeTracked";
 type TrackedWs = WebSocket & Record<string, unknown>;
 
 export function getTrackedConnectChallengeNonce(ws: WebSocket): string | undefined {

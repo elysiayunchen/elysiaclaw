@@ -1,7 +1,7 @@
 {
   "name": "@elysiaclaw/matrix",
   "version": "2026.3.13",
-  "description": "OpenClaw Matrix channel plugin",
+  "description": "ElysiaClaw Matrix channel plugin",
   "type": "module",
   "dependencies": {
     "@mariozechner/pi-agent-core": "0.58.0",

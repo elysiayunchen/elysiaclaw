@@ -5,7 +5,7 @@ import sharp from "sharp";
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import { resolveStateDir } from "../config/paths.js";
 import { sendVoiceMessageDiscord } from "../discord/send.js";
-import { resolvePreferredElysiaClawTmpDir } from "../infra/tmp-openclaw-dir.js";
+import { resolvePreferredElysiaClawTmpDir } from "../infra/tmp-elysiaclaw-dir.js";
 import { optimizeImageToPng } from "../media/image-ops.js";
 import { mockPinnedHostnameResolution } from "../test-helpers/ssrf.js";
 import { captureEnv } from "../test-utils/env.js";
@@ -68,7 +68,7 @@ function cloneStatWithDev<T extends { dev: number | bigint }>(stat: T, dev: numb
 
 beforeAll(async () => {
   fixtureRoot = await fs.mkdtemp(
-    path.join(resolvePreferredElysiaClawTmpDir(), "openclaw-media-test-"),
+    path.join(resolvePreferredElysiaClawTmpDir(), "elysiaclaw-media-test-"),
   );
   largeJpegBuffer = await sharp({
     create: {
@@ -134,7 +134,7 @@ describe("web media loading", () => {
       path.parse(os.tmpdir()).root,
       "var",
       "lib",
-      "openclaw-media-state-test",
+      "elysiaclaw-media-state-test",
     );
   });
 

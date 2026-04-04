@@ -2,7 +2,7 @@
   "name": "@elysiaclaw/llm-task",
   "version": "2026.3.13",
   "private": true,
-  "description": "OpenClaw JSON-only LLM task plugin",
+  "description": "ElysiaClaw JSON-only LLM task plugin",
   "type": "module",
   "dependencies": {
     "@sinclair/typebox": "0.34.48",

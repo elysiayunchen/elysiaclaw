@@ -34,7 +34,7 @@ describe("shared/frontmatter", () => {
     expect(
       resolveElysiaClawManifestBlock({
         frontmatter: {
-          metadata: "{ openclaw: { foo: 1, bar: 'baz' } }",
+          metadata: "{ elysiaclaw: { foo: 1, bar: 'baz' } }",
         },
       }),
     ).toEqual({ foo: 1, bar: "baz" });
@@ -42,7 +42,7 @@ describe("shared/frontmatter", () => {
     expect(
       resolveElysiaClawManifestBlock({
         frontmatter: {
-          pluginMeta: "{ openclaw: { foo: 2 } }",
+          pluginMeta: "{ elysiaclaw: { foo: 2 } }",
         },
         key: "pluginMeta",
       }),

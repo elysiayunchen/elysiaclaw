@@ -1,4 +1,4 @@
-import type { OpenClawPluginApi } from "elysiaclaw/plugin-sdk/matrix";
+import type { ElysiaClawPluginApi } from "elysiaclaw/plugin-sdk/matrix";
 import { emptyPluginConfigSchema } from "elysiaclaw/plugin-sdk/matrix";
 import { matrixPlugin } from "./src/channel.js";
 import { ensureMatrixCryptoRuntime } from "./src/matrix/deps.js";
@@ -9,7 +9,7 @@ const plugin = {
   name: "Matrix",
   description: "Matrix channel plugin (matrix-js-sdk)",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: ElysiaClawPluginApi) {
     setMatrixRuntime(api.runtime);
     void ensureMatrixCryptoRuntime({ log: api.logger.info }).catch((err) => {
       const message = err instanceof Error ? err.message : String(err);

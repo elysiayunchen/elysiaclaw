@@ -1,4 +1,4 @@
-package ai.openclaw.app.ui.chat
+package ai.elysiaclaw.app.ui.chat
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,13 +15,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ai.openclaw.app.chat.ChatMessage
-import ai.openclaw.app.chat.ChatPendingToolCall
-import ai.openclaw.app.ui.mobileBorder
-import ai.openclaw.app.ui.mobileCallout
-import ai.openclaw.app.ui.mobileHeadline
-import ai.openclaw.app.ui.mobileText
-import ai.openclaw.app.ui.mobileTextSecondary
+import ai.elysiaclaw.app.chat.ChatMessage
+import ai.elysiaclaw.app.chat.ChatPendingToolCall
+import ai.elysiaclaw.app.ui.mobileBorder
+import ai.elysiaclaw.app.ui.mobileCallout
+import ai.elysiaclaw.app.ui.mobileHeadline
+import ai.elysiaclaw.app.ui.mobileText
+import ai.elysiaclaw.app.ui.mobileTextSecondary
 
 @Composable
 fun ChatMessageListCard(

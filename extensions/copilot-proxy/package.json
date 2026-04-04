@@ -2,7 +2,7 @@
   "name": "@elysiaclaw/copilot-proxy",
   "version": "2026.3.13",
   "private": true,
-  "description": "OpenClaw Copilot Proxy provider plugin",
+  "description": "ElysiaClaw Copilot Proxy provider plugin",
   "type": "module",
   "elysiaclaw": {
     "extensions": [

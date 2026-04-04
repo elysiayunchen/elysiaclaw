@@ -1,5 +1,5 @@
 import { EventEmitter } from "node:events";
-import type { OpenClawConfig, RuntimeEnv } from "elysiaclaw/plugin-sdk/msteams";
+import type { ElysiaClawConfig, RuntimeEnv } from "elysiaclaw/plugin-sdk/msteams";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import type { MSTeamsConversationStore } from "./conversation-store.js";
 import type { MSTeamsPollStore } from "./polls.js";
@@ -134,7 +134,7 @@ vi.mock("./runtime.js", () => ({
 
 import { monitorMSTeamsProvider } from "./monitor.js";
 
-function createConfig(port: number): OpenClawConfig {
+function createConfig(port: number): ElysiaClawConfig {
   return {
     channels: {
       msteams: {
@@ -148,7 +148,7 @@ function createConfig(port: number): OpenClawConfig {
         },
       },
     },
-  } as OpenClawConfig;
+  } as ElysiaClawConfig;
 }
 
 function createRuntime(): RuntimeEnv {

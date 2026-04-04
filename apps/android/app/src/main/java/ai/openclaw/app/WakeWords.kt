@@ -1,4 +1,4 @@
-package ai.openclaw.app
+package ai.elysiaclaw.app
 
 object WakeWords {
   const val maxWords: Int = 32

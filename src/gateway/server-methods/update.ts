@@ -1,6 +1,6 @@
 import { loadConfig } from "../../config/config.js";
 import { extractDeliveryInfo } from "../../config/sessions.js";
-import { resolveElysiaClawPackageRoot } from "../../infra/openclaw-root.js";
+import { resolveElysiaClawPackageRoot } from "../../infra/elysiaclaw-root.js";
 import {
   formatDoctorNonInteractiveHint,
   type RestartSentinelPayload,

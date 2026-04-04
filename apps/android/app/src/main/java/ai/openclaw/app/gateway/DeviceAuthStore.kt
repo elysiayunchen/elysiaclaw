@@ -1,6 +1,6 @@
-package ai.openclaw.app.gateway
+package ai.elysiaclaw.app.gateway
 
-import ai.openclaw.app.SecurePrefs
+import ai.elysiaclaw.app.SecurePrefs
 
 interface DeviceAuthTokenStore {
   fun loadToken(deviceId: String, role: String): String?

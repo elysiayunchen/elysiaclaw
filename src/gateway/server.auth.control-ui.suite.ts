@@ -127,7 +127,7 @@ export function registerControlUiAndPairingSuite(): void {
     };
   };
 
-  const startServerWithOperatorIdentity = async (identityPrefix = "openclaw-device-scope-") => {
+  const startServerWithOperatorIdentity = async (identityPrefix = "elysiaclaw-device-scope-") => {
     const { server, ws, port, prevToken } = await startServerWithClient("secret");
     const { identityPath, identity, client } = await createOperatorIdentityFixture(identityPrefix);
     return { server, ws, port, prevToken, identityPath, identity, client };
@@ -295,7 +295,7 @@ export function registerControlUiAndPairingSuite(): void {
           clientMode: GATEWAY_CLIENT_MODES.WEBCHAT,
           identityPath: path.join(
             os.tmpdir(),
-            `openclaw-controlui-device-${process.pid}-${process.env.VITEST_POOL_ID ?? "0"}-${controlUiIdentityPathSeq++}.json`,
+            `elysiaclaw-controlui-device-${process.pid}-${process.env.VITEST_POOL_ID ?? "0"}-${controlUiIdentityPathSeq++}.json`,
           ),
           nonce: String(nonce),
         });
@@ -570,7 +570,7 @@ export function registerControlUiAndPairingSuite(): void {
     const { getPairedDevice, listDevicePairing } = await import("../infra/device-pairing.js");
     const { server, ws, port, prevToken } = await startServerWithClient("secret");
     const { identity, identityPath } = await seedApprovedOperatorReadPairing({
-      identityPrefix: "openclaw-device-token-scope-",
+      identityPrefix: "elysiaclaw-device-token-scope-",
       clientId: CONTROL_UI_CLIENT.id,
       clientMode: CONTROL_UI_CLIENT.mode,
       displayName: "loopback-control-ui-upgrade",
@@ -608,8 +608,9 @@ export function registerControlUiAndPairingSuite(): void {
       await import("../infra/device-pairing.js");
     const { server, ws, port, prevToken } = await startServerWithClient("secret");
     ws.close();
-    const { identityPath, identity, client } =
-      await createOperatorIdentityFixture("openclaw-device-scope-");
+    const { identityPath, identity, client } = await createOperatorIdentityFixture(
+      "elysiaclaw-device-scope-",
+    );
     const connectWithNonce = async (role: "operator" | "node", scopes: string[]) => {
       const socket = new WebSocket(`ws://127.0.0.1:${port}`, {
         headers: { host: "gateway.example" },
@@ -728,7 +729,7 @@ export function registerControlUiAndPairingSuite(): void {
     const { approveDevicePairing, getPairedDevice, listDevicePairing, requestDevicePairing } =
       await import("../infra/device-pairing.js");
     const { identityPath, identity } = await createOperatorIdentityFixture(
-      "openclaw-device-legacy-meta-",
+      "elysiaclaw-device-legacy-meta-",
     );
     const deviceId = identity.deviceId;
     const publicKey = publicKeyRawBase64UrlFromPem(identity.publicKeyPem);
@@ -783,7 +784,7 @@ export function registerControlUiAndPairingSuite(): void {
   test("auto-approves local scope upgrades even when paired metadata is legacy-shaped", async () => {
     const { getPairedDevice, listDevicePairing } = await import("../infra/device-pairing.js");
     const { identity, identityPath } = await seedApprovedOperatorReadPairing({
-      identityPrefix: "openclaw-device-legacy-",
+      identityPrefix: "elysiaclaw-device-legacy-",
       clientId: TEST_OPERATOR_CLIENT.id,
       clientMode: TEST_OPERATOR_CLIENT.mode,
       displayName: "legacy-upgrade-test",

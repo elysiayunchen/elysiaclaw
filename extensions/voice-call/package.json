@@ -1,7 +1,7 @@
 {
   "name": "@elysiaclaw/voice-call",
   "version": "2026.3.13",
-  "description": "OpenClaw voice-call plugin",
+  "description": "ElysiaClaw voice-call plugin",
   "type": "module",
   "dependencies": {
     "@sinclair/typebox": "0.34.48",

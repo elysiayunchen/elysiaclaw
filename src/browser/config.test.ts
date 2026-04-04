@@ -18,10 +18,10 @@ describe("browser config", () => {
     expect(profile?.cdpPort).toBe(18800);
     expect(profile?.cdpUrl).toBe("http://127.0.0.1:18800");
 
-    const openclaw = resolveProfile(resolved, "elysiaclaw");
-    expect(openclaw?.driver).toBe("elysiaclaw");
-    expect(openclaw?.cdpPort).toBe(18800);
-    expect(openclaw?.cdpUrl).toBe("http://127.0.0.1:18800");
+    const elysiaclaw = resolveProfile(resolved, "elysiaclaw");
+    expect(elysiaclaw?.driver).toBe("elysiaclaw");
+    expect(elysiaclaw?.cdpPort).toBe(18800);
+    expect(elysiaclaw?.cdpUrl).toBe("http://127.0.0.1:18800");
     const user = resolveProfile(resolved, "user");
     expect(user?.driver).toBe("existing-session");
     expect(user?.cdpPort).toBe(0);
@@ -43,9 +43,9 @@ describe("browser config", () => {
       expect(chromeRelay?.cdpPort).toBe(19004);
       expect(chromeRelay?.cdpUrl).toBe("http://127.0.0.1:19004");
 
-      const openclaw = resolveProfile(resolved, "elysiaclaw");
-      expect(openclaw?.cdpPort).toBe(19012);
-      expect(openclaw?.cdpUrl).toBe("http://127.0.0.1:19012");
+      const elysiaclaw = resolveProfile(resolved, "elysiaclaw");
+      expect(elysiaclaw?.cdpPort).toBe(19012);
+      expect(elysiaclaw?.cdpUrl).toBe("http://127.0.0.1:19012");
     });
   });
 
@@ -58,9 +58,9 @@ describe("browser config", () => {
       expect(chromeRelay?.cdpPort).toBe(19014);
       expect(chromeRelay?.cdpUrl).toBe("http://127.0.0.1:19014");
 
-      const openclaw = resolveProfile(resolved, "elysiaclaw");
-      expect(openclaw?.cdpPort).toBe(19022);
-      expect(openclaw?.cdpUrl).toBe("http://127.0.0.1:19022");
+      const elysiaclaw = resolveProfile(resolved, "elysiaclaw");
+      expect(elysiaclaw?.cdpPort).toBe(19022);
+      expect(elysiaclaw?.cdpUrl).toBe("http://127.0.0.1:19022");
     });
   });
 
@@ -68,10 +68,10 @@ describe("browser config", () => {
     const resolved = resolveBrowserConfig({
       cdpPortRangeStart: 19000,
     });
-    const openclaw = resolveProfile(resolved, "elysiaclaw");
+    const elysiaclaw = resolveProfile(resolved, "elysiaclaw");
     expect(resolved.cdpPortRangeStart).toBe(19000);
-    expect(openclaw?.cdpPort).toBe(19000);
-    expect(openclaw?.cdpUrl).toBe("http://127.0.0.1:19000");
+    expect(elysiaclaw?.cdpPort).toBe(19000);
+    expect(elysiaclaw?.cdpUrl).toBe("http://127.0.0.1:19000");
   });
 
   it("rejects cdpPortRangeStart values that overflow the CDP range window", () => {
@@ -212,7 +212,7 @@ describe("browser config", () => {
   it("does not add the built-in chrome-relay profile if the derived relay port is already used", () => {
     const resolved = resolveBrowserConfig({
       profiles: {
-        openclaw: { cdpPort: 18792, color: "#FF4500" },
+        elysiaclaw: { cdpPort: 18792, color: "#FF4500" },
       },
     });
     expect(resolveProfile(resolved, "chrome-relay")).toBe(null);
@@ -325,7 +325,7 @@ describe("browser config", () => {
   });
 
   describe("default profile preference", () => {
-    it("defaults to openclaw profile when defaultProfile is not configured", () => {
+    it("defaults to elysiaclaw profile when defaultProfile is not configured", () => {
       const resolved = resolveBrowserConfig({
         headless: false,
         noSandbox: false,
@@ -333,21 +333,21 @@ describe("browser config", () => {
       expect(resolved.defaultProfile).toBe("elysiaclaw");
     });
 
-    it("keeps openclaw default when headless=true", () => {
+    it("keeps elysiaclaw default when headless=true", () => {
       const resolved = resolveBrowserConfig({
         headless: true,
       });
       expect(resolved.defaultProfile).toBe("elysiaclaw");
     });
 
-    it("keeps openclaw default when noSandbox=true", () => {
+    it("keeps elysiaclaw default when noSandbox=true", () => {
       const resolved = resolveBrowserConfig({
         noSandbox: true,
       });
       expect(resolved.defaultProfile).toBe("elysiaclaw");
     });
 
-    it("keeps openclaw default when both headless and noSandbox are true", () => {
+    it("keeps elysiaclaw default when both headless and noSandbox are true", () => {
       const resolved = resolveBrowserConfig({
         headless: true,
         noSandbox: true,

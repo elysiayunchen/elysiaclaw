@@ -12,7 +12,7 @@ const tempDirs: string[] = [];
 const previousUmask = process.umask(0o022);
 
 function makeTempDir() {
-  return makeTrackedTempDir("openclaw-plugins", tempDirs);
+  return makeTrackedTempDir("elysiaclaw-plugins", tempDirs);
 }
 
 const mkdirSafe = mkdirSafeDir;
@@ -42,7 +42,7 @@ function writePluginPackageManifest(params: {
     path.join(params.packageDir, "package.json"),
     JSON.stringify({
       name: params.packageName,
-      openclaw: { extensions: params.extensions },
+      elysiaclaw: { extensions: params.extensions },
     }),
     "utf-8",
   );
@@ -169,7 +169,7 @@ describe("discoverElysiaClawPlugins", () => {
 
     writePluginPackageManifest({
       packageDir: globalExt,
-      packageName: "@openclaw/voice-call",
+      packageName: "@elysiaclaw/voice-call",
       extensions: ["./src/index.ts"],
     });
     fs.writeFileSync(
@@ -191,7 +191,7 @@ describe("discoverElysiaClawPlugins", () => {
 
     writePluginPackageManifest({
       packageDir: globalExt,
-      packageName: "@openclaw/ollama-provider",
+      packageName: "@elysiaclaw/ollama-provider",
       extensions: ["./src/index.ts"],
     });
     fs.writeFileSync(
@@ -214,7 +214,7 @@ describe("discoverElysiaClawPlugins", () => {
 
     writePluginPackageManifest({
       packageDir: packDir,
-      packageName: "@openclaw/demo-plugin-dir",
+      packageName: "@elysiaclaw/demo-plugin-dir",
       extensions: ["./index.js"],
     });
     fs.writeFileSync(path.join(packDir, "index.js"), "module.exports = {}", "utf-8");
@@ -232,7 +232,7 @@ describe("discoverElysiaClawPlugins", () => {
 
     writePluginPackageManifest({
       packageDir: globalExt,
-      packageName: "@openclaw/escape-pack",
+      packageName: "@elysiaclaw/escape-pack",
       extensions: ["../../outside.js"],
     });
     fs.writeFileSync(outside, "export default function () {}", "utf-8");
@@ -259,7 +259,7 @@ describe("discoverElysiaClawPlugins", () => {
 
     writePluginPackageManifest({
       packageDir: globalExt,
-      packageName: "@openclaw/pack",
+      packageName: "@elysiaclaw/pack",
       extensions: ["./linked/escape.ts"],
     });
 
@@ -292,7 +292,7 @@ describe("discoverElysiaClawPlugins", () => {
 
     writePluginPackageManifest({
       packageDir: globalExt,
-      packageName: "@openclaw/pack",
+      packageName: "@elysiaclaw/pack",
       extensions: ["./escape.ts"],
     });
 
@@ -317,8 +317,8 @@ describe("discoverElysiaClawPlugins", () => {
     fs.writeFileSync(
       outsideManifest,
       JSON.stringify({
-        name: "@openclaw/pack",
-        openclaw: { extensions: ["./entry.ts"] },
+        name: "@elysiaclaw/pack",
+        elysiaclaw: { extensions: ["./entry.ts"] },
       }),
       "utf-8",
     );

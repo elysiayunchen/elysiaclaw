@@ -1,4 +1,4 @@
-import type { OpenClawConfig, DmPolicy } from "elysiaclaw/plugin-sdk/googlechat";
+import type { ElysiaClawConfig, DmPolicy } from "elysiaclaw/plugin-sdk/googlechat";
 import {
   DEFAULT_ACCOUNT_ID,
   applySetupAccountConfigPatch,
@@ -23,7 +23,7 @@ const channel = "googlechat" as const;
 const ENV_SERVICE_ACCOUNT = "GOOGLE_CHAT_SERVICE_ACCOUNT";
 const ENV_SERVICE_ACCOUNT_FILE = "GOOGLE_CHAT_SERVICE_ACCOUNT_FILE";
 
-function setGoogleChatDmPolicy(cfg: OpenClawConfig, policy: DmPolicy) {
+function setGoogleChatDmPolicy(cfg: ElysiaClawConfig, policy: DmPolicy) {
   const allowFrom =
     policy === "open"
       ? addWildcardAllowFrom(cfg.channels?.["googlechat"]?.dm?.allowFrom)
@@ -45,9 +45,9 @@ function setGoogleChatDmPolicy(cfg: OpenClawConfig, policy: DmPolicy) {
 }
 
 async function promptAllowFrom(params: {
-  cfg: OpenClawConfig;
+  cfg: ElysiaClawConfig;
   prompter: WizardPrompter;
-}): Promise<OpenClawConfig> {
+}): Promise<ElysiaClawConfig> {
   const current = params.cfg.channels?.["googlechat"]?.dm?.allowFrom ?? [];
   const entry = await params.prompter.text({
     message: "Google Chat allowFrom (users/<id> or raw email; avoid users/<email>)",
@@ -85,10 +85,10 @@ const dmPolicy: ChannelOnboardingDmPolicy = {
 };
 
 async function promptCredentials(params: {
-  cfg: OpenClawConfig;
+  cfg: ElysiaClawConfig;
   prompter: WizardPrompter;
   accountId: string;
-}): Promise<OpenClawConfig> {
+}): Promise<ElysiaClawConfig> {
   const { cfg, prompter, accountId } = params;
   const envReady =
     accountId === DEFAULT_ACCOUNT_ID &&
@@ -140,10 +140,10 @@ async function promptCredentials(params: {
 }
 
 async function promptAudience(params: {
-  cfg: OpenClawConfig;
+  cfg: ElysiaClawConfig;
   prompter: WizardPrompter;
   accountId: string;
-}): Promise<OpenClawConfig> {
+}): Promise<ElysiaClawConfig> {
   const account = resolveGoogleChatAccount({
     cfg: params.cfg,
     accountId: params.accountId,

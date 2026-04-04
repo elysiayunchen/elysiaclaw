@@ -8,7 +8,7 @@ vi.mock("./models-config.js", () => ({
 }));
 
 vi.mock("./agent-paths.js", () => ({
-  resolveElysiaClawAgentDir: () => "/tmp/openclaw",
+  resolveElysiaClawAgentDir: () => "/tmp/elysiaclaw",
 }));
 
 export function installModelCatalogTestHooks() {

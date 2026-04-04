@@ -22,9 +22,9 @@ ElysiaClaw 从多个来源拉取环境变量。规则是**永不覆盖现有值*
 
 1. **进程环境**（Gateway 网关进程从父 shell/守护进程已有的内容）。
 2. **当前工作目录中的 `.env`**（dotenv 默认；不覆盖）。
-3. **全局 `.env`** 位于 `~/.elysiaclaw/.env`（即 `$OPENCLAW_STATE_DIR/.env`；不覆盖）。
+3. **全局 `.env`** 位于 `~/.elysiaclaw/.env`（即 `$ELYSIACLAW_STATE_DIR/.env`；不覆盖）。
 4. **配置 `env` 块** 位于 `~/.elysiaclaw/elysiaclaw.json`（仅在缺失时应用）。
-5. **可选的登录 shell 导入**（`env.shellEnv.enabled` 或 `OPENCLAW_LOAD_SHELL_ENV=1`），仅对缺失的预期键名应用。
+5. **可选的登录 shell 导入**（`env.shellEnv.enabled` 或 `ELYSIACLAW_LOAD_SHELL_ENV=1`），仅对缺失的预期键名应用。
 
 如果配置文件完全缺失，步骤 4 将被跳过；如果启用了 shell 导入，它仍会运行。
 
@@ -60,8 +60,8 @@ ElysiaClaw 从多个来源拉取环境变量。规则是**永不覆盖现有值*
 
 环境变量等效项：
 
-- `OPENCLAW_LOAD_SHELL_ENV=1`
-- `OPENCLAW_SHELL_ENV_TIMEOUT_MS=15000`
+- `ELYSIACLAW_LOAD_SHELL_ENV=1`
+- `ELYSIACLAW_SHELL_ENV_TIMEOUT_MS=15000`
 
 ## 配置中的环境变量替换
 

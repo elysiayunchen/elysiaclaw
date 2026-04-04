@@ -154,12 +154,12 @@ curl -fsSL https://elysiaclaw.ai/install.sh | bash -s -- --install-method git
 
 等效的环境变量（对自动化有用）：
 
-- `OPENCLAW_INSTALL_METHOD=git|npm`
-- `OPENCLAW_GIT_DIR=...`
-- `OPENCLAW_GIT_UPDATE=0|1`
-- `OPENCLAW_NO_PROMPT=1`
-- `OPENCLAW_DRY_RUN=1`
-- `OPENCLAW_NO_ONBOARD=1`
+- `ELYSIACLAW_INSTALL_METHOD=git|npm`
+- `ELYSIACLAW_GIT_DIR=...`
+- `ELYSIACLAW_GIT_UPDATE=0|1`
+- `ELYSIACLAW_NO_PROMPT=1`
+- `ELYSIACLAW_DRY_RUN=1`
+- `ELYSIACLAW_NO_ONBOARD=1`
 - `SHARP_IGNORE_GLOBAL_LIBVIPS=0|1`（默认：`1`；避免 `sharp` 针对系统 libvips 构建）
 
 ## 故障排除：找不到 `elysiaclaw`（PATH）

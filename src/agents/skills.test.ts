@@ -14,7 +14,7 @@ import {
 } from "./skills.js";
 import { getActiveSkillEnvKeys } from "./skills/env-overrides.js";
 
-const fixtureSuite = createFixtureSuite("openclaw-skills-suite-");
+const fixtureSuite = createFixtureSuite("elysiaclaw-skills-suite-");
 let tempHome: TempHomeEnv | null = null;
 
 const resolveTestSkillDirs = (workspaceDir: string) => ({
@@ -61,7 +61,7 @@ async function writeEnvSkill(workspaceDir: string) {
 
 beforeAll(async () => {
   await fixtureSuite.setup();
-  tempHome = await createTempHomeEnv("openclaw-skills-home-");
+  tempHome = await createTempHomeEnv("elysiaclaw-skills-home-");
   await fs.mkdir(path.join(tempHome.home, ".elysiaclaw", "agents", "main", "sessions"), {
     recursive: true,
   });

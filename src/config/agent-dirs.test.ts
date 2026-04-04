@@ -22,7 +22,7 @@ describe("resolveEffectiveAgentDir via findDuplicateAgentDirs", () => {
     };
 
     const env = {
-      ELYSIACLAW_HOME: "/srv/openclaw-home",
+      ELYSIACLAW_HOME: "/srv/elysiaclaw-home",
       HOME: "/home/other",
     } as NodeJS.ProcessEnv;
 
@@ -37,7 +37,7 @@ describe("resolveEffectiveAgentDir via findDuplicateAgentDirs", () => {
     const cfg: ElysiaClawConfig = {};
 
     const env = {
-      ELYSIACLAW_HOME: "/srv/openclaw-home",
+      ELYSIACLAW_HOME: "/srv/elysiaclaw-home",
     } as NodeJS.ProcessEnv;
 
     // No duplicates for a single default agent

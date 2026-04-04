@@ -115,7 +115,7 @@ export function scheduleDetachedLaunchdRestartHandoff(params: {
       [
         "-c",
         buildLaunchdRestartScript(params.mode),
-        "openclaw-launchd-restart-handoff",
+        "elysiaclaw-launchd-restart-handoff",
         target.serviceTarget,
         target.domain,
         target.plistPath,

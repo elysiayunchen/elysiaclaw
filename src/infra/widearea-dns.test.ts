@@ -12,7 +12,7 @@ import {
 } from "./widearea-dns.js";
 
 const baseZoneOpts: WideAreaGatewayZoneOpts = {
-  domain: "openclaw.internal.",
+  domain: "elysiaclaw.internal.",
   gatewayPort: 18789,
   displayName: "Mac Studio (ElysiaClaw)",
   tailnetIPv4: "100.123.224.76",
@@ -31,9 +31,9 @@ afterEach(() => {
 
 describe("wide-area DNS discovery domain helpers", () => {
   it.each([
-    { value: "openclaw.internal", expected: "openclaw.internal." },
-    { value: "openclaw.internal.", expected: "openclaw.internal." },
-    { value: "  openclaw.internal  ", expected: "openclaw.internal." },
+    { value: "elysiaclaw.internal", expected: "elysiaclaw.internal." },
+    { value: "elysiaclaw.internal.", expected: "elysiaclaw.internal." },
+    { value: "  elysiaclaw.internal  ", expected: "elysiaclaw.internal." },
     { value: "", expected: null },
     { value: "   ", expected: null },
     { value: null, expected: null },
@@ -71,8 +71,8 @@ describe("wide-area DNS discovery domain helpers", () => {
   });
 
   it("builds the default zone path from the normalized domain", () => {
-    expect(getWideAreaZonePath("openclaw.internal.")).toBe(
-      path.join(utils.CONFIG_DIR, "dns", "openclaw.internal.db"),
+    expect(getWideAreaZonePath("elysiaclaw.internal.")).toBe(
+      path.join(utils.CONFIG_DIR, "dns", "elysiaclaw.internal.db"),
     );
   });
 });
@@ -80,7 +80,7 @@ describe("wide-area DNS discovery domain helpers", () => {
 describe("wide-area DNS-SD zone rendering", () => {
   it("renders a zone with gateway PTR/SRV/TXT records", () => {
     const txt = renderWideAreaGatewayZoneText({
-      domain: "openclaw.internal.",
+      domain: "elysiaclaw.internal.",
       serial: 2025121701,
       gatewayPort: 18789,
       displayName: "Mac Studio (ElysiaClaw)",
@@ -89,23 +89,23 @@ describe("wide-area DNS-SD zone rendering", () => {
       hostLabel: "studio-london",
       instanceLabel: "studio-london",
       sshPort: 22,
-      cliPath: "/opt/homebrew/bin/openclaw",
+      cliPath: "/opt/homebrew/bin/elysiaclaw",
     });
 
-    expect(txt).toContain(`$ORIGIN openclaw.internal.`);
+    expect(txt).toContain(`$ORIGIN elysiaclaw.internal.`);
     expect(txt).toContain(`studio-london IN A 100.123.224.76`);
     expect(txt).toContain(`studio-london IN AAAA fd7a:115c:a1e0::8801:e04c`);
-    expect(txt).toContain(`_openclaw-gw._tcp IN PTR studio-london._openclaw-gw._tcp`);
-    expect(txt).toContain(`studio-london._openclaw-gw._tcp IN SRV 0 0 18789 studio-london`);
+    expect(txt).toContain(`_elysiaclaw-gw._tcp IN PTR studio-london._elysiaclaw-gw._tcp`);
+    expect(txt).toContain(`studio-london._elysiaclaw-gw._tcp IN SRV 0 0 18789 studio-london`);
     expect(txt).toContain(`displayName=Mac Studio (ElysiaClaw)`);
     expect(txt).toContain(`gatewayPort=18789`);
     expect(txt).toContain(`sshPort=22`);
-    expect(txt).toContain(`cliPath=/opt/homebrew/bin/openclaw`);
+    expect(txt).toContain(`cliPath=/opt/homebrew/bin/elysiaclaw`);
   });
 
   it("includes tailnetDns when provided", () => {
     const txt = renderWideAreaGatewayZoneText({
-      domain: "openclaw.internal.",
+      domain: "elysiaclaw.internal.",
       serial: 2025121701,
       gatewayPort: 18789,
       displayName: "Mac Studio (ElysiaClaw)",
@@ -120,7 +120,7 @@ describe("wide-area DNS-SD zone rendering", () => {
 
   it("includes gateway TLS TXT fields and trims display metadata", () => {
     const txt = renderWideAreaGatewayZoneText({
-      domain: "openclaw.internal",
+      domain: "elysiaclaw.internal",
       serial: 2025121701,
       gatewayPort: 18789,
       displayName: "  Mac Studio (ElysiaClaw)  ",
@@ -130,17 +130,17 @@ describe("wide-area DNS-SD zone rendering", () => {
       gatewayTlsEnabled: true,
       gatewayTlsFingerprintSha256: "abc123",
       tailnetDns: " tailnet.ts.net ",
-      cliPath: " /opt/homebrew/bin/openclaw ",
+      cliPath: " /opt/homebrew/bin/elysiaclaw ",
     });
 
-    expect(txt).toContain(`$ORIGIN openclaw.internal.`);
+    expect(txt).toContain(`$ORIGIN elysiaclaw.internal.`);
     expect(txt).toContain(`studio-london IN A 100.123.224.76`);
-    expect(txt).toContain(`studio-london._openclaw-gw._tcp IN TXT`);
+    expect(txt).toContain(`studio-london._elysiaclaw-gw._tcp IN TXT`);
     expect(txt).toContain(`displayName=Mac Studio (ElysiaClaw)`);
     expect(txt).toContain(`gatewayTls=1`);
     expect(txt).toContain(`gatewayTlsSha256=abc123`);
     expect(txt).toContain(`tailnetDns=tailnet.ts.net`);
-    expect(txt).toContain(`cliPath=/opt/homebrew/bin/openclaw`);
+    expect(txt).toContain(`cliPath=/opt/homebrew/bin/elysiaclaw`);
   });
 });
 
@@ -160,7 +160,7 @@ describe("wide-area DNS zone writes", () => {
     const result = await writeWideAreaGatewayZone(makeZoneOpts());
 
     expect(result).toEqual({
-      zonePath: getWideAreaZonePath("openclaw.internal."),
+      zonePath: getWideAreaZonePath("elysiaclaw.internal."),
       changed: false,
     });
     expect(writeSpy).not.toHaveBeenCalled();
@@ -180,11 +180,11 @@ describe("wide-area DNS zone writes", () => {
     );
 
     expect(result).toEqual({
-      zonePath: getWideAreaZonePath("openclaw.internal."),
+      zonePath: getWideAreaZonePath("elysiaclaw.internal."),
       changed: true,
     });
     expect(writeSpy).toHaveBeenCalledWith(
-      getWideAreaZonePath("openclaw.internal."),
+      getWideAreaZonePath("elysiaclaw.internal."),
       expect.stringContaining("@ IN SOA ns1 hostmaster 2026031305 7200 3600 1209600 60"),
       "utf-8",
     );

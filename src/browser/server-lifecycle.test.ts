@@ -54,7 +54,7 @@ describe("ensureExtensionRelayForProfiles", () => {
       resolved: {
         profiles: {
           "chrome-relay": {},
-          openclaw: {},
+          elysiaclaw: {},
         },
       } as never,
       onWarn: vi.fn(),
@@ -93,7 +93,7 @@ describe("stopKnownBrowserProfiles", () => {
   it("stops all known profiles and ignores per-profile failures", async () => {
     listKnownProfileNamesMock.mockReturnValue(["elysiaclaw", "chrome-relay"]);
     const stopMap: Record<string, ReturnType<typeof vi.fn>> = {
-      openclaw: vi.fn(async () => {}),
+      elysiaclaw: vi.fn(async () => {}),
       "chrome-relay": vi.fn(async () => {
         throw new Error("profile stop failed");
       }),
@@ -177,6 +177,6 @@ describe("stopKnownBrowserProfiles", () => {
       onWarn,
     });
 
-    expect(onWarn).toHaveBeenCalledWith("openclaw browser stop failed: Error: oops");
+    expect(onWarn).toHaveBeenCalledWith("elysiaclaw browser stop failed: Error: oops");
   });
 });

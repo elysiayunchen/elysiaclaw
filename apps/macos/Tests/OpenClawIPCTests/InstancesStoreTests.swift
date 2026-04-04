@@ -1,6 +1,6 @@
-import OpenClawProtocol
+import ElysiaClawProtocol
 import Testing
-@testable import OpenClaw
+@testable import ElysiaClaw
 
 struct InstancesStoreTests {
     @Test
@@ -8,7 +8,7 @@ struct InstancesStoreTests {
     func `presence event payload decodes via JSON encoder`() {
         // Build a payload that mirrors the gateway's presence event shape:
         // { "presence": [ PresenceEntry ] }
-        let entry: [String: OpenClawProtocol.AnyCodable] = [
+        let entry: [String: ElysiaClawProtocol.AnyCodable] = [
             "host": .init("gw"),
             "ip": .init("10.0.0.1"),
             "version": .init("2.0.0"),
@@ -18,10 +18,10 @@ struct InstancesStoreTests {
             "text": .init("Gateway node"),
             "ts": .init(1_730_000_000),
         ]
-        let payloadMap: [String: OpenClawProtocol.AnyCodable] = [
-            "presence": .init([OpenClawProtocol.AnyCodable(entry)]),
+        let payloadMap: [String: ElysiaClawProtocol.AnyCodable] = [
+            "presence": .init([ElysiaClawProtocol.AnyCodable(entry)]),
         ]
-        let payload = OpenClawProtocol.AnyCodable(payloadMap)
+        let payload = ElysiaClawProtocol.AnyCodable(payloadMap)
 
         let store = InstancesStore(isPreview: true)
         store.handlePresenceEventPayload(payload)

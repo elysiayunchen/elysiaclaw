@@ -180,7 +180,7 @@ export async function runNonInteractiveOnboardingLocal(params: {
           daemonInstall.skippedReason === "systemd-user-unavailable"
             ? [
                 "Fix: rerun without `--install-daemon` for one-shot setup, or enable a working user-systemd session and retry.",
-                "If your auth profile uses env-backed refs, keep those env vars set in the shell that runs `elysiaclaw gateway run` or `openclaw agent --local`.",
+                "If your auth profile uses env-backed refs, keep those env vars set in the shell that runs `elysiaclaw gateway run` or `elysiaclaw agent --local`.",
               ]
             : [`Run \`${formatCliCommand("elysiaclaw gateway status --deep")}\` for more detail.`],
       });
@@ -260,7 +260,7 @@ export async function runNonInteractiveOnboardingLocal(params: {
 
   if (!opts.json) {
     runtime.log(
-      `Tip: run \`${formatCliCommand("openclaw configure --section web")}\` to store your Brave API key for web_search. Docs: https://docs.elysiaclaw.ai/tools/web`,
+      `Tip: run \`${formatCliCommand("elysiaclaw configure --section web")}\` to store your Brave API key for web_search. Docs: https://docs.elysiaclaw.ai/tools/web`,
     );
   }
 }

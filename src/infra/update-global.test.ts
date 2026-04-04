@@ -25,18 +25,18 @@ describe("update global helpers", () => {
 
   it("prefers explicit package spec overrides", () => {
     envSnapshot = captureEnv(["ELYSIACLAW_UPDATE_PACKAGE_SPEC"]);
-    process.env.ELYSIACLAW_UPDATE_PACKAGE_SPEC = "file:/tmp/openclaw.tgz";
+    process.env.ELYSIACLAW_UPDATE_PACKAGE_SPEC = "file:/tmp/elysiaclaw.tgz";
 
     expect(resolveGlobalInstallSpec({ packageName: "elysiaclaw", tag: "latest" })).toBe(
-      "file:/tmp/openclaw.tgz",
+      "file:/tmp/elysiaclaw.tgz",
     );
     expect(
       resolveGlobalInstallSpec({
         packageName: "elysiaclaw",
         tag: "beta",
-        env: { ELYSIACLAW_UPDATE_PACKAGE_SPEC: "openclaw@next" },
+        env: { ELYSIACLAW_UPDATE_PACKAGE_SPEC: "elysiaclaw@next" },
       }),
-    ).toBe("openclaw@next");
+    ).toBe("elysiaclaw@next");
   });
 
   it("resolves global roots and package roots from runner output", async () => {
@@ -61,7 +61,7 @@ describe("update global helpers", () => {
   });
 
   it("detects install managers from resolved roots and on-disk presence", async () => {
-    const base = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-update-global-"));
+    const base = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-update-global-"));
     const npmRoot = path.join(base, "npm-root");
     const pnpmRoot = path.join(base, "pnpm-root");
     const bunRoot = path.join(base, ".bun", "install", "global", "node_modules");
@@ -94,43 +94,43 @@ describe("update global helpers", () => {
   });
 
   it("builds install argv and npm fallback argv", () => {
-    expect(globalInstallArgs("npm", "openclaw@latest")).toEqual([
+    expect(globalInstallArgs("npm", "elysiaclaw@latest")).toEqual([
       "npm",
       "i",
       "-g",
-      "openclaw@latest",
+      "elysiaclaw@latest",
       "--no-fund",
       "--no-audit",
       "--loglevel=error",
     ]);
-    expect(globalInstallArgs("pnpm", "openclaw@latest")).toEqual([
+    expect(globalInstallArgs("pnpm", "elysiaclaw@latest")).toEqual([
       "pnpm",
       "add",
       "-g",
-      "openclaw@latest",
+      "elysiaclaw@latest",
     ]);
-    expect(globalInstallArgs("bun", "openclaw@latest")).toEqual([
+    expect(globalInstallArgs("bun", "elysiaclaw@latest")).toEqual([
       "bun",
       "add",
       "-g",
-      "openclaw@latest",
+      "elysiaclaw@latest",
     ]);
 
-    expect(globalInstallFallbackArgs("npm", "openclaw@latest")).toEqual([
+    expect(globalInstallFallbackArgs("npm", "elysiaclaw@latest")).toEqual([
       "npm",
       "i",
       "-g",
-      "openclaw@latest",
+      "elysiaclaw@latest",
       "--omit=optional",
       "--no-fund",
       "--no-audit",
       "--loglevel=error",
     ]);
-    expect(globalInstallFallbackArgs("pnpm", "openclaw@latest")).toBeNull();
+    expect(globalInstallFallbackArgs("pnpm", "elysiaclaw@latest")).toBeNull();
   });
 
   it("cleans only renamed package directories", async () => {
-    const root = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-update-cleanup-"));
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-update-cleanup-"));
     await fs.mkdir(path.join(root, ".elysiaclaw-123"), { recursive: true });
     await fs.mkdir(path.join(root, ".elysiaclaw-456"), { recursive: true });
     await fs.writeFile(path.join(root, ".elysiaclaw-file"), "nope", "utf8");

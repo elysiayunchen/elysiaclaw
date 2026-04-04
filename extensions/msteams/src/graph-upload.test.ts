@@ -26,7 +26,7 @@ describe("graph upload helpers", () => {
     });
 
     expect(fetchFn).toHaveBeenCalledWith(
-      "https://graph.microsoft.com/v1.0/me/drive/root:/OpenClawShared/a.txt:/content",
+      "https://graph.microsoft.com/v1.0/me/drive/root:/ElysiaClawShared/a.txt:/content",
       expect.objectContaining({
         method: "PUT",
         headers: expect.objectContaining({
@@ -63,7 +63,7 @@ describe("graph upload helpers", () => {
     });
 
     expect(fetchFn).toHaveBeenCalledWith(
-      "https://graph.microsoft.com/v1.0/sites/site-123/drive/root:/OpenClawShared/b.txt:/content",
+      "https://graph.microsoft.com/v1.0/sites/site-123/drive/root:/ElysiaClawShared/b.txt:/content",
       expect.objectContaining({
         method: "PUT",
         headers: expect.objectContaining({

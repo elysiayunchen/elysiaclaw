@@ -215,7 +215,7 @@ vi.mock("../memory/manager.js", () => ({
         files: 2,
         chunks: 3,
         dirty: false,
-        workspaceDir: "/tmp/openclaw",
+        workspaceDir: "/tmp/elysiaclaw",
         dbPath: "/tmp/memory.sqlite",
         provider: "openai",
         model: "text-embedding-3-small",
@@ -306,8 +306,8 @@ vi.mock("../gateway/session-utils.js", async (importOriginal) => {
     listAgentsForGateway: mocks.listAgentsForGateway,
   };
 });
-vi.mock("../infra/openclaw-root.js", () => ({
-  resolveElysiaClawPackageRoot: vi.fn().mockResolvedValue("/tmp/openclaw"),
+vi.mock("../infra/elysiaclaw-root.js", () => ({
+  resolveElysiaClawPackageRoot: vi.fn().mockResolvedValue("/tmp/elysiaclaw"),
 }));
 vi.mock("../infra/os-summary.js", () => ({
   resolveOsSummary: () => ({
@@ -319,11 +319,11 @@ vi.mock("../infra/os-summary.js", () => ({
 }));
 vi.mock("../infra/update-check.js", () => ({
   checkUpdateStatus: vi.fn().mockResolvedValue({
-    root: "/tmp/openclaw",
+    root: "/tmp/elysiaclaw",
     installKind: "git",
     packageManager: "pnpm",
     git: {
-      root: "/tmp/openclaw",
+      root: "/tmp/elysiaclaw",
       branch: "main",
       upstream: "origin/main",
       dirty: false,
@@ -467,7 +467,7 @@ describe("statusCommand", () => {
       logs.some(
         (line) =>
           line.includes("elysiaclaw status --all") ||
-          line.includes("openclaw --profile isolated status --all"),
+          line.includes("elysiaclaw --profile isolated status --all"),
       ),
     ).toBe(true);
   });

@@ -1,4 +1,4 @@
-import type { OpenClawPluginApi } from "elysiaclaw/plugin-sdk/msteams";
+import type { ElysiaClawPluginApi } from "elysiaclaw/plugin-sdk/msteams";
 import { emptyPluginConfigSchema } from "elysiaclaw/plugin-sdk/msteams";
 import { msteamsPlugin } from "./src/channel.js";
 import { setMSTeamsRuntime } from "./src/runtime.js";
@@ -8,7 +8,7 @@ const plugin = {
   name: "Microsoft Teams",
   description: "Microsoft Teams channel plugin (Bot Framework)",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: ElysiaClawPluginApi) {
     setMSTeamsRuntime(api.runtime);
     api.registerChannel({ plugin: msteamsPlugin });
   },

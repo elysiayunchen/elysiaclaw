@@ -15,9 +15,9 @@ export function resolveAcpInstallCommandHint(cfg: ElysiaClawConfig): string {
   if (backendId === "acpx") {
     const localPath = path.resolve(process.cwd(), "extensions/acpx");
     if (existsSync(localPath)) {
-      return `openclaw plugins install ${localPath}`;
+      return `elysiaclaw plugins install ${localPath}`;
     }
-    return "openclaw plugins install acpx";
+    return "elysiaclaw plugins install acpx";
   }
   return `Install and enable the plugin that provides ACP backend "${backendId}".`;
 }

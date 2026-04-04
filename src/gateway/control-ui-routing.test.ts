@@ -68,7 +68,7 @@ describe("classifyControlUiRequest", () => {
     it.each([
       {
         name: "redirects the basePath entrypoint",
-        pathname: "/openclaw",
+        pathname: "/elysiaclaw",
         search: "?foo=1",
         method: "GET",
         expected: { kind: "redirect" as const, location: "/elysiaclaw/?foo=1" },
@@ -89,7 +89,7 @@ describe("classifyControlUiRequest", () => {
       },
       {
         name: "falls through write requests to the basePath entrypoint",
-        pathname: "/openclaw",
+        pathname: "/elysiaclaw",
         search: "",
         method: "POST",
         expected: { kind: "not-control-ui" as const },
@@ -104,7 +104,7 @@ describe("classifyControlUiRequest", () => {
     ])("$name", ({ pathname, search, method, expected }) => {
       expect(
         classifyControlUiRequest({
-          basePath: "/openclaw",
+          basePath: "/elysiaclaw",
           pathname,
           search,
           method,

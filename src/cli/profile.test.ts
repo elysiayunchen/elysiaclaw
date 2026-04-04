@@ -62,7 +62,7 @@ describe("applyCliProfileEnv", () => {
     const expectedStateDir = path.join(path.resolve("/home/peter"), ".elysiaclaw-dev");
     expect(env.ELYSIACLAW_PROFILE).toBe("dev");
     expect(env.ELYSIACLAW_STATE_DIR).toBe(expectedStateDir);
-    expect(env.ELYSIACLAW_CONFIG_PATH).toBe(path.join(expectedStateDir, "openclaw.json"));
+    expect(env.ELYSIACLAW_CONFIG_PATH).toBe(path.join(expectedStateDir, "elysiaclaw.json"));
     expect(env.ELYSIACLAW_GATEWAY_PORT).toBe("19001");
   });
 
@@ -78,12 +78,12 @@ describe("applyCliProfileEnv", () => {
     });
     expect(env.ELYSIACLAW_STATE_DIR).toBe("/custom");
     expect(env.ELYSIACLAW_GATEWAY_PORT).toBe("19099");
-    expect(env.ELYSIACLAW_CONFIG_PATH).toBe(path.join("/custom", "openclaw.json"));
+    expect(env.ELYSIACLAW_CONFIG_PATH).toBe(path.join("/custom", "elysiaclaw.json"));
   });
 
   it("uses ELYSIACLAW_HOME when deriving profile state dir", () => {
     const env: Record<string, string | undefined> = {
-      ELYSIACLAW_HOME: "/srv/openclaw-home",
+      ELYSIACLAW_HOME: "/srv/elysiaclaw-home",
       HOME: "/home/other",
     };
     applyCliProfileEnv({
@@ -92,10 +92,10 @@ describe("applyCliProfileEnv", () => {
       homedir: () => "/home/fallback",
     });
 
-    const resolvedHome = path.resolve("/srv/openclaw-home");
+    const resolvedHome = path.resolve("/srv/elysiaclaw-home");
     expect(env.ELYSIACLAW_STATE_DIR).toBe(path.join(resolvedHome, ".elysiaclaw-work"));
     expect(env.ELYSIACLAW_CONFIG_PATH).toBe(
-      path.join(resolvedHome, ".elysiaclaw-work", "openclaw.json"),
+      path.join(resolvedHome, ".elysiaclaw-work", "elysiaclaw.json"),
     );
   });
 });
@@ -104,65 +104,65 @@ describe("formatCliCommand", () => {
   it.each([
     {
       name: "no profile is set",
-      cmd: "openclaw doctor --fix",
+      cmd: "elysiaclaw doctor --fix",
       env: {},
-      expected: "openclaw doctor --fix",
+      expected: "elysiaclaw doctor --fix",
     },
     {
       name: "profile is default",
-      cmd: "openclaw doctor --fix",
+      cmd: "elysiaclaw doctor --fix",
       env: { ELYSIACLAW_PROFILE: "default" },
-      expected: "openclaw doctor --fix",
+      expected: "elysiaclaw doctor --fix",
     },
     {
       name: "profile is Default (case-insensitive)",
-      cmd: "openclaw doctor --fix",
+      cmd: "elysiaclaw doctor --fix",
       env: { ELYSIACLAW_PROFILE: "Default" },
-      expected: "openclaw doctor --fix",
+      expected: "elysiaclaw doctor --fix",
     },
     {
       name: "profile is invalid",
-      cmd: "openclaw doctor --fix",
+      cmd: "elysiaclaw doctor --fix",
       env: { ELYSIACLAW_PROFILE: "bad profile" },
-      expected: "openclaw doctor --fix",
+      expected: "elysiaclaw doctor --fix",
     },
     {
       name: "--profile is already present",
-      cmd: "openclaw --profile work doctor --fix",
+      cmd: "elysiaclaw --profile work doctor --fix",
       env: { ELYSIACLAW_PROFILE: "work" },
-      expected: "openclaw --profile work doctor --fix",
+      expected: "elysiaclaw --profile work doctor --fix",
     },
     {
       name: "--dev is already present",
-      cmd: "openclaw --dev doctor",
+      cmd: "elysiaclaw --dev doctor",
       env: { ELYSIACLAW_PROFILE: "dev" },
-      expected: "openclaw --dev doctor",
+      expected: "elysiaclaw --dev doctor",
     },
   ])("returns command unchanged when $name", ({ cmd, env, expected }) => {
     expect(formatCliCommand(cmd, env)).toBe(expected);
   });
 
   it("inserts --profile flag when profile is set", () => {
-    expect(formatCliCommand("openclaw doctor --fix", { ELYSIACLAW_PROFILE: "work" })).toBe(
-      "openclaw --profile work doctor --fix",
+    expect(formatCliCommand("elysiaclaw doctor --fix", { ELYSIACLAW_PROFILE: "work" })).toBe(
+      "elysiaclaw --profile work doctor --fix",
     );
   });
 
   it("trims whitespace from profile", () => {
-    expect(formatCliCommand("openclaw doctor --fix", { ELYSIACLAW_PROFILE: "  jbopenclaw  " })).toBe(
-      "openclaw --profile jbopenclaw doctor --fix",
-    );
+    expect(
+      formatCliCommand("elysiaclaw doctor --fix", { ELYSIACLAW_PROFILE: "  jbelysiaclaw  " }),
+    ).toBe("elysiaclaw --profile jbelysiaclaw doctor --fix");
   });
 
-  it("handles command with no args after openclaw", () => {
+  it("handles command with no args after elysiaclaw", () => {
     expect(formatCliCommand("elysiaclaw", { ELYSIACLAW_PROFILE: "test" })).toBe(
-      "openclaw --profile test",
+      "elysiaclaw --profile test",
     );
   });
 
   it("handles pnpm wrapper", () => {
-    expect(formatCliCommand("pnpm openclaw doctor", { ELYSIACLAW_PROFILE: "work" })).toBe(
-      "pnpm openclaw --profile work doctor",
+    expect(formatCliCommand("pnpm elysiaclaw doctor", { ELYSIACLAW_PROFILE: "work" })).toBe(
+      "pnpm elysiaclaw --profile work doctor",
     );
   });
 });

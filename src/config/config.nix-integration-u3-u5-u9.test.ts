@@ -54,7 +54,9 @@ describe("Nix integration (U3, U5, U9)", () => {
 
   describe("U5: CONFIG_PATH and STATE_DIR env var overrides", () => {
     it("STATE_DIR defaults to ~/.elysiaclaw when env not set", () => {
-      expect(resolveStateDir(envWith({ ELYSIACLAW_STATE_DIR: undefined }))).toMatch(/\.elysiaclaw$/);
+      expect(resolveStateDir(envWith({ ELYSIACLAW_STATE_DIR: undefined }))).toMatch(
+        /\.elysiaclaw$/,
+      );
     });
 
     it("STATE_DIR respects ELYSIACLAW_STATE_DIR override", () => {
@@ -70,7 +72,7 @@ describe("Nix integration (U3, U5, U9)", () => {
       ).toBe(path.join(path.resolve(customHome), ".elysiaclaw"));
     });
 
-    it("CONFIG_PATH defaults to ELYSIACLAW_HOME/.elysiaclaw/openclaw.json", () => {
+    it("CONFIG_PATH defaults to ELYSIACLAW_HOME/.elysiaclaw/elysiaclaw.json", () => {
       const customHome = path.join(path.sep, "custom", "home");
       expect(
         resolveConfigPathCandidate(
@@ -80,23 +82,23 @@ describe("Nix integration (U3, U5, U9)", () => {
             ELYSIACLAW_STATE_DIR: undefined,
           }),
         ),
-      ).toBe(path.join(path.resolve(customHome), ".elysiaclaw", "openclaw.json"));
+      ).toBe(path.join(path.resolve(customHome), ".elysiaclaw", "elysiaclaw.json"));
     });
 
-    it("CONFIG_PATH defaults to ~/.elysiaclaw/openclaw.json when env not set", () => {
+    it("CONFIG_PATH defaults to ~/.elysiaclaw/elysiaclaw.json when env not set", () => {
       expect(
         resolveConfigPathCandidate(
           envWith({ ELYSIACLAW_CONFIG_PATH: undefined, ELYSIACLAW_STATE_DIR: undefined }),
         ),
-      ).toMatch(/\.elysiaclaw[\\/]openclaw\.json$/);
+      ).toMatch(/\.elysiaclaw[\\/]elysiaclaw\.json$/);
     });
 
     it("CONFIG_PATH respects ELYSIACLAW_CONFIG_PATH override", () => {
       expect(
         resolveConfigPathCandidate(
-          envWith({ ELYSIACLAW_CONFIG_PATH: "/nix/store/abc/openclaw.json" }),
+          envWith({ ELYSIACLAW_CONFIG_PATH: "/nix/store/abc/elysiaclaw.json" }),
         ),
-      ).toBe(path.resolve("/nix/store/abc/openclaw.json"));
+      ).toBe(path.resolve("/nix/store/abc/elysiaclaw.json"));
     });
 
     it("CONFIG_PATH expands ~ in ELYSIACLAW_CONFIG_PATH override", async () => {
@@ -112,7 +114,7 @@ describe("Nix integration (U3, U5, U9)", () => {
 
     it("CONFIG_PATH uses STATE_DIR when only state dir is overridden", () => {
       expect(resolveConfigPathCandidate(envWith({ ELYSIACLAW_STATE_DIR: "/custom/state" }))).toBe(
-        path.join(path.resolve("/custom/state"), "openclaw.json"),
+        path.join(path.resolve("/custom/state"), "elysiaclaw.json"),
       );
     });
   });
@@ -130,7 +132,7 @@ describe("Nix integration (U3, U5, U9)", () => {
           "utf-8",
         );
         await fs.writeFile(
-          path.join(pluginDir, "openclaw.plugin.json"),
+          path.join(pluginDir, "elysiaclaw.plugin.json"),
           JSON.stringify(
             {
               id: "demo-plugin",
@@ -142,7 +144,7 @@ describe("Nix integration (U3, U5, U9)", () => {
           "utf-8",
         );
         await fs.writeFile(
-          path.join(configDir, "openclaw.json"),
+          path.join(configDir, "elysiaclaw.json"),
           JSON.stringify(
             {
               plugins: {

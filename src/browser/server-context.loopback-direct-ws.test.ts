@@ -39,9 +39,9 @@ describe("browser server-context loopback direct WebSocket profiles", () => {
       color: "#FF4500",
     };
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("elysiaclaw");
+    const elysiaclaw = ctx.forProfile("elysiaclaw");
 
-    const opened = await openclaw.openTab("http://127.0.0.1:8080");
+    const opened = await elysiaclaw.openTab("http://127.0.0.1:8080");
     expect(opened.targetId).toBe("CREATED");
     expect(createTargetViaCdp).toHaveBeenCalledWith({
       cdpUrl: "ws://127.0.0.1:18800/devtools/browser/SESSION?token=abc",
@@ -83,10 +83,10 @@ describe("browser server-context loopback direct WebSocket profiles", () => {
       color: "#FF4500",
     };
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("elysiaclaw");
+    const elysiaclaw = ctx.forProfile("elysiaclaw");
 
-    await openclaw.focusTab("T1");
-    await openclaw.closeTab("T1");
+    await elysiaclaw.focusTab("T1");
+    await elysiaclaw.closeTab("T1");
 
     expect(fetchMock).toHaveBeenCalledWith(
       "http://127.0.0.1:18800/json/activate/T1?token=abc",
@@ -131,12 +131,12 @@ describe("browser server-context loopback direct WebSocket profiles", () => {
       color: "#FF4500",
     };
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("elysiaclaw");
+    const elysiaclaw = ctx.forProfile("elysiaclaw");
 
-    const tabs = await openclaw.listTabs();
+    const tabs = await elysiaclaw.listTabs();
     expect(tabs.map((tab) => tab.targetId)).toEqual(["T2"]);
 
-    await openclaw.focusTab("T2");
-    await openclaw.closeTab("T2");
+    await elysiaclaw.focusTab("T2");
+    await elysiaclaw.closeTab("T2");
   });
 });

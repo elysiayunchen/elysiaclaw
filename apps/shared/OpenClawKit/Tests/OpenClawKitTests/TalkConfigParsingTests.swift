@@ -1,4 +1,4 @@
-import OpenClawKit
+import ElysiaClawKit
 import Testing
 
 struct TalkConfigParsingTests {

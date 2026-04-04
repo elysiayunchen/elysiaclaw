@@ -4,7 +4,7 @@ description: BluOS CLI (blu) for discovery, playback, grouping, and volume.
 homepage: https://blucli.sh
 metadata:
   {
-    "openclaw":
+    "elysiaclaw":
       {
         "emoji": "🫐",
         "requires": { "bins": ["blu"] },

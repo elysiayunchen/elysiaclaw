@@ -92,7 +92,7 @@ describeLaunchdIntegration("launchd integration", () => {
 
   beforeAll(async () => {
     const testId = randomUUID().slice(0, 8);
-    homeDir = await fs.mkdtemp(path.join(os.tmpdir(), `openclaw-launchd-int-${testId}-`));
+    homeDir = await fs.mkdtemp(path.join(os.tmpdir(), `elysiaclaw-launchd-int-${testId}-`));
     env = {
       HOME: homeDir,
       ELYSIACLAW_LAUNCHD_LABEL: `ai.elysiaclaw.launchd-int-${testId}`,

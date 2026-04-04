@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "elysiaclaw/plugin-sdk/bluebubbles";
+import type { ElysiaClawConfig } from "elysiaclaw/plugin-sdk/bluebubbles";
 import {
   DM_GROUP_ACCESS_REASON,
   createScopedPairingAccess,
@@ -244,7 +244,7 @@ function logGroupAllowlistHint(params: {
 }
 
 function resolveBlueBubblesAckReaction(params: {
-  cfg: OpenClawConfig;
+  cfg: ElysiaClawConfig;
   agentId: string;
   core: BlueBubblesCoreRuntime;
   runtime: BlueBubblesRuntimeEnv;

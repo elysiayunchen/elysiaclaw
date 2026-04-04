@@ -1,8 +1,8 @@
 import Foundation
-import OpenClawKit
+import ElysiaClawKit
 import Testing
-@testable import OpenClaw
-@testable import OpenClawIPC
+@testable import ElysiaClaw
+@testable import ElysiaClawIPC
 
 private final class FakeWebSocketTask: WebSocketTasking, @unchecked Sendable {
     var state: URLSessionTask.State = .running

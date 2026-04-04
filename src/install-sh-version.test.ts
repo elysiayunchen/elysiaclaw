@@ -5,7 +5,7 @@ import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 
 function withFakeCli(versionOutput: string): { root: string; cliPath: string } {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-install-sh-"));
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "elysiaclaw-install-sh-"));
   const cliPath = path.join(root, "elysiaclaw");
   const escapedOutput = versionOutput.replace(/'/g, "'\\''");
   fs.writeFileSync(
@@ -27,7 +27,7 @@ function resolveVersionFromInstaller(cliPath: string): string {
       "-lc",
       `source "${installerPath}" >/dev/null 2>&1
 ELYSIACLAW_BIN="$FAKE_ELYSIACLAW_BIN"
-resolve_openclaw_version`,
+resolve_elysiaclaw_version`,
     ],
     {
       cwd: process.cwd(),
@@ -50,7 +50,7 @@ function resolveVersionFromInstallerViaStdin(cliPath: string, cwd: string): stri
     encoding: "utf-8",
     input: `${installerSource}
 ELYSIACLAW_BIN="$FAKE_ELYSIACLAW_BIN"
-resolve_openclaw_version
+resolve_elysiaclaw_version
 `,
     env: {
       ...process.env,
@@ -96,7 +96,7 @@ describe("install.sh version resolution", () => {
       const fixture = withFakeCli("ElysiaClaw 2026.3.10 (abcdef0)");
       tempRoots.push(fixture.root);
 
-      const hostileCwd = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-install-stdin-"));
+      const hostileCwd = fs.mkdtempSync(path.join(os.tmpdir(), "elysiaclaw-install-stdin-"));
       tempRoots.push(hostileCwd);
       const hostileHelper = path.join(
         hostileCwd,
@@ -108,7 +108,7 @@ describe("install.sh version resolution", () => {
       fs.writeFileSync(
         hostileHelper,
         `#!/usr/bin/env bash
-extract_openclaw_semver() {
+extract_elysiaclaw_semver() {
   printf '%s' 'poisoned'
 }
 `,

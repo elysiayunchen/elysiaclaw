@@ -11,7 +11,7 @@ vi.mock("../plugins/tools.js", () => ({
   resolvePluginTools: resolvePluginToolsMock,
 }));
 
-import { createElysiaClawTools } from "./openclaw-tools.js";
+import { createElysiaClawTools } from "./elysiaclaw-tools.js";
 
 describe("createElysiaClawTools plugin context", () => {
   it("forwards trusted requester sender identity to plugin tool context", () => {

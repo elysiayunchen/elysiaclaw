@@ -7,15 +7,15 @@ describe("buildPlatformRuntimeLogHints", () => {
       buildPlatformRuntimeLogHints({
         platform: "darwin",
         env: {
-          ELYSIACLAW_STATE_DIR: "/tmp/openclaw-state",
+          ELYSIACLAW_STATE_DIR: "/tmp/elysiaclaw-state",
           ELYSIACLAW_LOG_PREFIX: "gateway",
         },
         systemdServiceName: "elysiaclaw-gateway",
         windowsTaskName: "ElysiaClaw Gateway",
       }),
     ).toEqual([
-      "Launchd stdout (if installed): /tmp/openclaw-state/logs/gateway.log",
-      "Launchd stderr (if installed): /tmp/openclaw-state/logs/gateway.err.log",
+      "Launchd stdout (if installed): /tmp/elysiaclaw-state/logs/gateway.log",
+      "Launchd stderr (if installed): /tmp/elysiaclaw-state/logs/gateway.err.log",
     ]);
   });
 

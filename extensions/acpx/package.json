@@ -1,7 +1,7 @@
 {
   "name": "@elysiaclaw/acpx",
   "version": "2026.3.13",
-  "description": "OpenClaw ACP runtime backend via acpx",
+  "description": "ElysiaClaw ACP runtime backend via acpx",
   "type": "module",
   "dependencies": {
     "acpx": "0.3.0"

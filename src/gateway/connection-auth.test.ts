@@ -313,7 +313,7 @@ describe("resolveGatewayConnectionAuth", () => {
     });
   });
 
-  it("resolves config-first token SecretRef even when OPENCLAW env token exists", async () => {
+  it("resolves config-first token SecretRef even when ELYSIACLAW env token exists", async () => {
     const config = cfg({
       gateway: {
         mode: "local",
@@ -344,7 +344,7 @@ describe("resolveGatewayConnectionAuth", () => {
     });
   });
 
-  it("resolves config-first password SecretRef even when OPENCLAW env password exists", async () => {
+  it("resolves config-first password SecretRef even when ELYSIACLAW env password exists", async () => {
     const config = cfg({
       gateway: {
         mode: "local",

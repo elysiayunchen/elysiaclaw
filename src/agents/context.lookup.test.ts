@@ -13,7 +13,7 @@ function mockContextDeps(params: {
     ensureElysiaClawModelsJson: vi.fn(async () => {}),
   }));
   vi.doMock("./agent-paths.js", () => ({
-    resolveElysiaClawAgentDir: () => "/tmp/openclaw-agent",
+    resolveElysiaClawAgentDir: () => "/tmp/elysiaclaw-agent",
   }));
   vi.doMock("./pi-model-discovery.js", () => ({
     discoverAuthStorage: vi.fn(() => ({})),

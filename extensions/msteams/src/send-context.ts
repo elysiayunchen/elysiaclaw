@@ -1,6 +1,6 @@
 import {
   resolveChannelMediaMaxBytes,
-  type OpenClawConfig,
+  type ElysiaClawConfig,
   type PluginRuntime,
 } from "elysiaclaw/plugin-sdk/msteams";
 import type { MSTeamsAccessTokenProvider } from "./attachments/types.js";
@@ -92,7 +92,7 @@ async function findConversationReference(recipient: {
 }
 
 export async function resolveMSTeamsSendContext(params: {
-  cfg: OpenClawConfig;
+  cfg: ElysiaClawConfig;
   to: string;
 }): Promise<MSTeamsProactiveContext> {
   const msteamsCfg = params.cfg.channels?.msteams;

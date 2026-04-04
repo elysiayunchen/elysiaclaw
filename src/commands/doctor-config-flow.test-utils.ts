@@ -14,7 +14,7 @@ export async function runDoctorConfigWithInput<T>(params: {
     const configDir = path.join(home, ".elysiaclaw");
     await fs.mkdir(configDir, { recursive: true });
     await fs.writeFile(
-      path.join(configDir, "openclaw.json"),
+      path.join(configDir, "elysiaclaw.json"),
       JSON.stringify(params.config, null, 2),
       "utf-8",
     );

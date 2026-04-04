@@ -242,7 +242,7 @@ Credential storage mode:
 
 <Note>
 Headless and server tip: complete OAuth on a machine with a browser, then copy
-`~/.elysiaclaw/credentials/oauth.json` (or `$OPENCLAW_STATE_DIR/credentials/oauth.json`)
+`~/.elysiaclaw/credentials/oauth.json` (or `$ELYSIACLAW_STATE_DIR/credentials/oauth.json`)
 to the gateway host.
 </Note>
 

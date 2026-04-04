@@ -1,4 +1,4 @@
-package ai.openclaw.app.ui
+package ai.elysiaclaw.app.ui
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode

@@ -55,7 +55,7 @@ tags:
   - alpha
   - beta
 metadata:
-  openclaw:
+  elysiaclaw:
     events:
       - command:new
 ---
@@ -91,7 +91,7 @@ description: |-
     const content = `---
 name: sample-skill
 metadata:
-  openclaw: true
+  elysiaclaw: true
 ---`;
     const result = parseFrontmatterBlock(content);
     expect(result.metadata).toBe('{"elysiaclaw":true}');

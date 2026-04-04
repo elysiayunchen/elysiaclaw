@@ -4,10 +4,10 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import type { ElysiaClawConfig } from "../config/config.js";
 import "./test-helpers/fast-core-tools.js";
-import { createElysiaClawTools } from "./openclaw-tools.js";
+import { createElysiaClawTools } from "./elysiaclaw-tools.js";
 
 async function withTempAgentDir<T>(run: (agentDir: string) => Promise<T>): Promise<T> {
-  const agentDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-tools-pdf-"));
+  const agentDir = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-tools-pdf-"));
   try {
     return await run(agentDir);
   } finally {

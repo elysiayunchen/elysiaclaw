@@ -7,7 +7,7 @@ import { resolveElysiaClawAgentDir } from "./agent-paths.js";
 
 describe("resolveElysiaClawAgentDir", () => {
   const withTempStateDir = async (run: (stateDir: string) => void) => {
-    const stateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-agent-"));
+    const stateDir = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-agent-"));
     try {
       run(stateDir);
     } finally {

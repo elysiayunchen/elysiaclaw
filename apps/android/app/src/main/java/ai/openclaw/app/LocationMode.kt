@@ -1,4 +1,4 @@
-package ai.openclaw.app
+package ai.elysiaclaw.app
 
 enum class LocationMode(val rawValue: String) {
   Off("off"),

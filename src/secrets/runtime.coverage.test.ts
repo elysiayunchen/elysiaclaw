@@ -24,7 +24,10 @@ function toConcretePathSegments(pathPattern: string): string[] {
   return out;
 }
 
-function buildConfigForElysiaClawTarget(entry: SecretRegistryEntry, envId: string): ElysiaClawConfig {
+function buildConfigForElysiaClawTarget(
+  entry: SecretRegistryEntry,
+  envId: string,
+): ElysiaClawConfig {
   const config = {} as ElysiaClawConfig;
   const refTargetPath =
     entry.secretShape === "sibling_ref" && entry.refPathPattern // pragma: allowlist secret
@@ -143,9 +146,9 @@ describe("secrets runtime target coverage", () => {
     clearSecretsRuntimeSnapshot();
   });
 
-  it("handles every openclaw.json registry target when configured as active", async () => {
+  it("handles every elysiaclaw.json registry target when configured as active", async () => {
     const entries = listSecretTargetRegistryEntries().filter(
-      (entry) => entry.configFile === "openclaw.json",
+      (entry) => entry.configFile === "elysiaclaw.json",
     );
     for (const [index, entry] of entries.entries()) {
       const envId = `ELYSIACLAW_SECRET_TARGET_${index}`;
@@ -153,7 +156,7 @@ describe("secrets runtime target coverage", () => {
       const snapshot = await prepareSecretsRuntimeSnapshot({
         config: buildConfigForElysiaClawTarget(entry, envId),
         env: { [envId]: expectedValue },
-        agentDirs: ["/tmp/openclaw-agent-main"],
+        agentDirs: ["/tmp/elysiaclaw-agent-main"],
         loadAuthStore: () => ({ version: 1, profiles: {} }),
       });
       const resolved = getPath(snapshot.config, toConcretePathSegments(entry.pathPattern));
@@ -177,7 +180,7 @@ describe("secrets runtime target coverage", () => {
       const snapshot = await prepareSecretsRuntimeSnapshot({
         config: {} as ElysiaClawConfig,
         env: { [envId]: expectedValue },
-        agentDirs: ["/tmp/openclaw-agent-main"],
+        agentDirs: ["/tmp/elysiaclaw-agent-main"],
         loadAuthStore: () => buildAuthStoreForTarget(entry, envId),
       });
       const store = snapshot.authStores[0]?.store;

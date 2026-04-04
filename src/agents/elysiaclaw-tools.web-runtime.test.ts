@@ -6,7 +6,7 @@ import {
   prepareSecretsRuntimeSnapshot,
 } from "../secrets/runtime.js";
 import { withFetchPreconnect } from "../test-utils/fetch-mock.js";
-import { createElysiaClawTools } from "./openclaw-tools.js";
+import { createElysiaClawTools } from "./elysiaclaw-tools.js";
 
 vi.mock("../plugins/tools.js", () => ({
   resolvePluginTools: () => [],
@@ -36,14 +36,14 @@ async function prepareAndActivate(params: { config: ElysiaClawConfig; env?: Node
   const snapshot = await prepareSecretsRuntimeSnapshot({
     config: params.config,
     env: params.env,
-    agentDirs: ["/tmp/openclaw-agent-main"],
+    agentDirs: ["/tmp/elysiaclaw-agent-main"],
     loadAuthStore: () => ({ version: 1, profiles: {} }),
   });
   activateSecretsRuntimeSnapshot(snapshot);
   return snapshot;
 }
 
-describe("openclaw tools runtime web metadata wiring", () => {
+describe("elysiaclaw tools runtime web metadata wiring", () => {
   const priorFetch = global.fetch;
 
   afterEach(() => {

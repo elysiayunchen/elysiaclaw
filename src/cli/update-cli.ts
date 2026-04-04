@@ -53,7 +53,7 @@ export function registerUpdateCli(program: Command) {
         ["elysiaclaw update --json", "Output result as JSON"],
         ["elysiaclaw update --yes", "Non-interactive (accept downgrade prompts)"],
         ["elysiaclaw update wizard", "Interactive update wizard"],
-        ["openclaw --update", "Shorthand for elysiaclaw update"],
+        ["elysiaclaw --update", "Shorthand for elysiaclaw update"],
       ] as const;
       const fmtExamples = examples
         .map(([cmd, desc]) => `  ${theme.command(cmd)} ${theme.muted(`# ${desc}`)}`)

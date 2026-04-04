@@ -313,7 +313,7 @@ describe("provider usage loading", () => {
         env: {
           ELYSIACLAW_STATE_DIR: (home) => path.join(home, ".elysiaclaw"),
         },
-        prefix: "openclaw-provider-usage-",
+        prefix: "elysiaclaw-provider-usage-",
       },
     );
   });

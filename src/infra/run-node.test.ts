@@ -5,7 +5,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 async function withTempDir<T>(run: (dir: string) => Promise<T>): Promise<T> {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-run-node-"));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-run-node-"));
   try {
     return await run(dir);
   } finally {
@@ -73,7 +73,7 @@ describe("run-node script", () => {
         expect(exitCode).toBe(0);
         await expect(fs.readFile(argsPath, "utf-8")).resolves.toContain("exec tsdown --no-clean");
         await expect(fs.readFile(indexPath, "utf-8")).resolves.toContain("sentinel");
-        expect(nodeCalls).toEqual([[process.execPath, "openclaw.mjs", "--version"]]);
+        expect(nodeCalls).toEqual([[process.execPath, "elysiaclaw.mjs", "--version"]]);
       });
     },
   );
@@ -89,7 +89,7 @@ describe("run-node script", () => {
       await fs.mkdir(path.dirname(distEntryPath), { recursive: true });
       await fs.writeFile(srcPath, "export const value = 1;\n", "utf-8");
       await fs.writeFile(tsconfigPath, "{}\n", "utf-8");
-      await fs.writeFile(packageJsonPath, '{"name":"openclaw-test"}\n', "utf-8");
+      await fs.writeFile(packageJsonPath, '{"name":"elysiaclaw-test"}\n', "utf-8");
       await fs.writeFile(distEntryPath, "console.log('built');\n", "utf-8");
       await fs.writeFile(buildStampPath, '{"head":"abc123"}\n', "utf-8");
 
@@ -131,7 +131,7 @@ describe("run-node script", () => {
       });
 
       expect(exitCode).toBe(0);
-      expect(spawnCalls).toEqual([[process.execPath, "openclaw.mjs", "status"]]);
+      expect(spawnCalls).toEqual([[process.execPath, "elysiaclaw.mjs", "status"]]);
     });
   });
 

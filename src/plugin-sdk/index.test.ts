@@ -54,7 +54,7 @@ const pluginSdkEntrypoints = [
 ] as const;
 
 const pluginSdkSpecifiers = pluginSdkEntrypoints.map((entry) =>
-  entry === "index" ? "openclaw/plugin-sdk" : `openclaw/plugin-sdk/${entry}`,
+  entry === "index" ? "elysiaclaw/plugin-sdk" : `elysiaclaw/plugin-sdk/${entry}`,
 );
 
 function buildPluginSdkPackageExports() {
@@ -173,8 +173,8 @@ describe("plugin-sdk exports", () => {
   });
 
   it("emits importable bundled subpath entries", { timeout: 240_000 }, async () => {
-    const outDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-plugin-sdk-build-"));
-    const fixtureDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-plugin-sdk-consumer-"));
+    const outDir = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-plugin-sdk-build-"));
+    const fixtureDir = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-plugin-sdk-consumer-"));
 
     try {
       await build({

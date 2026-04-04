@@ -12,12 +12,12 @@ describe("resolveEffectiveHomeDir", () => {
     {
       name: "prefers ELYSIACLAW_HOME over HOME and USERPROFILE",
       env: {
-        ELYSIACLAW_HOME: " /srv/openclaw-home ",
+        ELYSIACLAW_HOME: " /srv/elysiaclaw-home ",
         HOME: "/home/other",
         USERPROFILE: "C:/Users/other",
       } as NodeJS.ProcessEnv,
       homedir: () => "/fallback",
-      expected: "/srv/openclaw-home",
+      expected: "/srv/elysiaclaw-home",
     },
     {
       name: "falls back to HOME",
@@ -101,15 +101,15 @@ describe("expandHomePrefix", () => {
       name: "expands ~/ using effective home",
       input: "~/x",
       opts: {
-        env: { ELYSIACLAW_HOME: "/srv/openclaw-home" } as NodeJS.ProcessEnv,
+        env: { ELYSIACLAW_HOME: "/srv/elysiaclaw-home" } as NodeJS.ProcessEnv,
       },
-      expected: `${path.resolve("/srv/openclaw-home")}/x`,
+      expected: `${path.resolve("/srv/elysiaclaw-home")}/x`,
     },
     {
       name: "expands exact ~ using explicit home",
       input: "~",
-      opts: { home: " /srv/openclaw-home " },
-      expected: "/srv/openclaw-home",
+      opts: { home: " /srv/elysiaclaw-home " },
+      expected: "/srv/elysiaclaw-home",
     },
     {
       name: "expands ~\\\\ using resolved env home",
@@ -142,9 +142,9 @@ describe("resolveHomeRelativePath", () => {
   it("expands tilde paths using the resolved home directory", () => {
     expect(
       resolveHomeRelativePath("~/docs", {
-        env: { ELYSIACLAW_HOME: "/srv/openclaw-home" } as NodeJS.ProcessEnv,
+        env: { ELYSIACLAW_HOME: "/srv/elysiaclaw-home" } as NodeJS.ProcessEnv,
       }),
-    ).toBe(path.resolve("/srv/openclaw-home/docs"));
+    ).toBe(path.resolve("/srv/elysiaclaw-home/docs"));
   });
 
   it("falls back to cwd when tilde paths have no home source", () => {

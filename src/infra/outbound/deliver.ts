@@ -301,7 +301,7 @@ function normalizePayloadsForChannelDelivery(
     let sanitizedPayload = payload;
     // Strip HTML tags for plain-text surfaces (WhatsApp, Signal, etc.)
     // Models occasionally produce <br>, <b>, etc. that render as literal text.
-    // See https://github.com/elysiaclaw/openclaw/issues/31884
+    // See https://github.com/elysiaclaw/elysiaclaw/issues/31884
     if (isPlainTextSurface(channel) && sanitizedPayload.text) {
       // Telegram sendPayload uses textMode:"html". Preserve raw HTML in this path.
       if (!(channel === "telegram" && sanitizedPayload.channelData)) {

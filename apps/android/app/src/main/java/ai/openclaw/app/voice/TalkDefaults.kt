@@ -1,4 +1,4 @@
-package ai.openclaw.app.voice
+package ai.elysiaclaw.app.voice
 
 internal object TalkDefaults {
   const val defaultSilenceTimeoutMs = 700L

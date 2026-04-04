@@ -15,9 +15,9 @@ ElysiaClaw pulls environment variables from multiple sources. The rule is **neve
 
 1. **Process environment** (what the Gateway process already has from the parent shell/daemon).
 2. **`.env` in the current working directory** (dotenv default; does not override).
-3. **Global `.env`** at `~/.elysiaclaw/.env` (aka `$OPENCLAW_STATE_DIR/.env`; does not override).
+3. **Global `.env`** at `~/.elysiaclaw/.env` (aka `$ELYSIACLAW_STATE_DIR/.env`; does not override).
 4. **Config `env` block** in `~/.elysiaclaw/elysiaclaw.json` (applied only if missing).
-5. **Optional login-shell import** (`env.shellEnv.enabled` or `OPENCLAW_LOAD_SHELL_ENV=1`), applied only for missing expected keys.
+5. **Optional login-shell import** (`env.shellEnv.enabled` or `ELYSIACLAW_LOAD_SHELL_ENV=1`), applied only for missing expected keys.
 
 If the config file is missing entirely, step 4 is skipped; shell import still runs if enabled.
 
@@ -53,25 +53,25 @@ Two equivalent ways to set inline env vars (both are non-overriding):
 
 Env var equivalents:
 
-- `OPENCLAW_LOAD_SHELL_ENV=1`
-- `OPENCLAW_SHELL_ENV_TIMEOUT_MS=15000`
+- `ELYSIACLAW_LOAD_SHELL_ENV=1`
+- `ELYSIACLAW_SHELL_ENV_TIMEOUT_MS=15000`
 
 ## Runtime-injected env vars
 
 ElysiaClaw also injects context markers into spawned child processes:
 
-- `OPENCLAW_SHELL=exec`: set for commands run through the `exec` tool.
-- `OPENCLAW_SHELL=acp`: set for ACP runtime backend process spawns (for example `acpx`).
-- `OPENCLAW_SHELL=acp-client`: set for `elysiaclaw acp client` when it spawns the ACP bridge process.
-- `OPENCLAW_SHELL=tui-local`: set for local TUI `!` shell commands.
+- `ELYSIACLAW_SHELL=exec`: set for commands run through the `exec` tool.
+- `ELYSIACLAW_SHELL=acp`: set for ACP runtime backend process spawns (for example `acpx`).
+- `ELYSIACLAW_SHELL=acp-client`: set for `elysiaclaw acp client` when it spawns the ACP bridge process.
+- `ELYSIACLAW_SHELL=tui-local`: set for local TUI `!` shell commands.
 
 These are runtime markers (not required user config). They can be used in shell/profile logic
 to apply context-specific rules.
 
 ## UI env vars
 
-- `OPENCLAW_THEME=light`: force the light TUI palette when your terminal has a light background.
-- `OPENCLAW_THEME=dark`: force the dark TUI palette.
+- `ELYSIACLAW_THEME=light`: force the light TUI palette when your terminal has a light background.
+- `ELYSIACLAW_THEME=dark`: force the dark TUI palette.
 - `COLORFGBG`: if your terminal exports it, ElysiaClaw uses the background color hint to auto-pick the TUI palette.
 
 ## Env var substitution in config
@@ -103,35 +103,35 @@ Both resolve from process env at activation time. SecretRef details are document
 
 ## Path-related env vars
 
-| Variable               | Purpose                                                                                                                                                                          |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `OPENCLAW_HOME`        | Override the home directory used for all internal path resolution (`~/.elysiaclaw/`, agent dirs, sessions, credentials). Useful when running ElysiaClaw as a dedicated service user. |
-| `OPENCLAW_STATE_DIR`   | Override the state directory (default `~/.elysiaclaw`).                                                                                                                            |
-| `OPENCLAW_CONFIG_PATH` | Override the config file path (default `~/.elysiaclaw/elysiaclaw.json`).                                                                                                             |
+| Variable                 | Purpose                                                                                                                                                                              |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ELYSIACLAW_HOME`        | Override the home directory used for all internal path resolution (`~/.elysiaclaw/`, agent dirs, sessions, credentials). Useful when running ElysiaClaw as a dedicated service user. |
+| `ELYSIACLAW_STATE_DIR`   | Override the state directory (default `~/.elysiaclaw`).                                                                                                                              |
+| `ELYSIACLAW_CONFIG_PATH` | Override the config file path (default `~/.elysiaclaw/elysiaclaw.json`).                                                                                                             |
 
 ## Logging
 
-| Variable             | Purpose                                                                                                                                                                                      |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `OPENCLAW_LOG_LEVEL` | Override log level for both file and console (e.g. `debug`, `trace`). Takes precedence over `logging.level` and `logging.consoleLevel` in config. Invalid values are ignored with a warning. |
+| Variable               | Purpose                                                                                                                                                                                      |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ELYSIACLAW_LOG_LEVEL` | Override log level for both file and console (e.g. `debug`, `trace`). Takes precedence over `logging.level` and `logging.consoleLevel` in config. Invalid values are ignored with a warning. |
 
-### `OPENCLAW_HOME`
+### `ELYSIACLAW_HOME`
 
-When set, `OPENCLAW_HOME` replaces the system home directory (`$HOME` / `os.homedir()`) for all internal path resolution. This enables full filesystem isolation for headless service accounts.
+When set, `ELYSIACLAW_HOME` replaces the system home directory (`$HOME` / `os.homedir()`) for all internal path resolution. This enables full filesystem isolation for headless service accounts.
 
-**Precedence:** `OPENCLAW_HOME` > `$HOME` > `USERPROFILE` > `os.homedir()`
+**Precedence:** `ELYSIACLAW_HOME` > `$HOME` > `USERPROFILE` > `os.homedir()`
 
 **Example** (macOS LaunchDaemon):
 
 ```xml
 <key>EnvironmentVariables</key>
 <dict>
-  <key>OPENCLAW_HOME</key>
+  <key>ELYSIACLAW_HOME</key>
   <string>/Users/kira</string>
 </dict>
 ```
 
-`OPENCLAW_HOME` can also be set to a tilde path (e.g. `~/svc`), which gets expanded using `$HOME` before use.
+`ELYSIACLAW_HOME` can also be set to a tilde path (e.g. `~/svc`), which gets expanded using `$HOME` before use.
 
 ## Related
 

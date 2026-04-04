@@ -1,4 +1,4 @@
-import type { OpenClawPluginApi } from "elysiaclaw/plugin-sdk/whatsapp";
+import type { ElysiaClawPluginApi } from "elysiaclaw/plugin-sdk/whatsapp";
 import { emptyPluginConfigSchema } from "elysiaclaw/plugin-sdk/whatsapp";
 import { whatsappPlugin } from "./src/channel.js";
 import { setWhatsAppRuntime } from "./src/runtime.js";
@@ -8,7 +8,7 @@ const plugin = {
   name: "WhatsApp",
   description: "WhatsApp channel plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: ElysiaClawPluginApi) {
     setWhatsAppRuntime(api.runtime);
     api.registerChannel({ plugin: whatsappPlugin });
   },

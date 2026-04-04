@@ -24,7 +24,7 @@ function makeEaccesFs(configPath: string) {
 
 describe("config io EACCES handling", () => {
   it("returns a helpful error message when config file is not readable (EACCES)", async () => {
-    const configPath = "/data/.elysiaclaw/openclaw.json";
+    const configPath = "/data/.elysiaclaw/elysiaclaw.json";
     const errors: string[] = [];
     const io = createConfigIO({
       configPath,
@@ -46,7 +46,7 @@ describe("config io EACCES handling", () => {
   });
 
   it("includes configPath in the chown hint for the correct remediation command", async () => {
-    const configPath = "/home/myuser/.elysiaclaw/openclaw.json";
+    const configPath = "/home/myuser/.elysiaclaw/elysiaclaw.json";
     const io = createConfigIO({
       configPath,
       fs: makeEaccesFs(configPath),

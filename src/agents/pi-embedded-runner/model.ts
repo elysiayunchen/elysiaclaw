@@ -296,16 +296,16 @@ export function resolveModel(
  * error.  This detects known providers that require opt-in auth and adds
  * a hint.
  *
- * See: https://github.com/elysiaclaw/openclaw/issues/17328
+ * See: https://github.com/elysiaclaw/elysiaclaw/issues/17328
  */
 const LOCAL_PROVIDER_HINTS: Record<string, string> = {
   ollama:
     "Ollama requires authentication to be registered as a provider. " +
-    'Set OLLAMA_API_KEY="ollama-local" (any value works) or run "openclaw configure". ' +
+    'Set OLLAMA_API_KEY="ollama-local" (any value works) or run "elysiaclaw configure". ' +
     "See: https://docs.elysiaclaw.ai/providers/ollama",
   vllm:
     "vLLM requires authentication to be registered as a provider. " +
-    'Set VLLM_API_KEY (any value works) or run "openclaw configure". ' +
+    'Set VLLM_API_KEY (any value works) or run "elysiaclaw configure". ' +
     "See: https://docs.elysiaclaw.ai/providers/vllm",
 };
 

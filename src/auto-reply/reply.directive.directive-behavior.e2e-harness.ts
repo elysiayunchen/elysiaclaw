@@ -61,7 +61,7 @@ export async function withTempHome<T>(fn: (home: string) => Promise<T>): Promise
         ELYSIACLAW_AGENT_DIR: (home) => path.join(home, ".elysiaclaw", "agent"),
         PI_CODING_AGENT_DIR: (home) => path.join(home, ".elysiaclaw", "agent"),
       },
-      prefix: "openclaw-reply-",
+      prefix: "elysiaclaw-reply-",
     },
   );
 }

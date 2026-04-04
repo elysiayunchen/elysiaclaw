@@ -4,17 +4,17 @@
 
 #include "Config/Version.xcconfig"
 
-OPENCLAW_CODE_SIGN_STYLE = Manual
-OPENCLAW_DEVELOPMENT_TEAM = Y5PE65HELJ
+elysiaclaw_CODE_SIGN_STYLE = Manual
+elysiaclaw_DEVELOPMENT_TEAM = Y5PE65HELJ
 
-OPENCLAW_APP_BUNDLE_ID = ai.openclaw.client
-OPENCLAW_SHARE_BUNDLE_ID = ai.openclaw.client.share
-OPENCLAW_WATCH_APP_BUNDLE_ID = ai.openclaw.client.watchkitapp
-OPENCLAW_WATCH_EXTENSION_BUNDLE_ID = ai.openclaw.client.watchkitapp.extension
-OPENCLAW_ACTIVITY_WIDGET_BUNDLE_ID = ai.openclaw.client.activitywidget
+elysiaclaw_APP_BUNDLE_ID = ai.elysiaclaw.client
+elysiaclaw_SHARE_BUNDLE_ID = ai.elysiaclaw.client.share
+elysiaclaw_WATCH_APP_BUNDLE_ID = ai.elysiaclaw.client.watchkitapp
+elysiaclaw_WATCH_EXTENSION_BUNDLE_ID = ai.elysiaclaw.client.watchkitapp.extension
+elysiaclaw_ACTIVITY_WIDGET_BUNDLE_ID = ai.elysiaclaw.client.activitywidget
 
-OPENCLAW_APP_PROFILE = ai.openclaw.client Development
-OPENCLAW_SHARE_PROFILE = ai.openclaw.client.share Development
+elysiaclaw_APP_PROFILE = ai.elysiaclaw.client Development
+elysiaclaw_SHARE_PROFILE = ai.elysiaclaw.client.share Development
 
 // Keep local includes after defaults: xcconfig is evaluated top-to-bottom,
 // so later assignments in local files override the defaults above.

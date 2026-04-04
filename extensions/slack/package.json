@@ -2,7 +2,7 @@
   "name": "@elysiaclaw/slack",
   "version": "2026.3.13",
   "private": true,
-  "description": "OpenClaw Slack channel plugin",
+  "description": "ElysiaClaw Slack channel plugin",
   "type": "module",
   "elysiaclaw": {
     "extensions": [

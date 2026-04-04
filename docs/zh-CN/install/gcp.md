@@ -222,13 +222,13 @@ mkdir -p ~/.elysiaclaw/workspace
 在仓库根目录创建 `.env`。
 
 ```bash
-OPENCLAW_IMAGE=elysiaclaw:latest
-OPENCLAW_GATEWAY_TOKEN=change-me-now
-OPENCLAW_GATEWAY_BIND=lan
-OPENCLAW_GATEWAY_PORT=18789
+ELYSIACLAW_IMAGE=elysiaclaw:latest
+ELYSIACLAW_GATEWAY_TOKEN=change-me-now
+ELYSIACLAW_GATEWAY_BIND=lan
+ELYSIACLAW_GATEWAY_PORT=18789
 
-OPENCLAW_CONFIG_DIR=/home/$USER/.elysiaclaw
-OPENCLAW_WORKSPACE_DIR=/home/$USER/.elysiaclaw/workspace
+ELYSIACLAW_CONFIG_DIR=/home/$USER/.elysiaclaw
+ELYSIACLAW_WORKSPACE_DIR=/home/$USER/.elysiaclaw/workspace
 
 GOG_KEYRING_PASSWORD=change-me-now
 XDG_CONFIG_HOME=/home/node/.elysiaclaw
@@ -251,7 +251,7 @@ openssl rand -hex 32
 ```yaml
 services:
   elysiaclaw-gateway:
-    image: ${OPENCLAW_IMAGE}
+    image: ${ELYSIACLAW_IMAGE}
     build: .
     restart: unless-stopped
     env_file:
@@ -260,19 +260,19 @@ services:
       - HOME=/home/node
       - NODE_ENV=production
       - TERM=xterm-256color
-      - OPENCLAW_GATEWAY_BIND=${OPENCLAW_GATEWAY_BIND}
-      - OPENCLAW_GATEWAY_PORT=${OPENCLAW_GATEWAY_PORT}
-      - OPENCLAW_GATEWAY_TOKEN=${OPENCLAW_GATEWAY_TOKEN}
+      - ELYSIACLAW_GATEWAY_BIND=${ELYSIACLAW_GATEWAY_BIND}
+      - ELYSIACLAW_GATEWAY_PORT=${ELYSIACLAW_GATEWAY_PORT}
+      - ELYSIACLAW_GATEWAY_TOKEN=${ELYSIACLAW_GATEWAY_TOKEN}
       - GOG_KEYRING_PASSWORD=${GOG_KEYRING_PASSWORD}
       - XDG_CONFIG_HOME=${XDG_CONFIG_HOME}
       - PATH=/home/linuxbrew/.linuxbrew/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     volumes:
-      - ${OPENCLAW_CONFIG_DIR}:/home/node/.elysiaclaw
-      - ${OPENCLAW_WORKSPACE_DIR}:/home/node/.elysiaclaw/workspace
+      - ${ELYSIACLAW_CONFIG_DIR}:/home/node/.elysiaclaw
+      - ${ELYSIACLAW_WORKSPACE_DIR}:/home/node/.elysiaclaw/workspace
     ports:
       # 推荐：在 VM 上保持 Gateway 网关仅绑定 loopback；通过 SSH 隧道访问。
       # 要公开暴露，移除 `127.0.0.1:` 前缀并相应配置防火墙。
-      - "127.0.0.1:${OPENCLAW_GATEWAY_PORT}:18789"
+      - "127.0.0.1:${ELYSIACLAW_GATEWAY_PORT}:18789"
 
       # 可选：仅当你针对此 VM 运行 iOS/Android 节点并需要 Canvas 主机时。
       # 如果你公开暴露此端口，请阅读 /gateway/security 并相应配置防火墙。
@@ -283,9 +283,9 @@ services:
         "dist/index.js",
         "gateway",
         "--bind",
-        "${OPENCLAW_GATEWAY_BIND}",
+        "${ELYSIACLAW_GATEWAY_BIND}",
         "--port",
-        "${OPENCLAW_GATEWAY_PORT}",
+        "${ELYSIACLAW_GATEWAY_PORT}",
       ]
 ```
 
@@ -414,18 +414,18 @@ gcloud compute ssh elysiaclaw-gateway --zone=us-central1-a -- -L 18789:127.0.0.1
 ElysiaClaw 在 Docker 中运行，但 Docker 不是真实来源。
 所有长期状态必须在重启、重建和重启后仍然存在。
 
-| 组件             | 位置                              | 持久化机制    | 说明                        |
-| ---------------- | --------------------------------- | ------------- | --------------------------- |
-| Gateway 网关配置 | `/home/node/.elysiaclaw/`           | 主机卷挂载    | 包括 `elysiaclaw.json`、令牌  |
-| 模型认证配置文件 | `/home/node/.elysiaclaw/`           | 主机卷挂载    | OAuth 令牌、API 密钥        |
-| Skill 配置       | `/home/node/.elysiaclaw/skills/`    | 主机卷挂载    | Skill 级别状态              |
-| 智能体工作区     | `/home/node/.elysiaclaw/workspace/` | 主机卷挂载    | 代码和智能体产物            |
-| WhatsApp 会话    | `/home/node/.elysiaclaw/`           | 主机卷挂载    | 保留 QR 登录                |
-| Gmail 密钥环     | `/home/node/.elysiaclaw/`           | 主机卷 + 密码 | 需要 `GOG_KEYRING_PASSWORD` |
-| 外部二进制文件   | `/usr/local/bin/`                 | Docker 镜像   | 必须在构建时内置            |
-| Node 运行时      | 容器文件系统                      | Docker 镜像   | 每次镜像构建时重建          |
-| OS 包            | 容器文件系统                      | Docker 镜像   | 不要在运行时安装            |
-| Docker 容器      | 临时                              | 可重启        | 可以安全销毁                |
+| 组件             | 位置                                | 持久化机制    | 说明                         |
+| ---------------- | ----------------------------------- | ------------- | ---------------------------- |
+| Gateway 网关配置 | `/home/node/.elysiaclaw/`           | 主机卷挂载    | 包括 `elysiaclaw.json`、令牌 |
+| 模型认证配置文件 | `/home/node/.elysiaclaw/`           | 主机卷挂载    | OAuth 令牌、API 密钥         |
+| Skill 配置       | `/home/node/.elysiaclaw/skills/`    | 主机卷挂载    | Skill 级别状态               |
+| 智能体工作区     | `/home/node/.elysiaclaw/workspace/` | 主机卷挂载    | 代码和智能体产物             |
+| WhatsApp 会话    | `/home/node/.elysiaclaw/`           | 主机卷挂载    | 保留 QR 登录                 |
+| Gmail 密钥环     | `/home/node/.elysiaclaw/`           | 主机卷 + 密码 | 需要 `GOG_KEYRING_PASSWORD`  |
+| 外部二进制文件   | `/usr/local/bin/`                   | Docker 镜像   | 必须在构建时内置             |
+| Node 运行时      | 容器文件系统                        | Docker 镜像   | 每次镜像构建时重建           |
+| OS 包            | 容器文件系统                        | Docker 镜像   | 不要在运行时安装             |
+| Docker 容器      | 临时                                | 可重启        | 可以安全销毁                 |
 
 ---
 

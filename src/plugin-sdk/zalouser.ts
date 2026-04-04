@@ -51,7 +51,7 @@ export {
 export type { GroupToolPolicyConfig, MarkdownTableMode } from "../config/types.js";
 export { ToolPolicySchema } from "../config/zod-schema.agent-runtime.js";
 export { MarkdownConfigSchema } from "../config/zod-schema.core.js";
-export { resolvePreferredElysiaClawTmpDir } from "../infra/tmp-openclaw-dir.js";
+export { resolvePreferredElysiaClawTmpDir } from "../infra/tmp-elysiaclaw-dir.js";
 export { emptyPluginConfigSchema } from "../plugins/config-schema.js";
 export type { PluginRuntime } from "../plugins/runtime/types.js";
 export type { AnyAgentTool, ElysiaClawPluginApi } from "../plugins/types.js";

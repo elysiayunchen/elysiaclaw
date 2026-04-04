@@ -1,17 +1,17 @@
 import Darwin
 import Foundation
 import Testing
-@testable import OpenClaw
+@testable import ElysiaClaw
 
 struct LogLocatorTests {
     @Test func `launchd gateway log path ensures tmp dir exists`() {
         let fm = FileManager()
         let baseDir = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
-        let logDir = baseDir.appendingPathComponent("openclaw-tests-\(UUID().uuidString)")
+        let logDir = baseDir.appendingPathComponent("elysiaclaw-tests-\(UUID().uuidString)")
 
-        setenv("OPENCLAW_LOG_DIR", logDir.path, 1)
+        setenv("ELYSIACLAW_LOG_DIR", logDir.path, 1)
         defer {
-            unsetenv("OPENCLAW_LOG_DIR")
+            unsetenv("ELYSIACLAW_LOG_DIR")
             try? fm.removeItem(at: logDir)
         }
 

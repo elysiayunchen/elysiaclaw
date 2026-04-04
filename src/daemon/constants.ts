@@ -5,7 +5,7 @@ export const GATEWAY_WINDOWS_TASK_NAME = "ElysiaClaw Gateway";
 export const GATEWAY_SERVICE_MARKER = "elysiaclaw";
 export const GATEWAY_SERVICE_KIND = "gateway";
 export const NODE_LAUNCH_AGENT_LABEL = "ai.elysiaclaw.node";
-export const NODE_SYSTEMD_SERVICE_NAME = "openclaw-node";
+export const NODE_SYSTEMD_SERVICE_NAME = "elysiaclaw-node";
 export const NODE_WINDOWS_TASK_NAME = "ElysiaClaw Node";
 export const NODE_SERVICE_MARKER = "elysiaclaw";
 export const NODE_SERVICE_KIND = "node";
@@ -87,7 +87,8 @@ export function resolveGatewayServiceDescription(params: {
     params.description ??
     formatGatewayServiceDescription({
       profile: params.env.ELYSIACLAW_PROFILE,
-      version: params.environment?.ELYSIACLAW_SERVICE_VERSION ?? params.env.ELYSIACLAW_SERVICE_VERSION,
+      version:
+        params.environment?.ELYSIACLAW_SERVICE_VERSION ?? params.env.ELYSIACLAW_SERVICE_VERSION,
     })
   );
 }

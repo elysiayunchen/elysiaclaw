@@ -565,7 +565,7 @@ function missingSearchKeyPayload(provider: (typeof SEARCH_PROVIDERS)[number]) {
   if (provider === "brave") {
     return {
       error: "missing_brave_api_key",
-      message: `web_search (brave) needs a Brave Search API key. Run \`${formatCliCommand("openclaw configure --section web")}\` to store it, or set BRAVE_API_KEY in the Gateway environment.`,
+      message: `web_search (brave) needs a Brave Search API key. Run \`${formatCliCommand("elysiaclaw configure --section web")}\` to store it, or set BRAVE_API_KEY in the Gateway environment.`,
       docs: "https://docs.elysiaclaw.ai/tools/web",
     };
   }
@@ -1216,7 +1216,7 @@ async function runPerplexitySearchApi(params: {
           "Content-Type": "application/json",
           Accept: "application/json",
           Authorization: `Bearer ${params.apiKey}`,
-          "HTTP-Referer": "https://openclaw.ai",
+          "HTTP-Referer": "https://elysiaclaw.ai",
           "X-Title": "ElysiaClaw Web Search",
         },
         body: JSON.stringify(body),
@@ -1281,7 +1281,7 @@ async function runPerplexitySearch(params: {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${params.apiKey}`,
-          "HTTP-Referer": "https://openclaw.ai",
+          "HTTP-Referer": "https://elysiaclaw.ai",
           "X-Title": "ElysiaClaw Web Search",
         },
         body: JSON.stringify(body),

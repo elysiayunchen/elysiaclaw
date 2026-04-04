@@ -1,16 +1,16 @@
 import Foundation
 import SwabbleKit
 import Testing
-@testable import OpenClaw
+@testable import ElysiaClaw
 
-private let openclawTranscript = "hey openclaw do thing"
+private let elysiaclawTranscript = "hey elysiaclaw do thing"
 
-private func openclawSegments(postTriggerStart: TimeInterval) -> [WakeWordSegment] {
+private func elysiaclawSegments(postTriggerStart: TimeInterval) -> [WakeWordSegment] {
     makeSegments(
-        transcript: openclawTranscript,
+        transcript: elysiaclawTranscript,
         words: [
             ("hey", 0.0, 0.1),
-            ("openclaw", 0.2, 0.1),
+            ("elysiaclaw", 0.2, 0.1),
             ("do", postTriggerStart, 0.1),
             ("thing", postTriggerStart + 0.2, 0.1),
         ])
@@ -22,43 +22,43 @@ private func openclawSegments(postTriggerStart: TimeInterval) -> [WakeWordSegmen
         let segments = makeSegments(
             transcript: transcript,
             words: [("hello", 0.0, 0.1), ("world", 0.2, 0.1)])
-        #expect(VoiceWakeManager.extractCommand(from: transcript, segments: segments, triggers: ["openclaw"]) == nil)
+        #expect(VoiceWakeManager.extractCommand(from: transcript, segments: segments, triggers: ["elysiaclaw"]) == nil)
     }
 
     @Test func extractCommandTrimsTokensAndResult() {
-        let segments = openclawSegments(postTriggerStart: 0.9)
+        let segments = elysiaclawSegments(postTriggerStart: 0.9)
         let cmd = VoiceWakeManager.extractCommand(
-            from: openclawTranscript,
+            from: elysiaclawTranscript,
             segments: segments,
-            triggers: ["  openclaw  "],
+            triggers: ["  elysiaclaw  "],
             minPostTriggerGap: 0.3)
         #expect(cmd == "do thing")
     }
 
     @Test func extractCommandReturnsNilWhenGapTooShort() {
-        let segments = openclawSegments(postTriggerStart: 0.35)
+        let segments = elysiaclawSegments(postTriggerStart: 0.35)
         let cmd = VoiceWakeManager.extractCommand(
-            from: openclawTranscript,
+            from: elysiaclawTranscript,
             segments: segments,
-            triggers: ["openclaw"],
+            triggers: ["elysiaclaw"],
             minPostTriggerGap: 0.3)
         #expect(cmd == nil)
     }
 
     @Test func extractCommandReturnsNilWhenNothingAfterTrigger() {
-        let transcript = "hey openclaw"
+        let transcript = "hey elysiaclaw"
         let segments = makeSegments(
             transcript: transcript,
-            words: [("hey", 0.0, 0.1), ("openclaw", 0.2, 0.1)])
-        #expect(VoiceWakeManager.extractCommand(from: transcript, segments: segments, triggers: ["openclaw"]) == nil)
+            words: [("hey", 0.0, 0.1), ("elysiaclaw", 0.2, 0.1)])
+        #expect(VoiceWakeManager.extractCommand(from: transcript, segments: segments, triggers: ["elysiaclaw"]) == nil)
     }
 
     @Test func extractCommandIgnoresEmptyTriggers() {
-        let segments = openclawSegments(postTriggerStart: 0.9)
+        let segments = elysiaclawSegments(postTriggerStart: 0.9)
         let cmd = VoiceWakeManager.extractCommand(
-            from: openclawTranscript,
+            from: elysiaclawTranscript,
             segments: segments,
-            triggers: ["", "   ", "openclaw"],
+            triggers: ["", "   ", "elysiaclaw"],
             minPostTriggerGap: 0.3)
         #expect(cmd == "do thing")
     }

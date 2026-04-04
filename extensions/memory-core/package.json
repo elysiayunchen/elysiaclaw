@@ -2,7 +2,7 @@
   "name": "@elysiaclaw/memory-core",
   "version": "2026.3.13",
   "private": true,
-  "description": "OpenClaw core memory search plugin",
+  "description": "ElysiaClaw core memory search plugin",
   "type": "module",
   "devDependencies": {
     "elysiaclaw": "workspace:*"

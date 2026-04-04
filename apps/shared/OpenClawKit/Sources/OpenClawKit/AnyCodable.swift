@@ -1,4 +1,4 @@
-import OpenClawProtocol
+import ElysiaClawProtocol
 
-public typealias AnyCodable = OpenClawProtocol.AnyCodable
+public typealias AnyCodable = ElysiaClawProtocol.AnyCodable
 

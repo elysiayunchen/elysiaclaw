@@ -274,11 +274,11 @@ function buildCoreToolGroupMap() {
     list.push(tool.id);
     sectionToolMap.set(groupId, list);
   }
-  const openclawTools = CORE_TOOL_DEFINITIONS.filter((tool) => tool.includeInElysiaClawGroup).map(
+  const elysiaclawTools = CORE_TOOL_DEFINITIONS.filter((tool) => tool.includeInElysiaClawGroup).map(
     (tool) => tool.id,
   );
   return {
-    "group:openclaw": openclawTools,
+    "group:elysiaclaw": elysiaclawTools,
     ...Object.fromEntries(sectionToolMap.entries()),
   };
 }

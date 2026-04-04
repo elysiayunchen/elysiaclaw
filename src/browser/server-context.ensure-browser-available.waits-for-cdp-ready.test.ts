@@ -31,7 +31,7 @@ function makeBrowserState(): BrowserServerState {
       ssrfPolicy: { allowPrivateNetwork: true },
       defaultProfile: "elysiaclaw",
       profiles: {
-        openclaw: { cdpPort: 18800, color: "#FF4500" },
+        elysiaclaw: { cdpPort: 18800, color: "#FF4500" },
       },
     },
     profiles: new Map(),
@@ -46,7 +46,7 @@ function mockLaunchedChrome(
   launchElysiaClawChrome.mockResolvedValue({
     pid,
     exe: { kind: "chromium", path: "/usr/bin/chromium" },
-    userDataDir: "/tmp/openclaw-test",
+    userDataDir: "/tmp/elysiaclaw-test",
     cdpPort: 18800,
     startedAt: Date.now(),
     proc,

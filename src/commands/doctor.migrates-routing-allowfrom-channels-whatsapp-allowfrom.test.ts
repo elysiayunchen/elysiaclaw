@@ -90,7 +90,7 @@ describe("doctor command", () => {
   it("offers to update first for git checkouts", async () => {
     delete process.env.ELYSIACLAW_UPDATE_IN_PROGRESS;
 
-    const root = "/tmp/openclaw";
+    const root = "/tmp/elysiaclaw";
     resolveElysiaClawPackageRoot.mockResolvedValueOnce(root);
     runCommandWithTimeout.mockResolvedValueOnce({
       stdout: `${root}\n`,

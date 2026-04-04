@@ -1,4 +1,4 @@
-import OpenClawProtocol
+import ElysiaClawProtocol
 import Foundation
 
 public enum GatewayPayloadDecoding {

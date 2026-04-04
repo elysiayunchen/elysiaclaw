@@ -91,7 +91,7 @@ function writeFakeRuntimeBin(binDir: string, binName: string) {
 function withFakeRuntimeBin<T>(params: { binName: string; run: () => T }): T {
   return withFakeRuntimeBins({
     binNames: [params.binName],
-    tmpPrefix: `openclaw-${params.binName}-bin-`,
+    tmpPrefix: `elysiaclaw-${params.binName}-bin-`,
     run: params.run,
   });
 }
@@ -101,7 +101,9 @@ function withFakeRuntimeBins<T>(params: {
   tmpPrefix?: string;
   run: () => T;
 }): T {
-  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), params.tmpPrefix ?? "openclaw-runtime-bins-"));
+  const tmp = fs.mkdtempSync(
+    path.join(os.tmpdir(), params.tmpPrefix ?? "elysiaclaw-runtime-bins-"),
+  );
   const binDir = path.join(tmp, "bin");
   fs.mkdirSync(binDir, { recursive: true });
   for (const binName of params.binNames) {
@@ -177,25 +179,25 @@ const unsafeRuntimeInvocationCases: UnsafeRuntimeInvocationCase[] = [
   {
     name: "rejects bun package script names that do not bind a concrete file",
     binName: "bun",
-    tmpPrefix: "openclaw-bun-package-script-",
+    tmpPrefix: "elysiaclaw-bun-package-script-",
     command: ["bun", "run", "dev"],
   },
   {
     name: "rejects deno eval invocations that do not bind a concrete file",
     binName: "deno",
-    tmpPrefix: "openclaw-deno-eval-",
+    tmpPrefix: "elysiaclaw-deno-eval-",
     command: ["deno", "eval", "console.log('SAFE')"],
   },
   {
     name: "rejects tsx eval invocations that do not bind a concrete file",
     binName: "tsx",
-    tmpPrefix: "openclaw-tsx-eval-",
+    tmpPrefix: "elysiaclaw-tsx-eval-",
     command: ["tsx", "--eval", "console.log('SAFE')"],
   },
   {
     name: "rejects node inline import operands that cannot be bound to one stable file",
     binName: "node",
-    tmpPrefix: "openclaw-node-import-inline-",
+    tmpPrefix: "elysiaclaw-node-import-inline-",
     command: ["node", "--import=./preload.mjs", "./main.mjs"],
     setup: (tmp) => {
       fs.writeFileSync(path.join(tmp, "main.mjs"), 'console.log("SAFE")\n');
@@ -205,7 +207,7 @@ const unsafeRuntimeInvocationCases: UnsafeRuntimeInvocationCase[] = [
   {
     name: "rejects ruby require preloads that approval cannot bind completely",
     binName: "ruby",
-    tmpPrefix: "openclaw-ruby-require-",
+    tmpPrefix: "elysiaclaw-ruby-require-",
     command: ["ruby", "-r", "attacker", "./safe.rb"],
     setup: (tmp) => {
       fs.writeFileSync(path.join(tmp, "safe.rb"), 'puts "SAFE"\n');
@@ -214,7 +216,7 @@ const unsafeRuntimeInvocationCases: UnsafeRuntimeInvocationCase[] = [
   {
     name: "rejects ruby load-path flags that can redirect module resolution after approval",
     binName: "ruby",
-    tmpPrefix: "openclaw-ruby-load-path-",
+    tmpPrefix: "elysiaclaw-ruby-load-path-",
     command: ["ruby", "-I.", "./safe.rb"],
     setup: (tmp) => {
       fs.writeFileSync(path.join(tmp, "safe.rb"), 'puts "SAFE"\n');
@@ -223,7 +225,7 @@ const unsafeRuntimeInvocationCases: UnsafeRuntimeInvocationCase[] = [
   {
     name: "rejects perl module preloads that approval cannot bind completely",
     binName: "perl",
-    tmpPrefix: "openclaw-perl-module-preload-",
+    tmpPrefix: "elysiaclaw-perl-module-preload-",
     command: ["perl", "-MPreload", "./safe.pl"],
     setup: (tmp) => {
       fs.writeFileSync(path.join(tmp, "safe.pl"), 'print "SAFE\\n";\n');
@@ -232,7 +234,7 @@ const unsafeRuntimeInvocationCases: UnsafeRuntimeInvocationCase[] = [
   {
     name: "rejects perl load-path flags that can redirect module resolution after approval",
     binName: "perl",
-    tmpPrefix: "openclaw-perl-load-path-",
+    tmpPrefix: "elysiaclaw-perl-load-path-",
     command: ["perl", "-Ilib", "./safe.pl"],
     setup: (tmp) => {
       fs.writeFileSync(path.join(tmp, "safe.pl"), 'print "SAFE\\n";\n');
@@ -241,7 +243,7 @@ const unsafeRuntimeInvocationCases: UnsafeRuntimeInvocationCase[] = [
   {
     name: "rejects perl combined preload and load-path flags",
     binName: "perl",
-    tmpPrefix: "openclaw-perl-preload-load-path-",
+    tmpPrefix: "elysiaclaw-perl-preload-load-path-",
     command: ["perl", "-Ilib", "-MPreload", "./safe.pl"],
     setup: (tmp) => {
       fs.writeFileSync(path.join(tmp, "safe.pl"), 'print "SAFE\\n";\n');
@@ -250,7 +252,7 @@ const unsafeRuntimeInvocationCases: UnsafeRuntimeInvocationCase[] = [
   {
     name: "rejects shell payloads that hide mutable interpreter scripts",
     binName: "node",
-    tmpPrefix: "openclaw-inline-shell-node-",
+    tmpPrefix: "elysiaclaw-inline-shell-node-",
     command: ["sh", "-lc", "node ./run.js"],
     setup: (tmp) => {
       fs.writeFileSync(path.join(tmp, "run.js"), 'console.log("SAFE")\n');
@@ -316,7 +318,7 @@ describe("hardenApprovedExecutionPaths", () => {
 
   for (const testCase of cases) {
     it.runIf(process.platform !== "win32")(testCase.name, () => {
-      const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-approval-hardening-"));
+      const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "elysiaclaw-approval-hardening-"));
       const oldPath = process.env.PATH;
       let pathToken: PathTokenSetup | null = null;
       if (testCase.withPathToken) {
@@ -570,7 +572,7 @@ describe("hardenApprovedExecutionPaths", () => {
         run: () => {
           withScriptOperandPlanFixture(
             {
-              tmpPrefix: "openclaw-approval-script-plan-",
+              tmpPrefix: "elysiaclaw-approval-script-plan-",
               fixture: runtimeCase,
               afterWrite: (fixture, tmp) => {
                 const executablePath = fixture.command[0];
@@ -593,7 +595,7 @@ describe("hardenApprovedExecutionPaths", () => {
   it("captures mutable shell script operands in approval plans", () => {
     withScriptOperandPlanFixture(
       {
-        tmpPrefix: "openclaw-approval-script-plan-",
+        tmpPrefix: "elysiaclaw-approval-script-plan-",
       },
       (fixture, tmp) => {
         expectMutableFileOperandApprovalPlan(fixture, tmp);
@@ -619,7 +621,7 @@ describe("hardenApprovedExecutionPaths", () => {
   }
 
   it("captures the real shell script operand after value-taking shell flags", () => {
-    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-shell-option-value-"));
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "elysiaclaw-shell-option-value-"));
     try {
       const scriptPath = path.join(tmp, "run.sh");
       fs.writeFileSync(scriptPath, "#!/bin/sh\necho SAFE\n");

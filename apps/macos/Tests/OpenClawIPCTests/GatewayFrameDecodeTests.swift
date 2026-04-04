@@ -1,5 +1,5 @@
 import Foundation
-import OpenClawProtocol
+import ElysiaClawProtocol
 import Testing
 
 struct GatewayFrameDecodeTests {

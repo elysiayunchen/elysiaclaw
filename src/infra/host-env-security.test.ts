@@ -3,6 +3,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
+import { ELYSIACLAW_CLI_ENV_VALUE } from "./elysiaclaw-exec-env.js";
 import {
   isDangerousHostEnvOverrideVarName,
   isDangerousHostEnvVarName,
@@ -10,7 +11,6 @@ import {
   sanitizeHostExecEnv,
   sanitizeSystemRunEnvOverrides,
 } from "./host-env-security.js";
-import { ELYSIACLAW_CLI_ENV_VALUE } from "./openclaw-exec-env.js";
 
 function getSystemGitPath() {
   if (process.platform === "win32") {
@@ -266,7 +266,7 @@ describe("shell wrapper exploit regression", () => {
     if (process.platform === "win32" || !fs.existsSync(bashPath)) {
       return;
     }
-    const marker = path.join(os.tmpdir(), `openclaw-ps4-marker-${process.pid}-${Date.now()}`);
+    const marker = path.join(os.tmpdir(), `elysiaclaw-ps4-marker-${process.pid}-${Date.now()}`);
     try {
       fs.unlinkSync(marker);
     } catch {
@@ -305,12 +305,12 @@ describe("git env exploit regression", () => {
     }
 
     const helperDir = fs.mkdtempSync(
-      path.join(os.tmpdir(), `openclaw-git-exec-path-${process.pid}-${Date.now()}-`),
+      path.join(os.tmpdir(), `elysiaclaw-git-exec-path-${process.pid}-${Date.now()}-`),
     );
     const helperPath = path.join(helperDir, "git-remote-https");
     const marker = path.join(
       os.tmpdir(),
-      `openclaw-git-exec-path-marker-${process.pid}-${Date.now()}`,
+      `elysiaclaw-git-exec-path-marker-${process.pid}-${Date.now()}`,
     );
     try {
       clearMarker(marker);
@@ -348,7 +348,10 @@ describe("git env exploit regression", () => {
       return;
     }
 
-    const marker = path.join(os.tmpdir(), `openclaw-git-ssh-command-${process.pid}-${Date.now()}`);
+    const marker = path.join(
+      os.tmpdir(),
+      `elysiaclaw-git-ssh-command-${process.pid}-${Date.now()}`,
+    );
     clearMarker(marker);
 
     const target = "ssh://127.0.0.1:1/does-not-matter";

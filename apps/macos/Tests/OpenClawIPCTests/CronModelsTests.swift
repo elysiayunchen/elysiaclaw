@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import OpenClaw
+@testable import ElysiaClaw
 
 struct CronModelsTests {
     private func makeCronJob(

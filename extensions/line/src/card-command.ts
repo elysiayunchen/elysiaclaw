@@ -1,4 +1,8 @@
-import type { LineChannelData, OpenClawPluginApi, ReplyPayload } from "elysiaclaw/plugin-sdk/line";
+import type {
+  LineChannelData,
+  ElysiaClawPluginApi,
+  ReplyPayload,
+} from "elysiaclaw/plugin-sdk/line";
 import {
   createActionCard,
   createImageCard,
@@ -154,7 +158,7 @@ function parseCardArgs(argsStr: string): {
   return result;
 }
 
-export function registerLineCardCommand(api: OpenClawPluginApi): void {
+export function registerLineCardCommand(api: ElysiaClawPluginApi): void {
   api.registerCommand({
     name: "card",
     description: "Send a rich card message (LINE).",

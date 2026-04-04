@@ -5,7 +5,7 @@ import path from "node:path";
 import { quoteCmdScriptArg } from "../daemon/cmd-argv.js";
 import { resolveGatewayWindowsTaskName } from "../daemon/constants.js";
 import type { RestartAttempt } from "./restart.js";
-import { resolvePreferredElysiaClawTmpDir } from "./tmp-openclaw-dir.js";
+import { resolvePreferredElysiaClawTmpDir } from "./tmp-elysiaclaw-dir.js";
 
 const TASK_RESTART_RETRY_LIMIT = 12;
 const TASK_RESTART_RETRY_DELAY_SEC = 1;
@@ -40,7 +40,7 @@ export function relaunchGatewayScheduledTask(env: NodeJS.ProcessEnv = process.en
   const taskName = resolveWindowsTaskName(env);
   const scriptPath = path.join(
     resolvePreferredElysiaClawTmpDir(),
-    `openclaw-schtasks-restart-${randomUUID()}.cmd`,
+    `elysiaclaw-schtasks-restart-${randomUUID()}.cmd`,
   );
   const quotedScriptPath = quoteCmdScriptArg(scriptPath);
   try {

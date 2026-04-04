@@ -7,7 +7,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 async function makeTempDir(label: string): Promise<string> {
-  return fs.mkdtemp(path.join(os.tmpdir(), `openclaw-${label}-`));
+  return fs.mkdtemp(path.join(os.tmpdir(), `elysiaclaw-${label}-`));
 }
 
 async function makeFakeGitRepo(
@@ -181,7 +181,7 @@ describe("git commit resolution", () => {
     );
   });
 
-  it("does not walk out of the openclaw package into a host repo", async () => {
+  it("does not walk out of the elysiaclaw package into a host repo", async () => {
     const temp = await makeTempDir("git-commit-package-boundary");
     const hostRepo = path.join(temp, "host");
     await fs.mkdir(hostRepo, { recursive: true });

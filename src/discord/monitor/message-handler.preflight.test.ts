@@ -362,8 +362,8 @@ describe("preflightDiscordMessage", () => {
     const message = createDiscordMessage({
       id: "m-bot-mentions-on",
       channelId,
-      content: "hi <@openclaw-bot>",
-      mentionedUsers: [{ id: "openclaw-bot" }],
+      content: "hi <@elysiaclaw-bot>",
+      mentionedUsers: [{ id: "elysiaclaw-bot" }],
       author: {
         id: "relay-bot-1",
         bot: true,
@@ -544,7 +544,7 @@ describe("preflightDiscordMessage", () => {
   });
 
   it("uses attachment content_type for guild audio preflight mention detection", async () => {
-    transcribeFirstAudioMock.mockResolvedValue("hey openclaw");
+    transcribeFirstAudioMock.mockResolvedValue("hey elysiaclaw");
 
     const channelId = "channel-audio-1";
     const client = createGuildTextClient(channelId);

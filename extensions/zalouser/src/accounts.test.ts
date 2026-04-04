@@ -1,5 +1,5 @@
 import { DEFAULT_ACCOUNT_ID } from "elysiaclaw/plugin-sdk/account-id";
-import type { OpenClawConfig } from "elysiaclaw/plugin-sdk/zalouser";
+import type { ElysiaClawConfig } from "elysiaclaw/plugin-sdk/zalouser";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
   getZcaUserInfo,
@@ -19,8 +19,8 @@ vi.mock("./zalo-js.js", () => ({
 const mockCheckAuthenticated = vi.mocked(checkZaloAuthenticated);
 const mockGetUserInfo = vi.mocked(getZaloUserInfo);
 
-function asConfig(value: unknown): OpenClawConfig {
-  return value as OpenClawConfig;
+function asConfig(value: unknown): ElysiaClawConfig {
+  return value as ElysiaClawConfig;
 }
 
 describe("zalouser account resolution", () => {

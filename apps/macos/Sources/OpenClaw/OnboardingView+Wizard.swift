@@ -1,5 +1,5 @@
 import Observation
-import OpenClawProtocol
+import ElysiaClawProtocol
 import SwiftUI
 
 extension OnboardingView {

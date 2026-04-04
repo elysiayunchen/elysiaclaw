@@ -1,4 +1,4 @@
-import type { OpenClawPluginApi } from "elysiaclaw/plugin-sdk/memory-core";
+import type { ElysiaClawPluginApi } from "elysiaclaw/plugin-sdk/memory-core";
 import { emptyPluginConfigSchema } from "elysiaclaw/plugin-sdk/memory-core";
 
 const memoryCorePlugin = {
@@ -7,7 +7,7 @@ const memoryCorePlugin = {
   description: "File-backed memory search tools and CLI",
   kind: "memory",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: ElysiaClawPluginApi) {
     api.registerTool(
       (ctx) => {
         const memorySearchTool = api.runtime.tools.createMemorySearchTool({

@@ -4,8 +4,8 @@ import { formatBackupCreateSummary, type BackupCreateResult } from "./backup-cre
 function makeResult(overrides: Partial<BackupCreateResult> = {}): BackupCreateResult {
   return {
     createdAt: "2026-01-01T00:00:00.000Z",
-    archiveRoot: "openclaw-backup-2026-01-01",
-    archivePath: "/tmp/openclaw-backup.tar.gz",
+    archiveRoot: "elysiaclaw-backup-2026-01-01",
+    archivePath: "/tmp/elysiaclaw-backup.tar.gz",
     dryRun: false,
     includeWorkspace: true,
     onlyConfig: false,
@@ -33,7 +33,7 @@ describe("formatBackupCreateSummary", () => {
           {
             kind: "workspace",
             sourcePath: "/workspace",
-            displayPath: "~/Projects/openclaw",
+            displayPath: "~/Projects/elysiaclaw",
             reason: "covered",
             coveredBy: "~/.elysiaclaw",
           },
@@ -42,12 +42,12 @@ describe("formatBackupCreateSummary", () => {
     );
 
     expect(lines).toEqual([
-      "Backup archive: /tmp/openclaw-backup.tar.gz",
+      "Backup archive: /tmp/elysiaclaw-backup.tar.gz",
       "Included 1 path:",
       "- state: ~/.elysiaclaw",
       "Skipped 1 path:",
-      "- workspace: ~/Projects/openclaw (covered by ~/.elysiaclaw)",
-      "Created /tmp/openclaw-backup.tar.gz",
+      "- workspace: ~/Projects/elysiaclaw (covered by ~/.elysiaclaw)",
+      "Created /tmp/elysiaclaw-backup.tar.gz",
       "Archive verification: passed",
     ]);
   });
@@ -74,7 +74,7 @@ describe("formatBackupCreateSummary", () => {
     );
 
     expect(lines).toEqual([
-      "Backup archive: /tmp/openclaw-backup.tar.gz",
+      "Backup archive: /tmp/elysiaclaw-backup.tar.gz",
       "Included 2 paths:",
       "- config: ~/.elysiaclaw/config.json",
       "- credentials: ~/.elysiaclaw/oauth",

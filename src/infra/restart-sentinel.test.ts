@@ -20,7 +20,7 @@ describe("restart sentinel", () => {
 
   beforeEach(async () => {
     envSnapshot = captureEnv(["ELYSIACLAW_STATE_DIR"]);
-    tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-sentinel-"));
+    tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-sentinel-"));
     process.env.ELYSIACLAW_STATE_DIR = tempDir;
   });
 
@@ -110,7 +110,7 @@ describe("restart sentinel", () => {
       status: "error" as const,
       ts: Date.now(),
       message: "Patch failed",
-      doctorHint: "Run openclaw doctor",
+      doctorHint: "Run elysiaclaw doctor",
       stats: { mode: "patch", reason: "validation failed" },
     };
 
@@ -119,7 +119,7 @@ describe("restart sentinel", () => {
         "Gateway restart config-patch error (patch)",
         "Patch failed",
         "Reason: validation failed",
-        "Run openclaw doctor",
+        "Run elysiaclaw doctor",
       ].join("\n"),
     );
   });
@@ -191,7 +191,7 @@ describe("restart sentinel message dedup", () => {
 
   it("formats the non-interactive doctor command", () => {
     expect(formatDoctorNonInteractiveHint({ PATH: "/usr/bin:/bin" })).toContain(
-      "openclaw doctor --non-interactive",
+      "elysiaclaw doctor --non-interactive",
     );
   });
 });

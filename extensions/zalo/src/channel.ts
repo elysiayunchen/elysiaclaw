@@ -10,7 +10,7 @@ import type {
   ChannelAccountSnapshot,
   ChannelDock,
   ChannelPlugin,
-  OpenClawConfig,
+  ElysiaClawConfig,
 } from "elysiaclaw/plugin-sdk/zalo";
 import {
   applyAccountNameToChannelSection,

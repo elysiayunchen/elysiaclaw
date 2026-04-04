@@ -16,13 +16,13 @@ import { createTypingSignaler, resolveTypingMode } from "./typing-mode.js";
 import { createTypingController } from "./typing.js";
 
 describe("matchesMentionWithExplicit", () => {
-  const mentionRegexes = [/\bopenclaw\b/i];
+  const mentionRegexes = [/\belysiaclaw\b/i];
 
   it("combines explicit-mention state with regex fallback rules", () => {
     const cases = [
       {
         name: "regex match with explicit resolver available",
-        text: "@openclaw hello",
+        text: "@elysiaclaw hello",
         mentionRegexes,
         explicit: {
           hasAnyMention: true,
@@ -55,7 +55,7 @@ describe("matchesMentionWithExplicit", () => {
       },
       {
         name: "falls back to regex when explicit cannot resolve",
-        text: "openclaw please",
+        text: "elysiaclaw please",
         mentionRegexes,
         explicit: {
           hasAnyMention: true,
@@ -183,11 +183,11 @@ describe("normalizeReplyPayload", () => {
           },
           {
             type: "actions",
-            block_id: "openclaw_reply_buttons_1",
+            block_id: "elysiaclaw_reply_buttons_1",
             elements: [
               {
                 type: "button",
-                action_id: "openclaw:reply_button",
+                action_id: "elysiaclaw:reply_button",
                 text: {
                   type: "plain_text",
                   text: "Retry",
@@ -197,7 +197,7 @@ describe("normalizeReplyPayload", () => {
               },
               {
                 type: "button",
-                action_id: "openclaw:reply_button",
+                action_id: "elysiaclaw:reply_button",
                 text: {
                   type: "plain_text",
                   text: "Ignore",

@@ -2,8 +2,8 @@ import { parseSlackBlocksInput } from "../../slack/blocks-input.js";
 import { truncateSlackText } from "../../slack/truncate.js";
 import type { ReplyPayload } from "../types.js";
 
-const SLACK_REPLY_BUTTON_ACTION_ID = "openclaw:reply_button";
-const SLACK_REPLY_SELECT_ACTION_ID = "openclaw:reply_select";
+const SLACK_REPLY_BUTTON_ACTION_ID = "elysiaclaw:reply_button";
+const SLACK_REPLY_SELECT_ACTION_ID = "elysiaclaw:reply_select";
 const SLACK_MAX_BLOCKS = 50;
 const SLACK_BUTTON_MAX_ITEMS = 5;
 const SLACK_SELECT_MAX_ITEMS = 100;
@@ -80,7 +80,7 @@ function buildButtonsBlock(raw: string, index: number): SlackBlock | null {
   }
   return {
     type: "actions",
-    block_id: `openclaw_reply_buttons_${index}`,
+    block_id: `elysiaclaw_reply_buttons_${index}`,
     elements: choices.map((choice, choiceIndex) => ({
       type: "button",
       action_id: SLACK_REPLY_BUTTON_ACTION_ID,
@@ -110,7 +110,7 @@ function buildSelectBlock(raw: string, index: number): SlackBlock | null {
   }
   return {
     type: "actions",
-    block_id: `openclaw_reply_select_${index}`,
+    block_id: `elysiaclaw_reply_select_${index}`,
     elements: [
       {
         type: "static_select",

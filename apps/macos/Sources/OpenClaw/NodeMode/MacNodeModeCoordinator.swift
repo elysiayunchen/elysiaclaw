@@ -1,12 +1,12 @@
 import Foundation
-import OpenClawKit
+import ElysiaClawKit
 import OSLog
 
 @MainActor
 final class MacNodeModeCoordinator {
     static let shared = MacNodeModeCoordinator()
 
-    private let logger = Logger(subsystem: "ai.openclaw", category: "mac-node")
+    private let logger = Logger(subsystem: "ai.elysiaclaw", category: "mac-node")
     private var task: Task<Void, Never>?
     private let runtime = MacNodeRuntime()
     private let session = GatewayNodeSession()
@@ -49,7 +49,7 @@ final class MacNodeModeCoordinator {
                 await self.session.disconnect()
                 try? await Task.sleep(nanoseconds: 200_000_000)
             }
-            let browserControlEnabled = OpenClawConfigFile.browserControlEnabled()
+            let browserControlEnabled = ElysiaClawConfigFile.browserControlEnabled()
             if lastBrowserControlEnabled == nil {
                 lastBrowserControlEnabled = browserControlEnabled
             } else if lastBrowserControlEnabled != browserControlEnabled {
@@ -69,7 +69,7 @@ final class MacNodeModeCoordinator {
                     caps: caps,
                     commands: commands,
                     permissions: permissions,
-                    clientId: "openclaw-macos",
+                    clientId: "elysiaclaw-macos",
                     clientMode: "node",
                     clientDisplayName: InstanceIdentity.displayName)
                 let sessionBox = self.buildSessionBox(url: config.url)
@@ -101,7 +101,7 @@ final class MacNodeModeCoordinator {
                             return BridgeInvokeResponse(
                                 id: req.id,
                                 ok: false,
-                                error: OpenClawNodeError(code: .unavailable, message: "UNAVAILABLE: node not ready"))
+                                error: ElysiaClawNodeError(code: .unavailable, message: "UNAVAILABLE: node not ready"))
                         }
                         return await self.runtime.handleInvoke(req)
                     })
@@ -117,16 +117,16 @@ final class MacNodeModeCoordinator {
     }
 
     private func currentCaps() -> [String] {
-        var caps: [String] = [OpenClawCapability.canvas.rawValue, OpenClawCapability.screen.rawValue]
-        if OpenClawConfigFile.browserControlEnabled() {
-            caps.append(OpenClawCapability.browser.rawValue)
+        var caps: [String] = [ElysiaClawCapability.canvas.rawValue, ElysiaClawCapability.screen.rawValue]
+        if ElysiaClawConfigFile.browserControlEnabled() {
+            caps.append(ElysiaClawCapability.browser.rawValue)
         }
         if UserDefaults.standard.object(forKey: cameraEnabledKey) as? Bool ?? false {
-            caps.append(OpenClawCapability.camera.rawValue)
+            caps.append(ElysiaClawCapability.camera.rawValue)
         }
         let rawLocationMode = UserDefaults.standard.string(forKey: locationModeKey) ?? "off"
-        if OpenClawLocationMode(rawValue: rawLocationMode) != .off {
-            caps.append(OpenClawCapability.location.rawValue)
+        if ElysiaClawLocationMode(rawValue: rawLocationMode) != .off {
+            caps.append(ElysiaClawCapability.location.rawValue)
         }
         return caps
     }
@@ -138,33 +138,33 @@ final class MacNodeModeCoordinator {
 
     private func currentCommands(caps: [String]) -> [String] {
         var commands: [String] = [
-            OpenClawCanvasCommand.present.rawValue,
-            OpenClawCanvasCommand.hide.rawValue,
-            OpenClawCanvasCommand.navigate.rawValue,
-            OpenClawCanvasCommand.evalJS.rawValue,
-            OpenClawCanvasCommand.snapshot.rawValue,
-            OpenClawCanvasA2UICommand.push.rawValue,
-            OpenClawCanvasA2UICommand.pushJSONL.rawValue,
-            OpenClawCanvasA2UICommand.reset.rawValue,
+            ElysiaClawCanvasCommand.present.rawValue,
+            ElysiaClawCanvasCommand.hide.rawValue,
+            ElysiaClawCanvasCommand.navigate.rawValue,
+            ElysiaClawCanvasCommand.evalJS.rawValue,
+            ElysiaClawCanvasCommand.snapshot.rawValue,
+            ElysiaClawCanvasA2UICommand.push.rawValue,
+            ElysiaClawCanvasA2UICommand.pushJSONL.rawValue,
+            ElysiaClawCanvasA2UICommand.reset.rawValue,
             MacNodeScreenCommand.record.rawValue,
-            OpenClawSystemCommand.notify.rawValue,
-            OpenClawSystemCommand.which.rawValue,
-            OpenClawSystemCommand.run.rawValue,
-            OpenClawSystemCommand.execApprovalsGet.rawValue,
-            OpenClawSystemCommand.execApprovalsSet.rawValue,
+            ElysiaClawSystemCommand.notify.rawValue,
+            ElysiaClawSystemCommand.which.rawValue,
+            ElysiaClawSystemCommand.run.rawValue,
+            ElysiaClawSystemCommand.execApprovalsGet.rawValue,
+            ElysiaClawSystemCommand.execApprovalsSet.rawValue,
         ]
 
         let capsSet = Set(caps)
-        if capsSet.contains(OpenClawCapability.browser.rawValue) {
-            commands.append(OpenClawBrowserCommand.proxy.rawValue)
+        if capsSet.contains(ElysiaClawCapability.browser.rawValue) {
+            commands.append(ElysiaClawBrowserCommand.proxy.rawValue)
         }
-        if capsSet.contains(OpenClawCapability.camera.rawValue) {
-            commands.append(OpenClawCameraCommand.list.rawValue)
-            commands.append(OpenClawCameraCommand.snap.rawValue)
-            commands.append(OpenClawCameraCommand.clip.rawValue)
+        if capsSet.contains(ElysiaClawCapability.camera.rawValue) {
+            commands.append(ElysiaClawCameraCommand.list.rawValue)
+            commands.append(ElysiaClawCameraCommand.snap.rawValue)
+            commands.append(ElysiaClawCameraCommand.clip.rawValue)
         }
-        if capsSet.contains(OpenClawCapability.location.rawValue) {
-            commands.append(OpenClawLocationCommand.get.rawValue)
+        if capsSet.contains(ElysiaClawCapability.location.rawValue) {
+            commands.append(ElysiaClawLocationCommand.get.rawValue)
         }
 
         return commands

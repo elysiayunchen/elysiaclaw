@@ -11,7 +11,7 @@ import { runCronIsolatedAgentTurn } from "./isolated-agent.js";
 import type { CronJob } from "./types.js";
 
 async function withTempHome<T>(fn: (home: string) => Promise<T>): Promise<T> {
-  return withTempHomeHelper(fn, { prefix: "openclaw-cron-submodel-" });
+  return withTempHomeHelper(fn, { prefix: "elysiaclaw-cron-submodel-" });
 }
 
 async function writeSessionStore(home: string) {

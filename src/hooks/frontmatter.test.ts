@@ -149,11 +149,11 @@ description: 'single-quoted'
 });
 
 describe("resolveElysiaClawMetadata", () => {
-  it("extracts openclaw metadata from parsed frontmatter", () => {
+  it("extracts elysiaclaw metadata from parsed frontmatter", () => {
     const frontmatter = {
       name: "test-hook",
       metadata: JSON.stringify({
-        openclaw: {
+        elysiaclaw: {
           emoji: "🔥",
           events: ["command:new", "command:reset"],
           requires: {
@@ -178,7 +178,7 @@ describe("resolveElysiaClawMetadata", () => {
     expect(result).toBeUndefined();
   });
 
-  it("returns undefined when openclaw key is missing", () => {
+  it("returns undefined when elysiaclaw key is missing", () => {
     const frontmatter = {
       metadata: JSON.stringify({ other: "data" }),
     };
@@ -197,11 +197,11 @@ describe("resolveElysiaClawMetadata", () => {
   it("handles install specs", () => {
     const frontmatter = {
       metadata: JSON.stringify({
-        openclaw: {
+        elysiaclaw: {
           events: ["command"],
           install: [
             { id: "bundled", kind: "bundled", label: "Bundled with ElysiaClaw" },
-            { id: "npm", kind: "npm", package: "@openclaw/hook" },
+            { id: "npm", kind: "npm", package: "@elysiaclaw/hook" },
           ],
         },
       }),
@@ -211,13 +211,13 @@ describe("resolveElysiaClawMetadata", () => {
     expect(result?.install).toHaveLength(2);
     expect(result?.install?.[0].kind).toBe("bundled");
     expect(result?.install?.[1].kind).toBe("npm");
-    expect(result?.install?.[1].package).toBe("@openclaw/hook");
+    expect(result?.install?.[1].package).toBe("@elysiaclaw/hook");
   });
 
   it("handles os restrictions", () => {
     const frontmatter = {
       metadata: JSON.stringify({
-        openclaw: {
+        elysiaclaw: {
           events: ["command"],
           os: ["darwin", "linux"],
         },
@@ -253,28 +253,28 @@ metadata:
     expect(frontmatter.name).toBe("session-memory");
     expect(frontmatter.metadata).toBeDefined();
 
-    const openclaw = resolveElysiaClawMetadata(frontmatter);
-    expect(openclaw).toBeDefined();
-    expect(openclaw?.emoji).toBe("💾");
-    expect(openclaw?.events).toEqual(["command:new", "command:reset"]);
-    expect(openclaw?.requires?.config).toEqual(["workspace.dir"]);
-    expect(openclaw?.install?.[0].kind).toBe("bundled");
+    const elysiaclaw = resolveElysiaClawMetadata(frontmatter);
+    expect(elysiaclaw).toBeDefined();
+    expect(elysiaclaw?.emoji).toBe("💾");
+    expect(elysiaclaw?.events).toEqual(["command:new", "command:reset"]);
+    expect(elysiaclaw?.requires?.config).toEqual(["workspace.dir"]);
+    expect(elysiaclaw?.install?.[0].kind).toBe("bundled");
   });
 
   it("parses YAML metadata map", () => {
     const content = `---
 name: yaml-metadata
 metadata:
-  openclaw:
+  elysiaclaw:
     emoji: disk
     events:
       - command:new
 ---
 `;
     const frontmatter = parseFrontmatter(content);
-    const openclaw = resolveElysiaClawMetadata(frontmatter);
-    expect(openclaw?.emoji).toBe("disk");
-    expect(openclaw?.events).toEqual(["command:new"]);
+    const elysiaclaw = resolveElysiaClawMetadata(frontmatter);
+    expect(elysiaclaw?.emoji).toBe("disk");
+    expect(elysiaclaw?.events).toEqual(["command:new"]);
   });
 });
 

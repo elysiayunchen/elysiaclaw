@@ -25,12 +25,12 @@ describe("isGatewayArgv", () => {
   it("matches known entrypoints across slash and case variants", () => {
     expect(isGatewayArgv(["NODE", "C:\\ElysiaClaw\\DIST\\ENTRY.JS", "gateway"])).toBe(true);
     expect(isGatewayArgv(["bun", "/srv/elysiaclaw/scripts/run-node.mjs", "gateway"])).toBe(true);
-    expect(isGatewayArgv(["node", "/srv/elysiaclaw/openclaw.mjs", "gateway"])).toBe(true);
+    expect(isGatewayArgv(["node", "/srv/elysiaclaw/elysiaclaw.mjs", "gateway"])).toBe(true);
     expect(isGatewayArgv(["tsx", "/srv/elysiaclaw/src/index.ts", "gateway"])).toBe(true);
   });
 
-  it("matches the openclaw executable but gates the gateway binary behind the opt-in flag", () => {
-    expect(isGatewayArgv(["C:\\bin\\openclaw.cmd", "gateway"])).toBe(true);
+  it("matches the elysiaclaw executable but gates the gateway binary behind the opt-in flag", () => {
+    expect(isGatewayArgv(["C:\\bin\\elysiaclaw.cmd", "gateway"])).toBe(true);
     expect(isGatewayArgv(["/usr/local/bin/elysiaclaw-gateway", "gateway"])).toBe(false);
     expect(
       isGatewayArgv(["/usr/local/bin/elysiaclaw-gateway", "gateway"], {

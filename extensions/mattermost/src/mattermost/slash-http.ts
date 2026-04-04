@@ -11,7 +11,7 @@ import {
   createReplyPrefixOptions,
   createTypingCallbacks,
   logTypingFailure,
-  type OpenClawConfig,
+  type ElysiaClawConfig,
   type ReplyPayload,
   type RuntimeEnv,
 } from "elysiaclaw/plugin-sdk/mattermost";
@@ -45,7 +45,7 @@ import {
 
 type SlashHttpHandlerParams = {
   account: ResolvedMattermostAccount;
-  cfg: OpenClawConfig;
+  cfg: ElysiaClawConfig;
   runtime: RuntimeEnv;
   /** Expected token from registered commands (for validation). */
   commandTokens: Set<string>;
@@ -99,7 +99,7 @@ type SlashInvocationAuth = {
 
 async function authorizeSlashInvocation(params: {
   account: ResolvedMattermostAccount;
-  cfg: OpenClawConfig;
+  cfg: ElysiaClawConfig;
   client: ReturnType<typeof createMattermostClient>;
   commandText: string;
   channelId: string;
@@ -331,7 +331,7 @@ export function createSlashCommandHttpHandler(params: SlashHttpHandlerParams) {
 
 async function handleSlashCommandAsync(params: {
   account: ResolvedMattermostAccount;
-  cfg: OpenClawConfig;
+  cfg: ElysiaClawConfig;
   runtime: RuntimeEnv;
   client: ReturnType<typeof createMattermostClient>;
   commandText: string;

@@ -74,8 +74,8 @@ elysiaclaw onboard --install-daemon
 ## 多实例快速开始（可选）
 
 ```bash
-OPENCLAW_CONFIG_PATH=~/.elysiaclaw/a.json \
-OPENCLAW_STATE_DIR=~/.elysiaclaw-a \
+ELYSIACLAW_CONFIG_PATH=~/.elysiaclaw/a.json \
+ELYSIACLAW_STATE_DIR=~/.elysiaclaw-a \
 elysiaclaw gateway --port 19001
 ```
 

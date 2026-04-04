@@ -13,7 +13,8 @@ import { renderCatNoncePngBase64 } from "./live-image-probe.js";
 import { startGatewayServer } from "./server.js";
 import { extractPayloadText } from "./test-helpers.agent-results.js";
 
-const LIVE = isTruthyEnvValue(process.env.LIVE) || isTruthyEnvValue(process.env.ELYSIACLAW_LIVE_TEST);
+const LIVE =
+  isTruthyEnvValue(process.env.LIVE) || isTruthyEnvValue(process.env.ELYSIACLAW_LIVE_TEST);
 const CLI_LIVE = isTruthyEnvValue(process.env.ELYSIACLAW_LIVE_CLI_BACKEND);
 const CLI_IMAGE = isTruthyEnvValue(process.env.ELYSIACLAW_LIVE_CLI_BACKEND_IMAGE_PROBE);
 const CLI_RESUME = isTruthyEnvValue(process.env.ELYSIACLAW_LIVE_CLI_BACKEND_RESUME_PROBE);
@@ -232,7 +233,7 @@ describeLive("gateway live (cli backend)", () => {
       );
     }
 
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-live-cli-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-live-cli-"));
     const disableMcpConfig = process.env.ELYSIACLAW_LIVE_CLI_BACKEND_DISABLE_MCP_CONFIG !== "0";
     let cliArgs = baseCliArgs;
     if (providerId === "claude-cli" && disableMcpConfig) {
@@ -267,7 +268,7 @@ describeLive("gateway live (cli backend)", () => {
         },
       },
     };
-    const tempConfigPath = path.join(tempDir, "openclaw.json");
+    const tempConfigPath = path.join(tempDir, "elysiaclaw.json");
     await fs.writeFile(tempConfigPath, `${JSON.stringify(nextCfg, null, 2)}\n`);
     process.env.ELYSIACLAW_CONFIG_PATH = tempConfigPath;
 

@@ -273,7 +273,7 @@ function resolveBrowserBaseUrl(params: {
   }
   if (!resolved.enabled) {
     throw new Error(
-      "Browser control is disabled. Set browser.enabled=true in ~/.elysiaclaw/openclaw.json.",
+      "Browser control is disabled. Set browser.enabled=true in ~/.elysiaclaw/elysiaclaw.json.",
     );
   }
   return undefined;
@@ -310,7 +310,7 @@ export function createBrowserTool(opts?: {
     name: "browser",
     description: [
       "Control the browser via ElysiaClaw's browser control server (status/start/stop/profiles/tabs/open/snapshot/screenshot/actions).",
-      "Browser choice: omit profile by default for the isolated ElysiaClaw-managed browser (`openclaw`).",
+      "Browser choice: omit profile by default for the isolated ElysiaClaw-managed browser (`elysiaclaw`).",
       'For the logged-in user browser on the local host, prefer profile="user". Use it only when existing logins/cookies matter and the user is present to click/approve any browser attach prompt.',
       'Use profile="chrome-relay" only for the Chrome extension / Browser Relay / toolbar-button attach-tab flow, or when the user explicitly asks for the extension relay.',
       'If the user mentions the Chrome extension / Browser Relay / toolbar button / “attach tab”, ALWAYS prefer profile="chrome-relay". Otherwise prefer profile="user" over the extension relay for user-browser work.',

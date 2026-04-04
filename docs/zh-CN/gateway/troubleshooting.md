@@ -24,8 +24,8 @@ x-i18n:
 
 快速分类命令（按顺序）：
 
-| 命令                               | 它告诉你什么                                                                          | 何时使用                              |
-| ---------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------- |
+| 命令                                 | 它告诉你什么                                                                          | 何时使用                              |
+| ------------------------------------ | ------------------------------------------------------------------------------------- | ------------------------------------- |
 | `elysiaclaw status`                  | 本地摘要：操作系统 + 更新、Gateway 网关可达性/模式、服务、智能体/会话、提供商配置状态 | 首次检查，快速概览                    |
 | `elysiaclaw status --all`            | 完整本地诊断（只读、可粘贴、相对安全）包括日志尾部                                    | 当你需要分享调试报告时                |
 | `elysiaclaw status --deep`           | 运行 Gateway 网关健康检查（包括提供商探测；需要可达的 Gateway 网关）                  | 当"已配置"不意味着"正常工作"时        |
@@ -34,7 +34,7 @@ x-i18n:
 | `elysiaclaw gateway status`          | 监管程序状态（launchd/systemd/schtasks）、运行时 PID/退出、最后的 Gateway 网关错误    | 当服务"看起来已加载"但没有运行时      |
 | `elysiaclaw logs --follow`           | 实时日志（运行时问题的最佳信号）                                                      | 当你需要实际的故障原因时              |
 
-**分享输出：** 优先使用 `elysiaclaw status --all`（它会隐藏令牌）。如果你粘贴 `elysiaclaw status`，考虑先设置 `OPENCLAW_SHOW_SECRETS=0`（令牌预览）。
+**分享输出：** 优先使用 `elysiaclaw status --all`（它会隐藏令牌）。如果你粘贴 `elysiaclaw status`，考虑先设置 `ELYSIACLAW_SHOW_SECRETS=0`（令牌预览）。
 
 另请参阅：[健康检查](/gateway/health) 和 [日志](/logging)。
 
@@ -120,7 +120,7 @@ Doctor/service 将显示运行时状态（PID/最后退出）和日志提示。
 
 - 优先：`elysiaclaw logs --follow`
 - 文件日志（始终）：`/tmp/elysiaclaw/elysiaclaw-YYYY-MM-DD.log`（或你配置的 `logging.file`）
-- macOS LaunchAgent（如果已安装）：`$OPENCLAW_STATE_DIR/logs/gateway.log` 和 `gateway.err.log`
+- macOS LaunchAgent（如果已安装）：`$ELYSIACLAW_STATE_DIR/logs/gateway.log` 和 `gateway.err.log`
 - Linux systemd（如果已安装）：`journalctl --user -u elysiaclaw-gateway[-<profile>].service -n 200 --no-pager`
 - Windows：`schtasks /Query /TN "ElysiaClaw Gateway (<profile>)" /V /FO LIST`
 
@@ -215,7 +215,7 @@ Gateway 网关可能拒绝绑定。
 - 如果你设置了 `gateway.mode=remote`，**CLI 默认**使用远程 URL。服务可能仍在本地运行，但你的 CLI 可能在探测错误的位置。使用 `elysiaclaw gateway status` 查看服务解析的端口 + 探测目标（或传递 `--url`）。
 - `elysiaclaw gateway status` 和 `elysiaclaw doctor` 在服务看起来正在运行但端口关闭时会显示日志中的**最后 Gateway 网关错误**。
 - 非本地回环绑定（`lan`/`tailnet`/`custom`，或本地回环不可用时的 `auto`）需要认证：
-  `gateway.auth.token`（或 `OPENCLAW_GATEWAY_TOKEN`）。
+  `gateway.auth.token`（或 `ELYSIACLAW_GATEWAY_TOKEN`）。
 - `gateway.remote.token` 仅用于远程 CLI 调用；它**不**启用本地认证。
 - `gateway.token` 被忽略；使用 `gateway.auth.token`。
 
@@ -223,7 +223,7 @@ Gateway 网关可能拒绝绑定。
 
 - `Config (cli): ...` 和 `Config (service): ...` 通常应该匹配。
 - 如果不匹配，你几乎肯定是在编辑一个配置而服务运行的是另一个。
-- 修复：从你希望服务使用的相同 `--profile` / `OPENCLAW_STATE_DIR` 重新运行 `elysiaclaw gateway install --force`。
+- 修复：从你希望服务使用的相同 `--profile` / `ELYSIACLAW_STATE_DIR` 重新运行 `elysiaclaw gateway install --force`。
 
 **如果 `elysiaclaw gateway status` 报告服务配置问题**
 
@@ -233,7 +233,7 @@ Gateway 网关可能拒绝绑定。
 **如果 `Last gateway error:` 提到"refusing to bind … without auth"**
 
 - 你将 `gateway.bind` 设置为非本地回环模式（`lan`/`tailnet`/`custom`，或本地回环不可用时的 `auto`）但没有配置认证。
-- 修复：设置 `gateway.auth.mode` + `gateway.auth.token`（或导出 `OPENCLAW_GATEWAY_TOKEN`）并重启服务。
+- 修复：设置 `gateway.auth.mode` + `gateway.auth.token`（或导出 `ELYSIACLAW_GATEWAY_TOKEN`）并重启服务。
 
 **如果 `elysiaclaw gateway status` 显示 `bind=tailnet` 但未找到 tailnet 接口**
 
@@ -322,7 +322,7 @@ elysiaclaw status
 # 消息必须匹配 mentionPatterns 或显式提及；默认值在渠道 groups/guilds 中。
 # 多智能体：`agents.list[].groupChat.mentionPatterns` 覆盖全局模式。
 grep -n "agents\\|groupChat\\|mentionPatterns\\|channels\\.whatsapp\\.groups\\|channels\\.telegram\\.groups\\|channels\\.imessage\\.groups\\|channels\\.discord\\.guilds" \
-  "${OPENCLAW_CONFIG_PATH:-$HOME/.elysiaclaw/elysiaclaw.json}"
+  "${ELYSIACLAW_CONFIG_PATH:-$HOME/.elysiaclaw/elysiaclaw.json}"
 ```
 
 **检查 3：** 检查日志
@@ -422,7 +422,7 @@ elysiaclaw gateway --verbose
 
 ```bash
 elysiaclaw channels logout
-trash "${OPENCLAW_STATE_DIR:-$HOME/.elysiaclaw}/credentials" # 如果 logout 无法完全清除所有内容
+trash "${ELYSIACLAW_STATE_DIR:-$HOME/.elysiaclaw}/credentials" # 如果 logout 无法完全清除所有内容
 elysiaclaw channels login --verbose       # 重新扫描二维码
 ```
 
@@ -674,7 +674,7 @@ npm install -g elysiaclaw@<version>
 
 ```bash
 # 在配置中打开跟踪日志：
-#   ${OPENCLAW_CONFIG_PATH:-$HOME/.elysiaclaw/elysiaclaw.json} -> { logging: { level: "trace" } }
+#   ${ELYSIACLAW_CONFIG_PATH:-$HOME/.elysiaclaw/elysiaclaw.json} -> { logging: { level: "trace" } }
 #
 # 然后运行详细命令将调试输出镜像到标准输出：
 elysiaclaw gateway --verbose
@@ -683,13 +683,13 @@ elysiaclaw channels login --verbose
 
 ## 日志位置
 
-| 日志                             | 位置                                                                                                                                                                                                                                                                                                                      |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Gateway 网关文件日志（结构化）   | `/tmp/elysiaclaw/elysiaclaw-YYYY-MM-DD.log`（或 `logging.file`）                                                                                                                                                                                                                                                              |
-| Gateway 网关服务日志（监管程序） | macOS：`$OPENCLAW_STATE_DIR/logs/gateway.log` + `gateway.err.log`（默认：`~/.elysiaclaw/logs/...`；配置文件使用 `~/.elysiaclaw-<profile>/logs/...`）<br />Linux：`journalctl --user -u elysiaclaw-gateway[-<profile>].service -n 200 --no-pager`<br />Windows：`schtasks /Query /TN "ElysiaClaw Gateway (<profile>)" /V /FO LIST` |
-| 会话文件                         | `$OPENCLAW_STATE_DIR/agents/<agentId>/sessions/`                                                                                                                                                                                                                                                                          |
-| 媒体缓存                         | `$OPENCLAW_STATE_DIR/media/`                                                                                                                                                                                                                                                                                              |
-| 凭证                             | `$OPENCLAW_STATE_DIR/credentials/`                                                                                                                                                                                                                                                                                        |
+| 日志                             | 位置                                                                                                                                                                                                                                                                                                                                |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Gateway 网关文件日志（结构化）   | `/tmp/elysiaclaw/elysiaclaw-YYYY-MM-DD.log`（或 `logging.file`）                                                                                                                                                                                                                                                                    |
+| Gateway 网关服务日志（监管程序） | macOS：`$ELYSIACLAW_STATE_DIR/logs/gateway.log` + `gateway.err.log`（默认：`~/.elysiaclaw/logs/...`；配置文件使用 `~/.elysiaclaw-<profile>/logs/...`）<br />Linux：`journalctl --user -u elysiaclaw-gateway[-<profile>].service -n 200 --no-pager`<br />Windows：`schtasks /Query /TN "ElysiaClaw Gateway (<profile>)" /V /FO LIST` |
+| 会话文件                         | `$ELYSIACLAW_STATE_DIR/agents/<agentId>/sessions/`                                                                                                                                                                                                                                                                                  |
+| 媒体缓存                         | `$ELYSIACLAW_STATE_DIR/media/`                                                                                                                                                                                                                                                                                                      |
+| 凭证                             | `$ELYSIACLAW_STATE_DIR/credentials/`                                                                                                                                                                                                                                                                                                |
 
 ## 健康检查
 
@@ -722,7 +722,7 @@ elysiaclaw gateway stop
 # 如果你安装了服务并想要干净安装：
 # elysiaclaw gateway uninstall
 
-trash "${OPENCLAW_STATE_DIR:-$HOME/.elysiaclaw}"
+trash "${ELYSIACLAW_STATE_DIR:-$HOME/.elysiaclaw}"
 elysiaclaw channels login         # 重新配对 WhatsApp
 elysiaclaw gateway restart           # 或：elysiaclaw gateway
 ```

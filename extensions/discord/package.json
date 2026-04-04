@@ -1,7 +1,7 @@
 {
   "name": "@elysiaclaw/discord",
   "version": "2026.3.13",
-  "description": "OpenClaw Discord channel plugin",
+  "description": "ElysiaClaw Discord channel plugin",
   "type": "module",
   "elysiaclaw": {
     "extensions": [

@@ -148,7 +148,7 @@ describe("spawnSubagentDirect filename validation", () => {
     callGatewayMock.mockClear();
     setupGatewayMock();
     workspaceDirOverride = fs.mkdtempSync(
-      path.join(os.tmpdir(), `openclaw-subagent-attachments-${process.pid}-${Date.now()}-`),
+      path.join(os.tmpdir(), `elysiaclaw-subagent-attachments-${process.pid}-${Date.now()}-`),
     );
   });
 

@@ -177,7 +177,7 @@ function buildDocsSection(params: { docsPath?: string; isMinimal: boolean; readT
     "## Documentation",
     `ElysiaClaw docs: ${docsPath}`,
     "Mirror: https://docs.elysiaclaw.ai",
-    "Source: https://github.com/elysiaclaw/openclaw",
+    "Source: https://github.com/elysiaclaw/elysiaclaw",
     "Community: https://discord.com/invite/clawd",
     "Find new skills: https://clawhub.com",
     "For ElysiaClaw behavior, commands, config, or architecture: consult local docs first.",
@@ -486,16 +486,25 @@ export function buildAgentSystemPrompt(params: {
     "When you encounter an obstacle, do not use destructive actions as a shortcut. Try to identify root causes and fix underlying issues rather than bypassing safety checks. If you discover unexpected state like unfamiliar files, branches, or configuration, investigate before deleting or overwriting.",
     "",
     "## Using Your Tools",
-    availableTools.has("exec") && (availableTools.has("grep") || availableTools.has("find") || availableTools.has("ls"))
+    availableTools.has("exec") &&
+    (availableTools.has("grep") || availableTools.has("find") || availableTools.has("ls"))
       ? "Do NOT use bash/exec to run commands when a relevant dedicated tool is provided. Using dedicated tools allows the user to better understand and review your work.\n"
       : "",
-    availableTools.has("read") ? "- To read files, use read instead of cat, head, tail, or sed" : "",
+    availableTools.has("read")
+      ? "- To read files, use read instead of cat, head, tail, or sed"
+      : "",
     availableTools.has("edit") ? "- To edit files, use edit instead of sed or awk" : "",
-    availableTools.has("write") ? "- To create files, use write instead of cat with heredoc or echo redirection" : "",
+    availableTools.has("write")
+      ? "- To create files, use write instead of cat with heredoc or echo redirection"
+      : "",
     availableTools.has("find") ? "- To search for files, use find instead of ls -R" : "",
     availableTools.has("grep") ? "- To search file content, use grep instead of rg or grep" : "",
-    availableTools.has("exec") ? "- Reserve exec/bash exclusively for system commands and terminal operations that require shell execution" : "",
-    availableTools.has("todo_write") ? "- Break down and manage your work with the todo_write tool. Mark each task as completed as soon as you are done with the task. Do not batch up multiple tasks before marking them as completed." : "",
+    availableTools.has("exec")
+      ? "- Reserve exec/bash exclusively for system commands and terminal operations that require shell execution"
+      : "",
+    availableTools.has("todo_write")
+      ? "- Break down and manage your work with the todo_write tool. Mark each task as completed as soon as you are done with the task. Do not batch up multiple tasks before marking them as completed."
+      : "",
     "- You can call multiple tools in a single response. If there are no dependencies between them, make all independent tool calls in parallel. Maximize use of parallel tool calls where possible.",
     "",
     "## Verification",

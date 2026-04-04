@@ -1,9 +1,9 @@
-import OpenClawProtocol
+import ElysiaClawProtocol
 import SwiftUI
 import Testing
-@testable import OpenClaw
+@testable import ElysiaClaw
 
-private typealias ProtoAnyCodable = OpenClawProtocol.AnyCodable
+private typealias ProtoAnyCodable = ElysiaClawProtocol.AnyCodable
 
 @Suite(.serialized)
 @MainActor

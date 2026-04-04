@@ -372,11 +372,11 @@ describe("buildNodeServiceEnvironment", () => {
     const env = buildNodeServiceEnvironment({
       env: {
         HOME: "/home/user",
-        ELYSIACLAW_GATEWAY_TOKEN: "openclaw-token",
+        ELYSIACLAW_GATEWAY_TOKEN: "elysiaclaw-token",
         CLAWDBOT_GATEWAY_TOKEN: "legacy-token",
       },
     });
-    expect(env.ELYSIACLAW_GATEWAY_TOKEN).toBe("openclaw-token");
+    expect(env.ELYSIACLAW_GATEWAY_TOKEN).toBe("elysiaclaw-token");
   });
 
   it("omits ELYSIACLAW_GATEWAY_TOKEN when both token env vars are empty", () => {
@@ -480,17 +480,17 @@ describe("resolveGatewayStateDir", () => {
   });
 
   it("uses ELYSIACLAW_STATE_DIR when provided", () => {
-    const env = { HOME: "/Users/test", ELYSIACLAW_STATE_DIR: "/var/lib/openclaw" };
-    expect(resolveGatewayStateDir(env)).toBe(path.resolve("/var/lib/openclaw"));
+    const env = { HOME: "/Users/test", ELYSIACLAW_STATE_DIR: "/var/lib/elysiaclaw" };
+    expect(resolveGatewayStateDir(env)).toBe(path.resolve("/var/lib/elysiaclaw"));
   });
 
   it("expands ~ in ELYSIACLAW_STATE_DIR", () => {
-    const env = { HOME: "/Users/test", ELYSIACLAW_STATE_DIR: "~/openclaw-state" };
-    expect(resolveGatewayStateDir(env)).toBe(path.resolve("/Users/test/openclaw-state"));
+    const env = { HOME: "/Users/test", ELYSIACLAW_STATE_DIR: "~/elysiaclaw-state" };
+    expect(resolveGatewayStateDir(env)).toBe(path.resolve("/Users/test/elysiaclaw-state"));
   });
 
   it("preserves Windows absolute paths without HOME", () => {
-    const env = { ELYSIACLAW_STATE_DIR: "C:\\State\\openclaw" };
-    expect(resolveGatewayStateDir(env)).toBe("C:\\State\\openclaw");
+    const env = { ELYSIACLAW_STATE_DIR: "C:\\State\\elysiaclaw" };
+    expect(resolveGatewayStateDir(env)).toBe("C:\\State\\elysiaclaw");
   });
 });

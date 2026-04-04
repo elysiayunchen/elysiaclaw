@@ -4,7 +4,7 @@ description: Control Sonos speakers (discover/status/play/volume/group).
 homepage: https://sonoscli.sh
 metadata:
   {
-    "openclaw":
+    "elysiaclaw":
       {
         "emoji": "🔊",
         "requires": { "bins": ["sonos"] },

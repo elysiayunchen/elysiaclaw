@@ -2,7 +2,7 @@
   "name": "@elysiaclaw/vllm-provider",
   "version": "2026.3.13",
   "private": true,
-  "description": "OpenClaw vLLM provider plugin",
+  "description": "ElysiaClaw vLLM provider plugin",
   "type": "module",
   "elysiaclaw": {
     "extensions": [

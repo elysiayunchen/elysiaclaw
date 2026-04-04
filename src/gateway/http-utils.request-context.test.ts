@@ -7,9 +7,9 @@ function createReq(headers: Record<string, string> = {}): IncomingMessage {
 }
 
 describe("resolveGatewayRequestContext", () => {
-  it("uses normalized x-openclaw-message-channel when enabled", () => {
+  it("uses normalized x-elysiaclaw-message-channel when enabled", () => {
     const result = resolveGatewayRequestContext({
-      req: createReq({ "x-openclaw-message-channel": " Custom-Channel " }),
+      req: createReq({ "x-elysiaclaw-message-channel": " Custom-Channel " }),
       model: "elysiaclaw",
       sessionPrefix: "openai",
       defaultMessageChannel: "webchat",
@@ -21,7 +21,7 @@ describe("resolveGatewayRequestContext", () => {
 
   it("uses default messageChannel when header support is disabled", () => {
     const result = resolveGatewayRequestContext({
-      req: createReq({ "x-openclaw-message-channel": "custom-channel" }),
+      req: createReq({ "x-elysiaclaw-message-channel": "custom-channel" }),
       model: "elysiaclaw",
       sessionPrefix: "openresponses",
       defaultMessageChannel: "webchat",

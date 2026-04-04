@@ -38,11 +38,11 @@ metadata: {"elysiaclaw":{"install":[{"id":"deps","kind":"node","package":"exampl
   return skillDir;
 }
 
-const workspaceSuite = createFixtureSuite("openclaw-skills-install-");
+const workspaceSuite = createFixtureSuite("elysiaclaw-skills-install-");
 let tempHome: TempHomeEnv;
 
 beforeAll(async () => {
-  tempHome = await createTempHomeEnv("openclaw-skills-install-home-");
+  tempHome = await createTempHomeEnv("elysiaclaw-skills-install-home-");
   await workspaceSuite.setup();
 });
 

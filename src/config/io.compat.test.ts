@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from "vitest";
 import { createConfigIO } from "./io.js";
 
 async function withTempHome(run: (home: string) => Promise<void>): Promise<void> {
-  const home = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-config-"));
+  const home = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-config-"));
   try {
     await run(home);
   } finally {
@@ -17,7 +17,7 @@ async function writeConfig(
   home: string,
   dirname: ".elysiaclaw",
   port: number,
-  filename: string = "openclaw.json",
+  filename: string = "elysiaclaw.json",
 ) {
   const dir = path.join(home, dirname);
   await fs.mkdir(dir, { recursive: true });
@@ -34,7 +34,7 @@ function createIoForHome(home: string, env: NodeJS.ProcessEnv = {} as NodeJS.Pro
 }
 
 describe("config io paths", () => {
-  it("uses ~/.elysiaclaw/openclaw.json when config exists", async () => {
+  it("uses ~/.elysiaclaw/elysiaclaw.json when config exists", async () => {
     await withTempHome(async (home) => {
       const configPath = await writeConfig(home, ".elysiaclaw", 19001);
       const io = createIoForHome(home);
@@ -43,10 +43,10 @@ describe("config io paths", () => {
     });
   });
 
-  it("defaults to ~/.elysiaclaw/openclaw.json when config is missing", async () => {
+  it("defaults to ~/.elysiaclaw/elysiaclaw.json when config is missing", async () => {
     await withTempHome(async (home) => {
       const io = createIoForHome(home);
-      expect(io.configPath).toBe(path.join(home, ".elysiaclaw", "openclaw.json"));
+      expect(io.configPath).toBe(path.join(home, ".elysiaclaw", "elysiaclaw.json"));
     });
   });
 
@@ -56,7 +56,7 @@ describe("config io paths", () => {
         env: { ELYSIACLAW_HOME: path.join(home, "svc-home") } as NodeJS.ProcessEnv,
         homedir: () => path.join(home, "ignored-home"),
       });
-      expect(io.configPath).toBe(path.join(home, "svc-home", ".elysiaclaw", "openclaw.json"));
+      expect(io.configPath).toBe(path.join(home, "svc-home", ".elysiaclaw", "elysiaclaw.json"));
     });
   });
 
@@ -82,7 +82,7 @@ describe("config io paths", () => {
     await withTempHome(async (home) => {
       const configDir = path.join(home, ".elysiaclaw");
       await fs.mkdir(configDir, { recursive: true });
-      const configPath = path.join(configDir, "openclaw.json");
+      const configPath = path.join(configDir, "elysiaclaw.json");
       await fs.writeFile(
         configPath,
         JSON.stringify(
@@ -142,7 +142,7 @@ describe("config io paths", () => {
     await withTempHome(async (home) => {
       const configDir = path.join(home, ".elysiaclaw");
       await fs.mkdir(configDir, { recursive: true });
-      const configPath = path.join(configDir, "openclaw.json");
+      const configPath = path.join(configDir, "elysiaclaw.json");
       await fs.writeFile(
         configPath,
         JSON.stringify({ gateway: { port: "not-a-number" } }, null, 2),

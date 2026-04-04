@@ -165,11 +165,11 @@ sequences (e.g. spaces become `\032`).
 
 ## Disabling / configuration
 
-- `OPENCLAW_DISABLE_BONJOUR=1` disables advertising (legacy: `OPENCLAW_DISABLE_BONJOUR`).
+- `ELYSIACLAW_DISABLE_BONJOUR=1` disables advertising (legacy: `ELYSIACLAW_DISABLE_BONJOUR`).
 - `gateway.bind` in `~/.elysiaclaw/elysiaclaw.json` controls the Gateway bind mode.
-- `OPENCLAW_SSH_PORT` overrides the SSH port advertised in TXT (legacy: `OPENCLAW_SSH_PORT`).
-- `OPENCLAW_TAILNET_DNS` publishes a MagicDNS hint in TXT (legacy: `OPENCLAW_TAILNET_DNS`).
-- `OPENCLAW_CLI_PATH` overrides the advertised CLI path (legacy: `OPENCLAW_CLI_PATH`).
+- `ELYSIACLAW_SSH_PORT` overrides the SSH port advertised in TXT (legacy: `ELYSIACLAW_SSH_PORT`).
+- `ELYSIACLAW_TAILNET_DNS` publishes a MagicDNS hint in TXT (legacy: `ELYSIACLAW_TAILNET_DNS`).
+- `ELYSIACLAW_CLI_PATH` overrides the advertised CLI path (legacy: `ELYSIACLAW_CLI_PATH`).
 
 ## Related docs
 

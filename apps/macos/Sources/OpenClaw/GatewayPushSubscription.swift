@@ -1,4 +1,4 @@
-import OpenClawKit
+import ElysiaClawKit
 
 enum GatewayPushSubscription {
     @MainActor

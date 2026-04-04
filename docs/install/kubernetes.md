@@ -34,7 +34,7 @@ open http://localhost:18789
 Retrieve the gateway token and paste it into the Control UI:
 
 ```bash
-kubectl get secret elysiaclaw-secrets -n elysiaclaw -o jsonpath='{.data.OPENCLAW_GATEWAY_TOKEN}' | base64 -d
+kubectl get secret elysiaclaw-secrets -n elysiaclaw -o jsonpath='{.data.ELYSIACLAW_GATEWAY_TOKEN}' | base64 -d
 ```
 
 For local debugging, `./scripts/k8s/deploy.sh --show-token` prints the token after deploy.
@@ -84,7 +84,7 @@ open http://localhost:18789
 ## What gets deployed
 
 ```
-Namespace: elysiaclaw (configurable via OPENCLAW_NAMESPACE)
+Namespace: elysiaclaw (configurable via ELYSIACLAW_NAMESPACE)
 ├── Deployment/elysiaclaw        # Single pod, init container + gateway
 ├── Service/elysiaclaw           # ClusterIP on port 18789
 ├── PersistentVolumeClaim      # 10Gi for agent state and config
@@ -130,7 +130,7 @@ kubectl rollout restart deployment/elysiaclaw -n elysiaclaw
 ### Custom namespace
 
 ```bash
-OPENCLAW_NAMESPACE=my-namespace ./scripts/k8s/deploy.sh
+ELYSIACLAW_NAMESPACE=my-namespace ./scripts/k8s/deploy.sh
 ```
 
 ### Custom image

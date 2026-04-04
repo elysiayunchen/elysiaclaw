@@ -1,7 +1,7 @@
-import OpenClawDiscovery
+import ElysiaClawDiscovery
 import SwiftUI
 import Testing
-@testable import OpenClaw
+@testable import ElysiaClaw
 
 @Suite(.serialized)
 @MainActor

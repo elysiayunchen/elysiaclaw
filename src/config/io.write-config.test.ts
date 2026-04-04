@@ -20,7 +20,7 @@ describe("config io write", () => {
   }
 
   beforeAll(async () => {
-    fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-config-io-"));
+    fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-config-io-"));
   });
 
   afterAll(async () => {
@@ -33,7 +33,7 @@ describe("config io write", () => {
     env?: NodeJS.ProcessEnv;
     logger?: { warn: (msg: string) => void; error: (msg: string) => void };
   }) {
-    const configPath = path.join(params.home, ".elysiaclaw", "openclaw.json");
+    const configPath = path.join(params.home, ".elysiaclaw", "elysiaclaw.json");
     await fs.mkdir(path.dirname(configPath), { recursive: true });
     await fs.writeFile(configPath, JSON.stringify(params.initialConfig, null, 2), "utf-8");
 
@@ -182,10 +182,10 @@ describe("config io write", () => {
       } satisfies ElysiaClawConfig;
 
       await expect(io.writeConfigFile(invalidConfig)).rejects.toThrow(
-        "openclaw config set channels.telegram.allowFrom '[\"*\"]'",
+        "elysiaclaw config set channels.telegram.allowFrom '[\"*\"]'",
       );
       await expect(io.writeConfigFile(invalidConfig)).rejects.toThrow(
-        'openclaw config set channels.telegram.dmPolicy "pairing"',
+        'elysiaclaw config set channels.telegram.dmPolicy "pairing"',
       );
     });
   });
@@ -220,7 +220,7 @@ describe("config io write", () => {
 
   it("does not mutate caller config when unsetPaths is applied on first write", async () => {
     await withSuiteHome(async (home) => {
-      const configPath = path.join(home, ".elysiaclaw", "openclaw.json");
+      const configPath = path.join(home, ".elysiaclaw", "elysiaclaw.json");
       const io = createConfigIO({
         env: {} as NodeJS.ProcessEnv,
         homedir: () => home,
@@ -387,7 +387,7 @@ describe("config io write", () => {
 
   it("keeps env refs in arrays when appending entries", async () => {
     await withSuiteHome(async (home) => {
-      const configPath = path.join(home, ".elysiaclaw", "openclaw.json");
+      const configPath = path.join(home, ".elysiaclaw", "elysiaclaw.json");
       await fs.mkdir(path.dirname(configPath), { recursive: true });
       await fs.writeFile(
         configPath,

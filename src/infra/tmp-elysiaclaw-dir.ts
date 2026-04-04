@@ -2,7 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
-export const POSIX_ELYSIACLAW_TMP_DIR = "/tmp/openclaw";
+export const POSIX_ELYSIACLAW_TMP_DIR = "/tmp/elysiaclaw";
 const TMP_DIR_ACCESS_MODE = fs.constants.W_OK | fs.constants.X_OK;
 
 type ResolvePreferredElysiaClawTmpDirOptions = {
@@ -67,7 +67,7 @@ export function resolvePreferredElysiaClawTmpDir(
 
   const fallback = (): string => {
     const base = tmpdir();
-    const suffix = uid === undefined ? "elysiaclaw" : `openclaw-${uid}`;
+    const suffix = uid === undefined ? "elysiaclaw" : `elysiaclaw-${uid}`;
     return path.join(base, suffix);
   };
 
@@ -109,7 +109,7 @@ export function resolvePreferredElysiaClawTmpDir(
         return false;
       }
       chmodSync(candidatePath, 0o700);
-      warn(`[openclaw] tightened permissions on temp dir: ${candidatePath}`);
+      warn(`[elysiaclaw] tightened permissions on temp dir: ${candidatePath}`);
       return resolveDirState(candidatePath) === "available";
     } catch {
       return false;

@@ -1,4 +1,4 @@
-package ai.openclaw.app
+package ai.elysiaclaw.app
 
 import android.app.Application
 import android.os.StrictMode

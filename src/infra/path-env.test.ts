@@ -73,7 +73,7 @@ describe("ensureElysiaClawCliOnPath", () => {
   });
 
   function setupAppCliRoot(name: string) {
-    const tmp = abs(`/tmp/openclaw-path/${name}`);
+    const tmp = abs(`/tmp/elysiaclaw-path/${name}`);
     const appBinDir = path.join(tmp, "AppBin");
     const appCli = path.join(appBinDir, "elysiaclaw");
     setDir(tmp);
@@ -93,7 +93,7 @@ describe("ensureElysiaClawCliOnPath", () => {
     return (process.env.PATH ?? "").split(path.delimiter);
   }
 
-  it("prepends the bundled app bin dir when a sibling openclaw exists", () => {
+  it("prepends the bundled app bin dir when a sibling elysiaclaw exists", () => {
     const { tmp, appBinDir, appCli } = setupAppCliRoot("case-bundled");
     process.env.PATH = "/usr/bin";
     delete process.env.ELYSIACLAW_PATH_BOOTSTRAPPED;
@@ -219,7 +219,7 @@ describe("ensureElysiaClawCliOnPath", () => {
   });
 
   it("prepends Linuxbrew dirs when present", () => {
-    const tmp = abs("/tmp/openclaw-path/case-linuxbrew");
+    const tmp = abs("/tmp/elysiaclaw-path/case-linuxbrew");
     const execDir = path.join(tmp, "exec");
     setDir(tmp);
     setDir(execDir);

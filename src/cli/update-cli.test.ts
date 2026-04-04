@@ -37,7 +37,7 @@ vi.mock("../infra/update-runner.js", () => ({
   runGatewayUpdate: vi.fn(),
 }));
 
-vi.mock("../infra/openclaw-root.js", () => ({
+vi.mock("../infra/elysiaclaw-root.js", () => ({
   resolveElysiaClawPackageRoot: vi.fn(),
 }));
 
@@ -137,7 +137,7 @@ vi.mock("../runtime.js", () => ({
 }));
 
 const { runGatewayUpdate } = await import("../infra/update-runner.js");
-const { resolveElysiaClawPackageRoot } = await import("../infra/openclaw-root.js");
+const { resolveElysiaClawPackageRoot } = await import("../infra/elysiaclaw-root.js");
 const { readConfigFileSnapshot, writeConfigFile } = await import("../config/config.js");
 const { checkUpdateStatus, fetchNpmTagVersion, resolveNpmChannelTag } =
   await import("../infra/update-check.js");
@@ -148,7 +148,7 @@ const { defaultRuntime } = await import("../runtime.js");
 const { updateCommand, updateStatusCommand, updateWizardCommand } = await import("./update-cli.js");
 
 describe("update-cli", () => {
-  const fixtureRoot = "/tmp/openclaw-update-tests";
+  const fixtureRoot = "/tmp/elysiaclaw-update-tests";
   let fixtureCount = 0;
 
   const createCaseDir = (prefix: string) => {
@@ -159,7 +159,7 @@ describe("update-cli", () => {
 
   const baseConfig = {} as ElysiaClawConfig;
   const baseSnapshot: ConfigFileSnapshot = {
-    path: "/tmp/openclaw-config.json",
+    path: "/tmp/elysiaclaw-config.json",
     exists: true,
     raw: "{}",
     parsed: {},
@@ -236,7 +236,7 @@ describe("update-cli", () => {
   };
 
   const setupNonInteractiveDowngrade = async () => {
-    const tempDir = createCaseDir("openclaw-update");
+    const tempDir = createCaseDir("elysiaclaw-update");
     setTty(false);
     readPackageVersion.mockResolvedValue("2.0.0");
 
@@ -311,7 +311,7 @@ describe("update-cli", () => {
       pid: 4242,
       state: "running",
     });
-    prepareRestartScript.mockResolvedValue("/tmp/openclaw-restart-test.sh");
+    prepareRestartScript.mockResolvedValue("/tmp/elysiaclaw-restart-test.sh");
     runRestartScript.mockResolvedValue(undefined);
     inspectPortUsage.mockResolvedValue({
       port: 18789,
@@ -393,7 +393,7 @@ describe("update-cli", () => {
       name: "defaults to stable channel for package installs when unset",
       options: { yes: true },
       prepare: async () => {
-        const tempDir = createCaseDir("openclaw-update");
+        const tempDir = createCaseDir("elysiaclaw-update");
         mockPackageInstallStatus(tempDir);
       },
       expectedChannel: undefined as "stable" | undefined,
@@ -430,13 +430,13 @@ describe("update-cli", () => {
 
     expect(runGatewayUpdate).not.toHaveBeenCalled();
     expect(runCommandWithTimeout).toHaveBeenCalledWith(
-      ["npm", "i", "-g", "openclaw@latest", "--no-fund", "--no-audit", "--loglevel=error"],
+      ["npm", "i", "-g", "elysiaclaw@latest", "--no-fund", "--no-audit", "--loglevel=error"],
       expect.any(Object),
     );
   });
 
   it("falls back to latest when beta tag is older than release", async () => {
-    const tempDir = createCaseDir("openclaw-update");
+    const tempDir = createCaseDir("elysiaclaw-update");
 
     mockPackageInstallStatus(tempDir);
     vi.mocked(readConfigFileSnapshot).mockResolvedValue({
@@ -451,13 +451,13 @@ describe("update-cli", () => {
 
     expect(runGatewayUpdate).not.toHaveBeenCalled();
     expect(runCommandWithTimeout).toHaveBeenCalledWith(
-      ["npm", "i", "-g", "openclaw@latest", "--no-fund", "--no-audit", "--loglevel=error"],
+      ["npm", "i", "-g", "elysiaclaw@latest", "--no-fund", "--no-audit", "--loglevel=error"],
       expect.any(Object),
     );
   });
 
   it("honors --tag override", async () => {
-    const tempDir = createCaseDir("openclaw-update");
+    const tempDir = createCaseDir("elysiaclaw-update");
 
     mockPackageInstallStatus(tempDir);
 
@@ -465,15 +465,15 @@ describe("update-cli", () => {
 
     expect(runGatewayUpdate).not.toHaveBeenCalled();
     expect(runCommandWithTimeout).toHaveBeenCalledWith(
-      ["npm", "i", "-g", "openclaw@next", "--no-fund", "--no-audit", "--loglevel=error"],
+      ["npm", "i", "-g", "elysiaclaw@next", "--no-fund", "--no-audit", "--loglevel=error"],
       expect.any(Object),
     );
   });
 
   it("prepends portable Git PATH for package updates on Windows", async () => {
     const platformSpy = vi.spyOn(process, "platform", "get").mockReturnValue("win32");
-    const tempDir = createCaseDir("openclaw-update");
-    const localAppData = createCaseDir("openclaw-localappdata");
+    const tempDir = createCaseDir("elysiaclaw-update");
+    const localAppData = createCaseDir("elysiaclaw-localappdata");
     const portableGitMingw = path.join(
       localAppData,
       "ElysiaClaw",
@@ -524,11 +524,11 @@ describe("update-cli", () => {
   });
 
   it("uses ELYSIACLAW_UPDATE_PACKAGE_SPEC for package updates", async () => {
-    const tempDir = createCaseDir("openclaw-update");
+    const tempDir = createCaseDir("elysiaclaw-update");
     mockPackageInstallStatus(tempDir);
 
     await withEnvAsync(
-      { ELYSIACLAW_UPDATE_PACKAGE_SPEC: "http://10.211.55.2:8138/openclaw-next.tgz" },
+      { ELYSIACLAW_UPDATE_PACKAGE_SPEC: "http://10.211.55.2:8138/elysiaclaw-next.tgz" },
       async () => {
         await updateCommand({ yes: true, tag: "latest" });
       },
@@ -540,7 +540,7 @@ describe("update-cli", () => {
         "npm",
         "i",
         "-g",
-        "http://10.211.55.2:8138/openclaw-next.tgz",
+        "http://10.211.55.2:8138/elysiaclaw-next.tgz",
         "--no-fund",
         "--no-audit",
         "--loglevel=error",
@@ -607,7 +607,7 @@ describe("update-cli", () => {
   });
 
   it("updateCommand refreshes service env from updated install root when available", async () => {
-    const root = createCaseDir("openclaw-updated-root");
+    const root = createCaseDir("elysiaclaw-updated-root");
     const entryPath = path.join(root, "dist", "entry.js");
     pathExists.mockImplementation(async (candidate: string) => candidate === entryPath);
 
@@ -631,7 +631,7 @@ describe("update-cli", () => {
   });
 
   it("updateCommand preserves invocation-relative service env overrides during refresh", async () => {
-    const root = createCaseDir("openclaw-updated-root");
+    const root = createCaseDir("elysiaclaw-updated-root");
     const entryPath = path.join(root, "dist", "entry.js");
     pathExists.mockImplementation(async (candidate: string) => candidate === entryPath);
 
@@ -647,7 +647,7 @@ describe("update-cli", () => {
     await withEnvAsync(
       {
         ELYSIACLAW_STATE_DIR: "./state",
-        ELYSIACLAW_CONFIG_PATH: "./config/openclaw.json",
+        ELYSIACLAW_CONFIG_PATH: "./config/elysiaclaw.json",
       },
       async () => {
         await updateCommand({});
@@ -660,7 +660,7 @@ describe("update-cli", () => {
         cwd: root,
         env: expect.objectContaining({
           ELYSIACLAW_STATE_DIR: path.resolve("./state"),
-          ELYSIACLAW_CONFIG_PATH: path.resolve("./config/openclaw.json"),
+          ELYSIACLAW_CONFIG_PATH: path.resolve("./config/elysiaclaw.json"),
         }),
         timeoutMs: 60_000,
       }),
@@ -669,7 +669,7 @@ describe("update-cli", () => {
   });
 
   it("updateCommand reuses the captured invocation cwd when process.cwd later fails", async () => {
-    const root = createCaseDir("openclaw-updated-root");
+    const root = createCaseDir("elysiaclaw-updated-root");
     const entryPath = path.join(root, "dist", "entry.js");
     pathExists.mockImplementation(async (candidate: string) => candidate === entryPath);
 
@@ -870,7 +870,7 @@ describe("update-cli", () => {
   });
 
   it("updateWizardCommand offers dev checkout and forwards selections", async () => {
-    const tempDir = createCaseDir("openclaw-update-wizard");
+    const tempDir = createCaseDir("elysiaclaw-update-wizard");
     await withEnvAsync({ ELYSIACLAW_GIT_DIR: tempDir }, async () => {
       setTty(true);
 

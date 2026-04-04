@@ -1,4 +1,8 @@
-import type { OpenClawConfig, PluginRuntime, ReplyPayload } from "elysiaclaw/plugin-sdk/mattermost";
+import type {
+  ElysiaClawConfig,
+  PluginRuntime,
+  ReplyPayload,
+} from "elysiaclaw/plugin-sdk/mattermost";
 import { getAgentScopedMediaLocalRoots } from "elysiaclaw/plugin-sdk/mattermost";
 
 type MarkdownTableMode = Parameters<PluginRuntime["channel"]["text"]["convertMarkdownTables"]>[1];
@@ -16,7 +20,7 @@ type SendMattermostMessage = (
 
 export async function deliverMattermostReplyPayload(params: {
   core: PluginRuntime;
-  cfg: OpenClawConfig;
+  cfg: ElysiaClawConfig;
   payload: ReplyPayload;
   to: string;
   accountId: string;

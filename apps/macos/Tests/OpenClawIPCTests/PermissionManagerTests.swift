@@ -1,7 +1,7 @@
 import CoreLocation
-import OpenClawIPC
+import ElysiaClawIPC
 import Testing
-@testable import OpenClaw
+@testable import ElysiaClaw
 
 @Suite(.serialized)
 @MainActor

@@ -8,7 +8,7 @@ afterEach(() => {
 
 describe("DEFAULT_AGENT_WORKSPACE_DIR", () => {
   it("uses ELYSIACLAW_HOME when resolving the default workspace dir", () => {
-    const home = path.join(path.sep, "srv", "openclaw-home");
+    const home = path.join(path.sep, "srv", "elysiaclaw-home");
     vi.stubEnv("ELYSIACLAW_HOME", home);
     vi.stubEnv("HOME", path.join(path.sep, "home", "other"));
 

@@ -5,12 +5,12 @@ describe("shared/entry-metadata", () => {
   it("prefers metadata emoji and homepage when present", () => {
     expect(
       resolveEmojiAndHomepage({
-        metadata: { emoji: "🦀", homepage: " https://openclaw.ai " },
+        metadata: { emoji: "🦀", homepage: " https://elysiaclaw.ai " },
         frontmatter: { emoji: "🙂", homepage: "https://example.com" },
       }),
     ).toEqual({
       emoji: "🦀",
-      homepage: "https://openclaw.ai",
+      homepage: "https://elysiaclaw.ai",
     });
   });
 
@@ -40,10 +40,10 @@ describe("shared/entry-metadata", () => {
     ).toEqual({});
     expect(
       resolveEmojiAndHomepage({
-        frontmatter: { url: " https://openclaw.ai/install " },
+        frontmatter: { url: " https://elysiaclaw.ai/install " },
       }),
     ).toEqual({
-      homepage: "https://openclaw.ai/install",
+      homepage: "https://elysiaclaw.ai/install",
     });
   });
 
@@ -53,7 +53,7 @@ describe("shared/entry-metadata", () => {
         frontmatter: {
           homepage: " ",
           website: "https://docs.elysiaclaw.ai",
-          url: "https://openclaw.ai/install",
+          url: "https://elysiaclaw.ai/install",
         },
       }),
     ).toEqual({});

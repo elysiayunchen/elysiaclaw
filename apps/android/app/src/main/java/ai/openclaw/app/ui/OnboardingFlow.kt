@@ -1,4 +1,4 @@
-package ai.openclaw.app.ui
+package ai.elysiaclaw.app.ui
 
 import android.Manifest
 import android.content.Context
@@ -92,10 +92,10 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import ai.openclaw.app.LocationMode
-import ai.openclaw.app.MainViewModel
-import ai.openclaw.app.R
-import ai.openclaw.app.node.DeviceNotificationListenerService
+import ai.elysiaclaw.app.LocationMode
+import ai.elysiaclaw.app.MainViewModel
+import ai.elysiaclaw.app.R
+import ai.elysiaclaw.app.node.DeviceNotificationListenerService
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
@@ -516,7 +516,7 @@ fun OnboardingFlow(viewModel: MainViewModel, modifier: Modifier = Modifier) {
           verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
           Text(
-            "OpenClaw",
+            "ElysiaClaw",
             style = onboardingDisplayStyle,
             color = onboardingText,
           )
@@ -996,11 +996,11 @@ private fun GatewayStep(
 
   StepShell(title = "Gateway Connection") {
     Text(
-      "Run `openclaw qr` on your gateway host, then scan the code with this device.",
+      "Run `elysiaclaw qr` on your gateway host, then scan the code with this device.",
       style = onboardingCalloutStyle,
       color = onboardingTextSecondary,
     )
-    CommandBlock("openclaw qr")
+    CommandBlock("elysiaclaw qr")
     Button(
       onClick = onScanQrClick,
       modifier = Modifier.fillMaxWidth().height(48.dp),
@@ -1051,7 +1051,7 @@ private fun GatewayStep(
           OutlinedTextField(
             value = setupCode,
             onValueChange = onSetupCodeChange,
-            placeholder = { Text("Paste code from `openclaw qr --setup-code-only`", color = onboardingTextTertiary, style = onboardingBodyStyle) },
+            placeholder = { Text("Paste code from `elysiaclaw qr --setup-code-only`", color = onboardingTextTertiary, style = onboardingBodyStyle) },
             modifier = Modifier.fillMaxWidth(),
             minLines = 3,
             maxLines = 5,
@@ -1671,8 +1671,8 @@ private fun FinalStep(
               Text("Run these on your gateway host:", style = onboardingCalloutStyle, color = onboardingTextSecondary)
             }
           }
-          CommandBlock("openclaw devices list")
-          CommandBlock("openclaw devices approve <requestId>")
+          CommandBlock("elysiaclaw devices list")
+          CommandBlock("elysiaclaw devices approve <requestId>")
           Text("Then tap Connect again.", style = onboardingCalloutStyle, color = onboardingTextSecondary)
         }
       }

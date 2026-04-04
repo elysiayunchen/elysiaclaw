@@ -78,8 +78,8 @@ async function openManagedTabWithRunningProfile(params: {
   const state = makeState("elysiaclaw");
   seedRunningProfileState(state);
   const ctx = createBrowserRouteContext({ getState: () => state });
-  const openclaw = ctx.forProfile("elysiaclaw");
-  return await openclaw.openTab(params.url ?? "http://127.0.0.1:3009");
+  const elysiaclaw = ctx.forProfile("elysiaclaw");
+  return await elysiaclaw.openTab(params.url ?? "http://127.0.0.1:3009");
 }
 
 describe("browser server-context tab selection state", () => {
@@ -110,9 +110,9 @@ describe("browser server-context tab selection state", () => {
     global.fetch = withFetchPreconnect(fetchMock);
     const state = makeState("elysiaclaw");
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("elysiaclaw");
+    const elysiaclaw = ctx.forProfile("elysiaclaw");
 
-    const opened = await openclaw.openTab("http://127.0.0.1:8080");
+    const opened = await elysiaclaw.openTab("http://127.0.0.1:8080");
     expect(opened.targetId).toBe("CREATED");
     expect(state.profiles.get("elysiaclaw")?.lastTargetId).toBe("CREATED");
     expect(createTargetViaCdp).toHaveBeenCalledWith({
@@ -177,9 +177,9 @@ describe("browser server-context tab selection state", () => {
     const state = makeState("elysiaclaw");
     seedRunningProfileState(state);
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("elysiaclaw");
+    const elysiaclaw = ctx.forProfile("elysiaclaw");
 
-    const opened = await openclaw.openTab("http://127.0.0.1:3009");
+    const opened = await elysiaclaw.openTab("http://127.0.0.1:3009");
     expect(opened.targetId).toBe("NEW");
   });
 
@@ -197,9 +197,9 @@ describe("browser server-context tab selection state", () => {
     const state = makeState("elysiaclaw");
     state.resolved.attachOnly = true;
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("elysiaclaw");
+    const elysiaclaw = ctx.forProfile("elysiaclaw");
 
-    const opened = await openclaw.openTab("http://127.0.0.1:3009");
+    const opened = await elysiaclaw.openTab("http://127.0.0.1:3009");
     expect(opened.targetId).toBe("NEW");
     expect(fetchMock).not.toHaveBeenCalledWith(
       expect.stringContaining("/json/close/"),
@@ -238,9 +238,9 @@ describe("browser server-context tab selection state", () => {
     global.fetch = withFetchPreconnect(fetchMock);
     const state = makeState("elysiaclaw");
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("elysiaclaw");
+    const elysiaclaw = ctx.forProfile("elysiaclaw");
 
-    await expect(openclaw.openTab("file:///etc/passwd")).rejects.toBeInstanceOf(
+    await expect(elysiaclaw.openTab("file:///etc/passwd")).rejects.toBeInstanceOf(
       InvalidBrowserNavigationUrlError,
     );
     expect(fetchMock).not.toHaveBeenCalled();

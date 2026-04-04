@@ -3,7 +3,7 @@ import { streamSimple } from "@mariozechner/pi-ai";
 import type { ThinkLevel } from "../../auto-reply/thinking.js";
 
 const OPENROUTER_APP_HEADERS: Record<string, string> = {
-  "HTTP-Referer": "https://openclaw.ai",
+  "HTTP-Referer": "https://elysiaclaw.ai",
   "X-Title": "ElysiaClaw",
 };
 const KILOCODE_FEATURE_HEADER = "X-KILOCODE-FEATURE";

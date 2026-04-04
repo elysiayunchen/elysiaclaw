@@ -45,7 +45,7 @@ describe("gateway e2e", () => {
 
       const { baseUrl: openaiBaseUrl, restore } = installOpenAiResponsesMock();
 
-      const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-gw-mock-home-"));
+      const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-gw-mock-home-"));
       process.env.HOME = tempHome;
       process.env.ELYSIACLAW_SKIP_CHANNELS = "1";
       process.env.ELYSIACLAW_SKIP_GMAIL_WATCHER = "1";
@@ -66,7 +66,7 @@ describe("gateway e2e", () => {
 
       const configDir = path.join(tempHome, ".elysiaclaw");
       await fs.mkdir(configDir, { recursive: true });
-      const configPath = path.join(configDir, "openclaw.json");
+      const configPath = path.join(configDir, "elysiaclaw.json");
 
       const cfg = {
         agents: { defaults: { workspace: workspaceDir } },
@@ -148,7 +148,7 @@ describe("gateway e2e", () => {
       process.env.ELYSIACLAW_SKIP_BROWSER_CONTROL_SERVER = "1";
       delete process.env.ELYSIACLAW_GATEWAY_TOKEN;
 
-      const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-wizard-home-"));
+      const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-wizard-home-"));
       process.env.HOME = tempHome;
       delete process.env.ELYSIACLAW_STATE_DIR;
       delete process.env.ELYSIACLAW_CONFIG_PATH;

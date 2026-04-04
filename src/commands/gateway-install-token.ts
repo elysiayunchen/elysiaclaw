@@ -1,5 +1,9 @@
 import { formatCliCommand } from "../cli/command-format.js";
-import { readConfigFileSnapshot, writeConfigFile, type ElysiaClawConfig } from "../config/config.js";
+import {
+  readConfigFileSnapshot,
+  writeConfigFile,
+  type ElysiaClawConfig,
+} from "../config/config.js";
 import { resolveSecretInputRef } from "../config/types.secrets.js";
 import { shouldRequireGatewayTokenForInstall } from "../gateway/auth-install-policy.js";
 import { hasAmbiguousGatewayAuthModeConfig } from "../gateway/auth-mode-policy.js";
@@ -27,7 +31,7 @@ export type GatewayInstallTokenResolution = {
 function formatAmbiguousGatewayAuthModeReason(): string {
   return [
     "gateway.auth.token and gateway.auth.password are both configured while gateway.auth.mode is unset.",
-    `Set ${formatCliCommand("openclaw config set gateway.auth.mode token")} or ${formatCliCommand("openclaw config set gateway.auth.mode password")}.`,
+    `Set ${formatCliCommand("elysiaclaw config set gateway.auth.mode token")} or ${formatCliCommand("elysiaclaw config set gateway.auth.mode password")}.`,
   ].join(" ");
 }
 

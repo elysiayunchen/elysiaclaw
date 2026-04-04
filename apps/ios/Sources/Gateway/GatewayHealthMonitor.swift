@@ -1,5 +1,5 @@
 import Foundation
-import OpenClawKit
+import ElysiaClawKit
 
 @MainActor
 final class GatewayHealthMonitor {

@@ -77,11 +77,11 @@ Security notes:
 
 Disable/override:
 
-- `OPENCLAW_DISABLE_BONJOUR=1` disables advertising.
+- `ELYSIACLAW_DISABLE_BONJOUR=1` disables advertising.
 - `gateway.bind` in `~/.elysiaclaw/elysiaclaw.json` controls the Gateway bind mode.
-- `OPENCLAW_SSH_PORT` overrides the SSH port advertised in TXT (defaults to 22).
-- `OPENCLAW_TAILNET_DNS` publishes a `tailnetDns` hint (MagicDNS).
-- `OPENCLAW_CLI_PATH` overrides the advertised CLI path.
+- `ELYSIACLAW_SSH_PORT` overrides the SSH port advertised in TXT (defaults to 22).
+- `ELYSIACLAW_TAILNET_DNS` publishes a `tailnetDns` hint (MagicDNS).
+- `ELYSIACLAW_CLI_PATH` overrides the advertised CLI path.
 
 ### 2) Tailnet (cross-network)
 

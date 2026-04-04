@@ -1,7 +1,7 @@
 import type {
   ChannelAccountSnapshot,
   ChannelPlugin,
-  OpenClawConfig,
+  ElysiaClawConfig,
 } from "elysiaclaw/plugin-sdk/bluebubbles";
 import {
   applyAccountNameToChannelSection,

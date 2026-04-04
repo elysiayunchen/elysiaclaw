@@ -26,7 +26,7 @@ async function withTempHome<T>(fn: (home: string) => Promise<T>): Promise<T> {
       env: {
         ELYSIACLAW_BUNDLED_SKILLS_DIR: (home) => path.join(home, "bundled-skills"),
       },
-      prefix: "openclaw-media-note-",
+      prefix: "elysiaclaw-media-note-",
     },
   );
 }

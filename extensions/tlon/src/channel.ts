@@ -4,7 +4,7 @@ import type {
   ChannelOutboundAdapter,
   ChannelPlugin,
   ChannelSetupInput,
-  OpenClawConfig,
+  ElysiaClawConfig,
 } from "elysiaclaw/plugin-sdk/tlon";
 import {
   applyAccountNameToChannelSection,
@@ -101,10 +101,10 @@ type TlonSetupInput = ChannelSetupInput & {
 };
 
 function applyTlonSetupConfig(params: {
-  cfg: OpenClawConfig;
+  cfg: ElysiaClawConfig;
   accountId: string;
   input: TlonSetupInput;
-}): OpenClawConfig {
+}): ElysiaClawConfig {
   const { cfg, accountId, input } = params;
   const useDefault = accountId === DEFAULT_ACCOUNT_ID;
   const namedConfig = applyAccountNameToChannelSection({
@@ -161,7 +161,7 @@ type ConfiguredTlonAccount = ResolvedTlonAccount & {
 };
 
 function resolveOutboundContext(params: {
-  cfg: OpenClawConfig;
+  cfg: ElysiaClawConfig;
   accountId?: string | null;
   to: string;
 }) {
@@ -315,7 +315,7 @@ export const tlonPlugin: ChannelPlugin = {
               enabled,
             },
           },
-        } as OpenClawConfig;
+        } as ElysiaClawConfig;
       }
       return {
         ...cfg,
@@ -332,7 +332,7 @@ export const tlonPlugin: ChannelPlugin = {
             },
           },
         },
-      } as OpenClawConfig;
+      } as ElysiaClawConfig;
     },
     deleteAccount: ({ cfg, accountId }) => {
       const useDefault = !accountId || accountId === "default";
@@ -350,7 +350,7 @@ export const tlonPlugin: ChannelPlugin = {
             ...cfg.channels,
             tlon: rest,
           },
-        } as OpenClawConfig;
+        } as ElysiaClawConfig;
       }
       const { [accountId]: _removed, ...remainingAccounts } = cfg.channels?.tlon?.accounts ?? {};
       return {
@@ -362,7 +362,7 @@ export const tlonPlugin: ChannelPlugin = {
             accounts: remainingAccounts,
           },
         },
-      } as OpenClawConfig;
+      } as ElysiaClawConfig;
     },
     isConfigured: (account) => account.configured,
     describeAccount: (account) => ({

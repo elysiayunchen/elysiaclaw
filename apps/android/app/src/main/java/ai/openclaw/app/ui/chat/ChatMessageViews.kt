@@ -1,4 +1,4 @@
-package ai.openclaw.app.ui.chat
+package ai.elysiaclaw.app.ui.chat
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -25,24 +25,24 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ai.openclaw.app.chat.ChatMessage
-import ai.openclaw.app.chat.ChatMessageContent
-import ai.openclaw.app.chat.ChatPendingToolCall
-import ai.openclaw.app.tools.ToolDisplayRegistry
-import ai.openclaw.app.ui.mobileAccent
-import ai.openclaw.app.ui.mobileAccentSoft
-import ai.openclaw.app.ui.mobileBorder
-import ai.openclaw.app.ui.mobileBorderStrong
-import ai.openclaw.app.ui.mobileCallout
-import ai.openclaw.app.ui.mobileCaption1
-import ai.openclaw.app.ui.mobileCaption2
-import ai.openclaw.app.ui.mobileCodeBg
-import ai.openclaw.app.ui.mobileCodeText
-import ai.openclaw.app.ui.mobileHeadline
-import ai.openclaw.app.ui.mobileText
-import ai.openclaw.app.ui.mobileTextSecondary
-import ai.openclaw.app.ui.mobileWarning
-import ai.openclaw.app.ui.mobileWarningSoft
+import ai.elysiaclaw.app.chat.ChatMessage
+import ai.elysiaclaw.app.chat.ChatMessageContent
+import ai.elysiaclaw.app.chat.ChatPendingToolCall
+import ai.elysiaclaw.app.tools.ToolDisplayRegistry
+import ai.elysiaclaw.app.ui.mobileAccent
+import ai.elysiaclaw.app.ui.mobileAccentSoft
+import ai.elysiaclaw.app.ui.mobileBorder
+import ai.elysiaclaw.app.ui.mobileBorderStrong
+import ai.elysiaclaw.app.ui.mobileCallout
+import ai.elysiaclaw.app.ui.mobileCaption1
+import ai.elysiaclaw.app.ui.mobileCaption2
+import ai.elysiaclaw.app.ui.mobileCodeBg
+import ai.elysiaclaw.app.ui.mobileCodeText
+import ai.elysiaclaw.app.ui.mobileHeadline
+import ai.elysiaclaw.app.ui.mobileText
+import ai.elysiaclaw.app.ui.mobileTextSecondary
+import ai.elysiaclaw.app.ui.mobileWarning
+import ai.elysiaclaw.app.ui.mobileWarningSoft
 import java.util.Locale
 
 private data class ChatBubbleStyle(
@@ -188,7 +188,7 @@ fun ChatPendingToolsBubble(toolCalls: List<ChatPendingToolCall>) {
 fun ChatStreamingAssistantBubble(text: String) {
   ChatBubbleContainer(
     style = bubbleStyle("assistant").copy(borderColor = mobileAccent),
-    roleLabel = "OpenClaw · Live",
+    roleLabel = "ElysiaClaw · Live",
   ) {
     ChatMarkdown(text = text, textColor = mobileText)
   }
@@ -226,7 +226,7 @@ private fun roleLabel(role: String): String {
   return when (role) {
     "user" -> "You"
     "system" -> "System"
-    else -> "OpenClaw"
+    else -> "ElysiaClaw"
   }
 }
 

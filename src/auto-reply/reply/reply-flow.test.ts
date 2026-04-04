@@ -617,11 +617,11 @@ describe("parseSlackDirectives", () => {
       },
       {
         type: "actions",
-        block_id: "openclaw_reply_buttons_1",
+        block_id: "elysiaclaw_reply_buttons_1",
         elements: [
           {
             type: "button",
-            action_id: "openclaw:reply_button",
+            action_id: "elysiaclaw:reply_button",
             text: {
               type: "plain_text",
               text: "Approve",
@@ -631,7 +631,7 @@ describe("parseSlackDirectives", () => {
           },
           {
             type: "button",
-            action_id: "openclaw:reply_button",
+            action_id: "elysiaclaw:reply_button",
             text: {
               type: "plain_text",
               text: "Reject",
@@ -653,11 +653,11 @@ describe("parseSlackDirectives", () => {
     expect(getSlackData(result).blocks).toEqual([
       {
         type: "actions",
-        block_id: "openclaw_reply_select_1",
+        block_id: "elysiaclaw_reply_select_1",
         elements: [
           {
             type: "static_select",
-            action_id: "openclaw:reply_select",
+            action_id: "elysiaclaw:reply_select",
             placeholder: {
               type: "plain_text",
               text: "Choose a project",
@@ -709,11 +709,11 @@ describe("parseSlackDirectives", () => {
       },
       {
         type: "actions",
-        block_id: "openclaw_reply_buttons_1",
+        block_id: "elysiaclaw_reply_buttons_1",
         elements: [
           {
             type: "button",
-            action_id: "openclaw:reply_button",
+            action_id: "elysiaclaw:reply_button",
             text: {
               type: "plain_text",
               text: "Retry",
@@ -734,11 +734,11 @@ describe("parseSlackDirectives", () => {
     expect(getSlackData(result).blocks).toEqual([
       {
         type: "actions",
-        block_id: "openclaw_reply_select_1",
+        block_id: "elysiaclaw_reply_select_1",
         elements: [
           {
             type: "static_select",
-            action_id: "openclaw:reply_select",
+            action_id: "elysiaclaw:reply_select",
             placeholder: {
               type: "plain_text",
               text: "Pick one",
@@ -766,11 +766,11 @@ describe("parseSlackDirectives", () => {
       },
       {
         type: "actions",
-        block_id: "openclaw_reply_buttons_1",
+        block_id: "elysiaclaw_reply_buttons_1",
         elements: [
           {
             type: "button",
-            action_id: "openclaw:reply_button",
+            action_id: "elysiaclaw:reply_button",
             text: {
               type: "plain_text",
               text: "Retry",
@@ -1808,7 +1808,7 @@ describe("createReplyDispatcher", () => {
             },
             {
               type: "actions",
-              block_id: "openclaw_reply_buttons_1",
+              block_id: "elysiaclaw_reply_buttons_1",
             },
           ],
         },

@@ -45,7 +45,7 @@ vi.mock("../config/config.js", async (importOriginal) => {
         evaluateEnabled: false,
         defaultProfile: "elysiaclaw",
         profiles: {
-          openclaw: { cdpPort: testPort + 1, color: "#FF4500" },
+          elysiaclaw: { cdpPort: testPort + 1, color: "#FF4500" },
         },
       },
     }),

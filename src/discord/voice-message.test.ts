@@ -77,7 +77,7 @@ vi.mock("node:child_process", async (importOriginal) => {
   };
 });
 
-vi.mock("../infra/tmp-openclaw-dir.js", () => ({
+vi.mock("../infra/tmp-elysiaclaw-dir.js", () => ({
   resolvePreferredElysiaClawTmpDir: () => "/tmp",
 }));
 

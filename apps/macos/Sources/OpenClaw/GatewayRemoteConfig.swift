@@ -1,5 +1,5 @@
 import Foundation
-import OpenClawKit
+import ElysiaClawKit
 
 enum GatewayRemoteConfig {
     enum TokenValue: Equatable {

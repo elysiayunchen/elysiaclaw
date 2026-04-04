@@ -2,7 +2,7 @@
   "name": "@elysiaclaw/google-gemini-cli-auth",
   "version": "2026.3.13",
   "private": true,
-  "description": "OpenClaw Gemini CLI OAuth provider plugin",
+  "description": "ElysiaClaw Gemini CLI OAuth provider plugin",
   "type": "module",
   "elysiaclaw": {
     "extensions": [

@@ -6,7 +6,7 @@ private struct RootCommand {
 }
 
 @main
-struct OpenClawMacCLI {
+struct ElysiaClawMacCLI {
     static func main() async {
         let args = Array(CommandLine.arguments.dropFirst())
         let command = parseRootCommand(args)
@@ -22,7 +22,7 @@ struct OpenClawMacCLI {
         case "wizard":
             await runWizardCommand(command?.args ?? [])
         default:
-            fputs("openclaw-mac: unknown command\n", stderr)
+            fputs("elysiaclaw-mac: unknown command\n", stderr)
             printUsage()
             exit(1)
         }
@@ -36,21 +36,21 @@ private func parseRootCommand(_ args: [String]) -> RootCommand? {
 
 private func printUsage() {
     print("""
-    openclaw-mac
+    elysiaclaw-mac
 
     Usage:
-      openclaw-mac connect [--url <ws://host:port>] [--token <token>] [--password <password>]
+      elysiaclaw-mac connect [--url <ws://host:port>] [--token <token>] [--password <password>]
                            [--mode <local|remote>] [--timeout <ms>] [--probe] [--json]
                            [--client-id <id>] [--client-mode <mode>] [--display-name <name>]
                            [--role <role>] [--scopes <a,b,c>]
-      openclaw-mac discover [--timeout <ms>] [--json] [--include-local]
-      openclaw-mac wizard [--url <ws://host:port>] [--token <token>] [--password <password>]
+      elysiaclaw-mac discover [--timeout <ms>] [--json] [--include-local]
+      elysiaclaw-mac wizard [--url <ws://host:port>] [--token <token>] [--password <password>]
                           [--mode <local|remote>] [--workspace <path>] [--json]
 
     Examples:
-      openclaw-mac connect
-      openclaw-mac connect --url ws://127.0.0.1:18789 --json
-      openclaw-mac discover --timeout 3000 --json
-      openclaw-mac wizard --mode local
+      elysiaclaw-mac connect
+      elysiaclaw-mac connect --url ws://127.0.0.1:18789 --json
+      elysiaclaw-mac discover --timeout 3000 --json
+      elysiaclaw-mac wizard --mode local
     """)
 }

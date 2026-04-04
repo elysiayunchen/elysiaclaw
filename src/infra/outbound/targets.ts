@@ -80,7 +80,7 @@ export function resolveSessionDeliveryTarget(params: {
    * Callers should set this to the channel that originated the current
    * agent turn so the reply always routes back to the correct channel.
    *
-   * @see https://github.com/elysiaclaw/openclaw/issues/24152
+   * @see https://github.com/elysiaclaw/elysiaclaw/issues/24152
    */
   turnSourceChannel?: DeliverableMessageChannel;
   /** Turn-source `to` — paired with `turnSourceChannel`. */
@@ -180,7 +180,7 @@ export function resolveOutboundTarget(params: {
     return {
       ok: false,
       error: new Error(
-        `Delivering to WebChat is not supported via \`${formatCliCommand("openclaw agent")}\`; use WhatsApp/Telegram or run with --deliver=false.`,
+        `Delivering to WebChat is not supported via \`${formatCliCommand("elysiaclaw agent")}\`; use WhatsApp/Telegram or run with --deliver=false.`,
       ),
     };
   }

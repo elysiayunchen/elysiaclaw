@@ -179,8 +179,8 @@ describe("QmdMemoryManager", () => {
     } else {
       (process.env as NodeJS.ProcessEnv & { Path?: string }).Path = originalWindowsPath;
     }
-    delete (globalThis as Record<string, unknown>).__openclawMcporterDaemonStart;
-    delete (globalThis as Record<string, unknown>).__openclawMcporterColdStartWarned;
+    delete (globalThis as Record<string, unknown>).__elysiaclawMcporterDaemonStart;
+    delete (globalThis as Record<string, unknown>).__elysiaclawMcporterColdStartWarned;
   });
 
   it("debounces back-to-back sync calls", async () => {

@@ -1,6 +1,6 @@
 import {
   emptyPluginConfigSchema,
-  type OpenClawPluginApi,
+  type ElysiaClawPluginApi,
   type ProviderAuthContext,
   type ProviderAuthResult,
 } from "elysiaclaw/plugin-sdk/copilot-proxy";
@@ -76,7 +76,7 @@ const copilotProxyPlugin = {
   name: "Copilot Proxy",
   description: "Local Copilot Proxy (VS Code LM) provider plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: ElysiaClawPluginApi) {
     api.registerProvider({
       id: "copilot-proxy",
       label: "Copilot Proxy",

@@ -1,7 +1,7 @@
 import Foundation
-import OpenClawKit
+import ElysiaClawKit
 import Testing
-@testable import OpenClaw
+@testable import ElysiaClaw
 
 @Suite(.serialized)
 @MainActor

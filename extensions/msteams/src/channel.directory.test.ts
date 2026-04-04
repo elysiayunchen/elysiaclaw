@@ -1,4 +1,4 @@
-import type { OpenClawConfig, RuntimeEnv } from "elysiaclaw/plugin-sdk/msteams";
+import type { ElysiaClawConfig, RuntimeEnv } from "elysiaclaw/plugin-sdk/msteams";
 import { describe, expect, it } from "vitest";
 import { createDirectoryTestRuntime, expectDirectorySurface } from "../../test-utils/directory.js";
 import { msteamsPlugin } from "./channel.js";
@@ -22,7 +22,7 @@ describe("msteams directory", () => {
           },
         },
       },
-    } as unknown as OpenClawConfig;
+    } as unknown as ElysiaClawConfig;
 
     const directory = expectDirectorySurface(msteamsPlugin.directory);
 

@@ -80,8 +80,10 @@ async function runTelegramReply(params: {
 }
 
 async function withTempHome<T>(fn: (home: string) => Promise<T>): Promise<T> {
-  return withTempHomeHarness("openclaw-stream-", async (home) => {
-    await fs.mkdir(path.join(home, ".elysiaclaw", "agents", "main", "sessions"), { recursive: true });
+  return withTempHomeHarness("elysiaclaw-stream-", async (home) => {
+    await fs.mkdir(path.join(home, ".elysiaclaw", "agents", "main", "sessions"), {
+      recursive: true,
+    });
     return fn(home);
   });
 }

@@ -56,8 +56,8 @@ describe("runDaemonInstall integration", () => {
       "ELYSIACLAW_GATEWAY_PASSWORD",
       "CLAWDBOT_GATEWAY_PASSWORD",
     ]);
-    tempHome = await makeTempWorkspace("openclaw-daemon-install-int-");
-    configPath = path.join(tempHome, "openclaw.json");
+    tempHome = await makeTempWorkspace("elysiaclaw-daemon-install-int-");
+    configPath = path.join(tempHome, "elysiaclaw.json");
     process.env.HOME = tempHome;
     process.env.ELYSIACLAW_STATE_DIR = tempHome;
     process.env.ELYSIACLAW_CONFIG_PATH = configPath;

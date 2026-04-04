@@ -39,8 +39,8 @@ reach other host locations unless sandboxing is enabled. See
 
 ## Paths (quick map)
 
-- Config: `~/.elysiaclaw/elysiaclaw.json` (or `OPENCLAW_CONFIG_PATH`)
-- State dir: `~/.elysiaclaw` (or `OPENCLAW_STATE_DIR`)
+- Config: `~/.elysiaclaw/elysiaclaw.json` (or `ELYSIACLAW_CONFIG_PATH`)
+- State dir: `~/.elysiaclaw` (or `ELYSIACLAW_STATE_DIR`)
 - Workspace: `~/.elysiaclaw/workspace` (or `~/.elysiaclaw/workspace-<agentId>`)
 - Agent dir: `~/.elysiaclaw/agents/<agentId>/agent` (or `agents.list[].agentDir`)
 - Sessions: `~/.elysiaclaw/agents/<agentId>/sessions`
@@ -51,7 +51,7 @@ If you do nothing, ElysiaClaw runs a single agent:
 
 - `agentId` defaults to **`main`**.
 - Sessions are keyed as `agent:main:<mainKey>`.
-- Workspace defaults to `~/.elysiaclaw/workspace` (or `~/.elysiaclaw/workspace-<profile>` when `OPENCLAW_PROFILE` is set).
+- Workspace defaults to `~/.elysiaclaw/workspace` (or `~/.elysiaclaw/workspace-<profile>` when `ELYSIACLAW_PROFILE` is set).
 - State defaults to `~/.elysiaclaw/agents/main/agent`.
 
 ## Agent helper

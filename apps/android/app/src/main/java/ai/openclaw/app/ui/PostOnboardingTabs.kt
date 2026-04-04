@@ -1,4 +1,4 @@
-package ai.openclaw.app.ui
+package ai.elysiaclaw.app.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.BorderStroke
@@ -44,7 +44,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import ai.openclaw.app.MainViewModel
+import ai.elysiaclaw.app.MainViewModel
 
 private enum class HomeTab(
   val label: String,
@@ -202,7 +202,7 @@ private fun TopStatusBar(
       horizontalArrangement = Arrangement.SpaceBetween,
     ) {
       Text(
-        text = "OpenClaw",
+        text = "ElysiaClaw",
         style = mobileTitle2,
         color = mobileText,
       )

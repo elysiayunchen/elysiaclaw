@@ -27,12 +27,12 @@ describe("matchesExecAllowlistPattern", () => {
   it("expands home-prefix patterns", () => {
     const prevElysiaClawHome = process.env.ELYSIACLAW_HOME;
     const prevHome = process.env.HOME;
-    process.env.ELYSIACLAW_HOME = "/srv/openclaw-home";
+    process.env.ELYSIACLAW_HOME = "/srv/elysiaclaw-home";
     process.env.HOME = "/home/other";
-    const openClawHome = path.join(path.resolve("/srv/openclaw-home"), "bin", "tool");
+    const elysiaclawHome = path.join(path.resolve("/srv/elysiaclaw-home"), "bin", "tool");
     const fallbackHome = path.join(path.resolve("/home/other"), "bin", "tool");
     try {
-      expect(matchesExecAllowlistPattern("~/bin/tool", openClawHome)).toBe(true);
+      expect(matchesExecAllowlistPattern("~/bin/tool", elysiaclawHome)).toBe(true);
       expect(matchesExecAllowlistPattern("~/bin/tool", fallbackHome)).toBe(false);
     } finally {
       if (prevElysiaClawHome === undefined) {

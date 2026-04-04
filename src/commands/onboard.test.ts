@@ -105,7 +105,7 @@ describe("onboardCommand", () => {
       config: {
         agents: {
           defaults: {
-            workspace: "/tmp/openclaw-custom-workspace",
+            workspace: "/tmp/elysiaclaw-custom-workspace",
           },
         },
       },
@@ -120,7 +120,7 @@ describe("onboardCommand", () => {
 
     expect(mocks.handleReset).toHaveBeenCalledWith(
       "config+creds+sessions",
-      path.resolve("/tmp/openclaw-custom-workspace"),
+      path.resolve("/tmp/elysiaclaw-custom-workspace"),
       runtime,
     );
   });

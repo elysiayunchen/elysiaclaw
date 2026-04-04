@@ -146,7 +146,7 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
     delete process.env.ELYSIACLAW_GATEWAY_TOKEN;
     delete process.env.ELYSIACLAW_GATEWAY_PASSWORD;
 
-    tempHome = await makeTempWorkspace("openclaw-onboard-");
+    tempHome = await makeTempWorkspace("elysiaclaw-onboard-");
     process.env.HOME = tempHome;
   });
 
@@ -563,7 +563,7 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
     }
     await withStateDir("state-lan-", async (stateDir) => {
       process.env.ELYSIACLAW_STATE_DIR = stateDir;
-      process.env.ELYSIACLAW_CONFIG_PATH = path.join(stateDir, "openclaw.json");
+      process.env.ELYSIACLAW_CONFIG_PATH = path.join(stateDir, "elysiaclaw.json");
 
       const port = getPseudoPort(40_000);
       const workspace = path.join(stateDir, "elysiaclaw");

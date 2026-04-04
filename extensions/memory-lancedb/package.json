@@ -2,7 +2,7 @@
   "name": "@elysiaclaw/memory-lancedb",
   "version": "2026.3.13",
   "private": true,
-  "description": "OpenClaw LanceDB-backed long-term memory plugin with auto-recall/capture",
+  "description": "ElysiaClaw LanceDB-backed long-term memory plugin with auto-recall/capture",
   "type": "module",
   "dependencies": {
     "@lancedb/lancedb": "^0.26.2",

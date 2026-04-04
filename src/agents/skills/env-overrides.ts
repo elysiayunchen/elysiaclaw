@@ -21,7 +21,7 @@ type ActiveSkillEnvEntry = {
  * Tracks env var keys that are currently injected by skill overrides.
  * Used by ACP harness spawn to strip skill-injected keys so they don't
  * leak to child processes (e.g., OPENAI_API_KEY leaking to Codex CLI).
- * @see https://github.com/elysiaclaw/openclaw/issues/36280
+ * @see https://github.com/elysiaclaw/elysiaclaw/issues/36280
  */
 const activeSkillEnvEntries = new Map<string, ActiveSkillEnvEntry>();
 
@@ -210,7 +210,10 @@ function createEnvReverter(updates: EnvUpdate[]) {
   };
 }
 
-export function applySkillEnvOverrides(params: { skills: SkillEntry[]; config?: ElysiaClawConfig }) {
+export function applySkillEnvOverrides(params: {
+  skills: SkillEntry[];
+  config?: ElysiaClawConfig;
+}) {
   const { skills, config } = params;
   const updates: EnvUpdate[] = [];
 

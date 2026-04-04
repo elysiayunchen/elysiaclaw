@@ -150,7 +150,7 @@ describe("registerPreActionHooks", () => {
       commandPath: ["status"],
     });
     expect(ensurePluginRegistryLoadedMock).toHaveBeenCalledTimes(1);
-    expect(process.title).toBe("openclaw-status");
+    expect(process.title).toBe("elysiaclaw-status");
 
     vi.clearAllMocks();
     await runPreAction({

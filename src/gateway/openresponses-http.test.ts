@@ -217,7 +217,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
       const resHeader = await postResponses(
         port,
         { model: "elysiaclaw", input: "hi" },
-        { "x-openclaw-agent-id": "beta" },
+        { "x-elysiaclaw-agent-id": "beta" },
       );
       expect(resHeader.status).toBe(200);
       const optsHeader = (agentCommand.mock.calls[0] as unknown[] | undefined)?.[0];
@@ -230,7 +230,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
       await ensureResponseConsumed(resHeader);
 
       mockAgentOnce([{ text: "hello" }]);
-      const resModel = await postResponses(port, { model: "openclaw:beta", input: "hi" });
+      const resModel = await postResponses(port, { model: "elysiaclaw:beta", input: "hi" });
       expect(resModel.status).toBe(200);
       const optsModel = (agentCommand.mock.calls[0] as unknown[] | undefined)?.[0];
       expect((optsModel as { sessionKey?: string } | undefined)?.sessionKey ?? "").toMatch(
@@ -242,7 +242,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
       const resChannelHeader = await postResponses(
         port,
         { model: "elysiaclaw", input: "hi" },
-        { "x-openclaw-message-channel": "custom-client-channel" },
+        { "x-elysiaclaw-message-channel": "custom-client-channel" },
       );
       expect(resChannelHeader.status).toBe(200);
       const optsChannelHeader = (agentCommand.mock.calls[0] as unknown[] | undefined)?.[0];

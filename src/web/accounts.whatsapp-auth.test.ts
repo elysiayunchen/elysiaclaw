@@ -16,7 +16,7 @@ describe("hasAnyWhatsAppAuth", () => {
 
   beforeEach(() => {
     envSnapshot = captureEnv(["ELYSIACLAW_OAUTH_DIR"]);
-    tempOauthDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-oauth-"));
+    tempOauthDir = fs.mkdtempSync(path.join(os.tmpdir(), "elysiaclaw-oauth-"));
     process.env.ELYSIACLAW_OAUTH_DIR = tempOauthDir;
   });
 
@@ -43,7 +43,7 @@ describe("hasAnyWhatsAppAuth", () => {
   });
 
   it("includes authDir overrides", () => {
-    const customDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-wa-auth-"));
+    const customDir = fs.mkdtempSync(path.join(os.tmpdir(), "elysiaclaw-wa-auth-"));
     try {
       writeCreds(customDir);
       const cfg = {

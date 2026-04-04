@@ -192,7 +192,7 @@ export async function runDaemonRestart(opts: DaemonLifecycleOptions = {}): Promi
 
         fail(`Gateway restart timed out after ${restartWaitSeconds}s waiting for health checks.`, [
           formatCliCommand("elysiaclaw gateway status --deep"),
-          formatCliCommand("openclaw doctor"),
+          formatCliCommand("elysiaclaw doctor"),
         ]);
       }
 
@@ -254,7 +254,7 @@ export async function runDaemonRestart(opts: DaemonLifecycleOptions = {}): Promi
 
       fail(`Gateway restart timed out after ${restartWaitSeconds}s waiting for health checks.`, [
         formatCliCommand("elysiaclaw gateway status --deep"),
-        formatCliCommand("openclaw doctor"),
+        formatCliCommand("elysiaclaw doctor"),
       ]);
     },
   });

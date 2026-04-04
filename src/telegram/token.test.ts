@@ -11,7 +11,7 @@ describe("resolveTelegramToken", () => {
   const tempDirs: string[] = [];
 
   function createTempDir(): string {
-    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-telegram-token-"));
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "elysiaclaw-telegram-token-"));
     tempDirs.push(dir);
     return dir;
   }
@@ -205,7 +205,7 @@ describe("resolveTelegramToken", () => {
 
 describe("telegram update offset store", () => {
   it("persists and reloads the last update id", async () => {
-    await withStateDirEnv("openclaw-telegram-", async () => {
+    await withStateDirEnv("elysiaclaw-telegram-", async () => {
       expect(await readTelegramUpdateOffset({ accountId: "primary" })).toBeNull();
 
       await writeTelegramUpdateOffset({

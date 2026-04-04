@@ -26,7 +26,7 @@ type ExecFileError = Error & {
 };
 
 const TEST_SERVICE_HOME = "/home/test";
-const TEST_MANAGED_HOME = "/tmp/openclaw-test-home";
+const TEST_MANAGED_HOME = "/tmp/elysiaclaw-test-home";
 const GATEWAY_SERVICE = "elysiaclaw-gateway.service";
 
 const createExecFileError = (
@@ -97,10 +97,14 @@ function mockReadGatewayServiceFile(
 }
 
 async function expectExecStartWithoutEnvironment(envFileLine: string) {
-  mockReadGatewayServiceFile(["[Service]", "ExecStart=/usr/bin/elysiaclaw gateway run", envFileLine]);
+  mockReadGatewayServiceFile([
+    "[Service]",
+    "ExecStart=/usr/bin/elysiaclaw gateway run",
+    envFileLine,
+  ]);
 
   const command = await readSystemdServiceExecStart({ HOME: TEST_SERVICE_HOME });
-  expect(command?.programArguments).toEqual(["/usr/bin/openclaw", "gateway", "run"]);
+  expect(command?.programArguments).toEqual(["/usr/bin/elysiaclaw", "gateway", "run"]);
   expect(command?.environment).toBeUndefined();
 }
 
@@ -185,7 +189,7 @@ describe("isSystemdServiceEnabled", () => {
     err.code = "ENOENT";
     vi.spyOn(fs, "access").mockRejectedValueOnce(err);
 
-    const result = await isSystemdServiceEnabled({ env: { HOME: "/tmp/openclaw-test-home" } });
+    const result = await isSystemdServiceEnabled({ env: { HOME: "/tmp/elysiaclaw-test-home" } });
 
     expect(result).toBe(false);
     expect(execFileMock).not.toHaveBeenCalled();
@@ -304,7 +308,7 @@ describe("isSystemdServiceEnabled", () => {
         cb(err, "", "permission denied");
       });
     await expect(
-      isSystemdServiceEnabled({ env: { HOME: "/tmp/openclaw-test-home" } }),
+      isSystemdServiceEnabled({ env: { HOME: "/tmp/elysiaclaw-test-home" } }),
     ).rejects.toThrow("systemctl is-enabled unavailable: permission denied");
   });
 
@@ -320,7 +324,7 @@ describe("isSystemdServiceEnabled", () => {
       err.code = 4;
       cb(err, "not-found\n", "");
     });
-    const result = await isSystemdServiceEnabled({ env: { HOME: "/tmp/openclaw-test-home" } });
+    const result = await isSystemdServiceEnabled({ env: { HOME: "/tmp/elysiaclaw-test-home" } });
     expect(result).toBe(false);
   });
 });
@@ -429,7 +433,7 @@ describe("resolveSystemdUserUnitPath", () => {
 describe("splitArgsPreservingQuotes", () => {
   it("splits on whitespace outside quotes", () => {
     expect(splitArgsPreservingQuotes('/usr/bin/elysiaclaw gateway start --name "My Bot"')).toEqual([
-      "/usr/bin/openclaw",
+      "/usr/bin/elysiaclaw",
       "gateway",
       "start",
       "--name",
@@ -439,7 +443,7 @@ describe("splitArgsPreservingQuotes", () => {
 
   it("supports systemd-style backslash escaping", () => {
     expect(
-      splitArgsPreservingQuotes('openclaw --name "My \\"Bot\\"" --foo bar', {
+      splitArgsPreservingQuotes('elysiaclaw --name "My \\"Bot\\"" --foo bar', {
         escapeMode: "backslash",
       }),
     ).toEqual(["elysiaclaw", "--name", 'My "Bot"', "--foo", "bar"]);
@@ -447,13 +451,13 @@ describe("splitArgsPreservingQuotes", () => {
 
   it("supports schtasks-style escaped quotes while preserving other backslashes", () => {
     expect(
-      splitArgsPreservingQuotes('openclaw --path "C:\\\\Program Files\\\\ElysiaClaw"', {
+      splitArgsPreservingQuotes('elysiaclaw --path "C:\\\\Program Files\\\\ElysiaClaw"', {
         escapeMode: "backslash-quote-only",
       }),
     ).toEqual(["elysiaclaw", "--path", "C:\\\\Program Files\\\\ElysiaClaw"]);
 
     expect(
-      splitArgsPreservingQuotes('openclaw --label "My \\"Quoted\\" Name"', {
+      splitArgsPreservingQuotes('elysiaclaw --label "My \\"Quoted\\" Name"', {
         escapeMode: "backslash-quote-only",
       }),
     ).toEqual(["elysiaclaw", "--label", 'My "Quoted" Name']);
@@ -464,7 +468,7 @@ describe("parseSystemdExecStart", () => {
   it("preserves quoted arguments", () => {
     const execStart = '/usr/bin/elysiaclaw gateway start --name "My Bot"';
     expect(parseSystemdExecStart(execStart)).toEqual([
-      "/usr/bin/openclaw",
+      "/usr/bin/elysiaclaw",
       "gateway",
       "start",
       "--name",
@@ -480,7 +484,11 @@ describe("readSystemdServiceExecStart", () => {
 
   it("loads ELYSIACLAW_GATEWAY_TOKEN from EnvironmentFile", async () => {
     const readFileSpy = mockReadGatewayServiceFile(
-      ["[Service]", "ExecStart=/usr/bin/elysiaclaw gateway run", "EnvironmentFile=%h/.elysiaclaw/.env"],
+      [
+        "[Service]",
+        "ExecStart=/usr/bin/elysiaclaw gateway run",
+        "EnvironmentFile=%h/.elysiaclaw/.env",
+      ],
       { [`${TEST_SERVICE_HOME}/.elysiaclaw/.env`]: "ELYSIACLAW_GATEWAY_TOKEN=env-file-token\n" },
     );
 

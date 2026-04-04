@@ -1,7 +1,7 @@
 {
   "name": "@elysiaclaw/zalouser",
   "version": "2026.3.13",
-  "description": "OpenClaw Zalo Personal Account plugin via native zca-js integration",
+  "description": "ElysiaClaw Zalo Personal Account plugin via native zca-js integration",
   "type": "module",
   "dependencies": {
     "@sinclair/typebox": "0.34.48",

@@ -31,7 +31,7 @@ describe("resetCommand", () => {
     vi.clearAllMocks();
     resolveCleanupPlanFromDisk.mockReturnValue({
       stateDir: "/tmp/.elysiaclaw",
-      configPath: "/tmp/.elysiaclaw/openclaw.json",
+      configPath: "/tmp/.elysiaclaw/elysiaclaw.json",
       oauthDir: "/tmp/.elysiaclaw/credentials",
       configInsideState: true,
       oauthInsideState: true,
@@ -53,7 +53,7 @@ describe("resetCommand", () => {
       dryRun: true,
     });
 
-    expect(runtime.log).toHaveBeenCalledWith(expect.stringContaining("openclaw backup create"));
+    expect(runtime.log).toHaveBeenCalledWith(expect.stringContaining("elysiaclaw backup create"));
   });
 
   it("does not recommend backup for config-only reset", async () => {
@@ -64,6 +64,8 @@ describe("resetCommand", () => {
       dryRun: true,
     });
 
-    expect(runtime.log).not.toHaveBeenCalledWith(expect.stringContaining("openclaw backup create"));
+    expect(runtime.log).not.toHaveBeenCalledWith(
+      expect.stringContaining("elysiaclaw backup create"),
+    );
   });
 });

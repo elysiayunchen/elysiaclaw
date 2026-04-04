@@ -24,7 +24,7 @@ import { isDangerousNameMatchingEnabled } from "../../config/dangerous-name-matc
 import type { DiscordAccountConfig, TtsConfig } from "../../config/types.js";
 import { logVerbose, shouldLogVerbose } from "../../globals.js";
 import { formatErrorMessage } from "../../infra/errors.js";
-import { resolvePreferredElysiaClawTmpDir } from "../../infra/tmp-openclaw-dir.js";
+import { resolvePreferredElysiaClawTmpDir } from "../../infra/tmp-elysiaclaw-dir.js";
 import { createSubsystemLogger } from "../../logging/subsystem.js";
 import {
   buildProviderRegistry,

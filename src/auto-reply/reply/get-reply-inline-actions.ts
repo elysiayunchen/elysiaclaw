@@ -1,5 +1,5 @@
 import { collectTextContentBlocks } from "../../agents/content-blocks.js";
-import { createElysiaClawTools } from "../../agents/openclaw-tools.js";
+import { createElysiaClawTools } from "../../agents/elysiaclaw-tools.js";
 import type { SkillCommandSpec } from "../../agents/skills.js";
 import { applyOwnerOnlyToolPolicy } from "../../agents/tool-policy.js";
 import { getChannelDock } from "../../channels/dock.js";

@@ -122,7 +122,7 @@ export function registerBrowserFilesAndDownloadsCommands(
     .description("Wait for the next download (and save it)")
     .argument(
       "[path]",
-      "Save path within openclaw temp downloads dir (default: /tmp/elysiaclaw/downloads/...; fallback: os.tmpdir()/elysiaclaw/downloads/...)",
+      "Save path within elysiaclaw temp downloads dir (default: /tmp/elysiaclaw/downloads/...; fallback: os.tmpdir()/elysiaclaw/downloads/...)",
     )
     .option("--target-id <id>", "CDP target id (or unique prefix)")
     .option(
@@ -145,7 +145,7 @@ export function registerBrowserFilesAndDownloadsCommands(
     .argument("<ref>", "Ref id from snapshot to click")
     .argument(
       "<path>",
-      "Save path within openclaw temp downloads dir (e.g. report.pdf or /tmp/elysiaclaw/downloads/report.pdf)",
+      "Save path within elysiaclaw temp downloads dir (e.g. report.pdf or /tmp/elysiaclaw/downloads/report.pdf)",
     )
     .option("--target-id <id>", "CDP target id (or unique prefix)")
     .option(

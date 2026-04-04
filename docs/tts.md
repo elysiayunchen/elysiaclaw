@@ -301,7 +301,7 @@ Optional allowlist (enable provider switching while keeping other knobs configur
 ## Per-user preferences
 
 Slash commands write local overrides to `prefsPath` (default:
-`~/.elysiaclaw/settings/tts.json`, override with `OPENCLAW_TTS_PREFS` or
+`~/.elysiaclaw/settings/tts.json`, override with `ELYSIACLAW_TTS_PREFS` or
 `messages.tts.prefsPath`).
 
 Stored fields:

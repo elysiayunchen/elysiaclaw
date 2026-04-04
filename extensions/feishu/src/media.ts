@@ -141,7 +141,7 @@ export async function downloadImageFeishu(params: {
 
   const buffer = await readFeishuResponseBuffer({
     response,
-    tmpDirPrefix: "openclaw-feishu-img-",
+    tmpDirPrefix: "elysiaclaw-feishu-img-",
     errorPrefix: "Feishu image download failed",
   });
   return { buffer };
@@ -172,7 +172,7 @@ export async function downloadMessageResourceFeishu(params: {
 
   const buffer = await readFeishuResponseBuffer({
     response,
-    tmpDirPrefix: "openclaw-feishu-resource-",
+    tmpDirPrefix: "elysiaclaw-feishu-resource-",
     errorPrefix: "Feishu message resource download failed",
   });
   return { buffer };

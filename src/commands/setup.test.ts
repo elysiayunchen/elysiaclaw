@@ -15,7 +15,7 @@ describe("setupCommand", () => {
 
       await setupCommand(undefined, runtime);
 
-      const configPath = path.join(home, ".elysiaclaw", "openclaw.json");
+      const configPath = path.join(home, ".elysiaclaw", "elysiaclaw.json");
       const raw = await fs.readFile(configPath, "utf-8");
 
       expect(raw).toContain('"mode": "local"');
@@ -31,7 +31,7 @@ describe("setupCommand", () => {
         exit: vi.fn(),
       };
       const configDir = path.join(home, ".elysiaclaw");
-      const configPath = path.join(configDir, "openclaw.json");
+      const configPath = path.join(configDir, "elysiaclaw.json");
       const workspace = path.join(home, "custom-workspace");
 
       await fs.mkdir(configDir, { recursive: true });

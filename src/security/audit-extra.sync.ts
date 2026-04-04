@@ -567,7 +567,7 @@ export function collectSyncedFolderFindings(params: {
       severity: "warn",
       title: "State/config path looks like a synced folder",
       detail: `stateDir=${params.stateDir}, configPath=${params.configPath}. Synced folders (iCloud/Dropbox/OneDrive/Google Drive) can leak tokens and transcripts onto other devices.`,
-      remediation: `Keep ELYSIACLAW_STATE_DIR on a local-only volume and re-run "${formatCliCommand("openclaw security audit --fix")}".`,
+      remediation: `Keep ELYSIACLAW_STATE_DIR on a local-only volume and re-run "${formatCliCommand("elysiaclaw security audit --fix")}".`,
     });
   }
   return findings;
@@ -627,7 +627,7 @@ export function collectHooksHardeningFindings(
     tailscaleMode: cfg.gateway?.tailscale?.mode ?? "off",
     env,
   });
-  const openclawGatewayToken =
+  const elysiaclawGatewayToken =
     typeof env.ELYSIACLAW_GATEWAY_TOKEN === "string" && env.ELYSIACLAW_GATEWAY_TOKEN.trim()
       ? env.ELYSIACLAW_GATEWAY_TOKEN.trim()
       : null;
@@ -636,8 +636,8 @@ export function collectHooksHardeningFindings(
     typeof gatewayAuth.token === "string" &&
     gatewayAuth.token.trim()
       ? gatewayAuth.token.trim()
-      : openclawGatewayToken
-        ? openclawGatewayToken
+      : elysiaclawGatewayToken
+        ? elysiaclawGatewayToken
         : null;
   if (token && gatewayToken && token === gatewayToken) {
     findings.push({
@@ -742,7 +742,7 @@ export function collectGatewayHttpSessionKeyOverrideFindings(
     severity: "info",
     title: "HTTP API session-key override is enabled",
     detail:
-      `${enabledEndpoints.join(", ")} accept x-openclaw-session-key for per-request session routing. ` +
+      `${enabledEndpoints.join(", ")} accept x-elysiaclaw-session-key for per-request session routing. ` +
       "Treat API credential holders as trusted principals.",
   });
 
@@ -833,7 +833,9 @@ export function collectSandboxDockerNoopFindings(cfg: ElysiaClawConfig): Securit
   return findings;
 }
 
-export function collectSandboxDangerousConfigFindings(cfg: ElysiaClawConfig): SecurityAuditFinding[] {
+export function collectSandboxDangerousConfigFindings(
+  cfg: ElysiaClawConfig,
+): SecurityAuditFinding[] {
   const findings: SecurityAuditFinding[] = [];
   const agents = Array.isArray(cfg.agents?.list) ? cfg.agents.list : [];
 
@@ -973,7 +975,7 @@ export function collectSandboxDangerousConfigFindings(cfg: ElysiaClawConfig): Se
         "These sandbox browser configs use Docker bridge networking with no CDP source restriction:\n" +
         browserExposurePaths.map((entry) => `- ${entry}`).join("\n"),
       remediation:
-        "Set sandbox.browser.network to a dedicated bridge network (recommended default: openclaw-sandbox-browser), " +
+        "Set sandbox.browser.network to a dedicated bridge network (recommended default: elysiaclaw-sandbox-browser), " +
         "or set sandbox.browser.cdpSourceRange (for example 172.21.0.1/32) to restrict container-edge CDP ingress.",
     });
   }
@@ -981,7 +983,9 @@ export function collectSandboxDangerousConfigFindings(cfg: ElysiaClawConfig): Se
   return findings;
 }
 
-export function collectNodeDenyCommandPatternFindings(cfg: ElysiaClawConfig): SecurityAuditFinding[] {
+export function collectNodeDenyCommandPatternFindings(
+  cfg: ElysiaClawConfig,
+): SecurityAuditFinding[] {
   const findings: SecurityAuditFinding[] = [];
   const denyListRaw = cfg.gateway?.nodes?.denyCommands;
   if (!Array.isArray(denyListRaw) || denyListRaw.length === 0) {
@@ -1075,7 +1079,9 @@ export function collectNodeDangerousAllowCommandFindings(
   return findings;
 }
 
-export function collectMinimalProfileOverrideFindings(cfg: ElysiaClawConfig): SecurityAuditFinding[] {
+export function collectMinimalProfileOverrideFindings(
+  cfg: ElysiaClawConfig,
+): SecurityAuditFinding[] {
   const findings: SecurityAuditFinding[] = [];
   if (cfg.tools?.profile !== "minimal") {
     return findings;

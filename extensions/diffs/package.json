@@ -2,7 +2,7 @@
   "name": "@elysiaclaw/diffs",
   "version": "2026.3.13",
   "private": true,
-  "description": "OpenClaw diff viewer plugin",
+  "description": "ElysiaClaw diff viewer plugin",
   "type": "module",
   "scripts": {
     "build:viewer": "bun build src/viewer-client.ts --target browser --format esm --minify --outfile assets/viewer-runtime.js"

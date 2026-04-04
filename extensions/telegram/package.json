@@ -2,7 +2,7 @@
   "name": "@elysiaclaw/telegram",
   "version": "2026.3.13",
   "private": true,
-  "description": "OpenClaw Telegram channel plugin",
+  "description": "ElysiaClaw Telegram channel plugin",
   "type": "module",
   "elysiaclaw": {
     "extensions": [

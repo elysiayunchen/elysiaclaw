@@ -1,4 +1,4 @@
-import OpenClawProtocol
+import ElysiaClawProtocol
 
 /// Server-push messages from the gateway websocket.
 ///

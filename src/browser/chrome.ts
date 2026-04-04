@@ -70,7 +70,9 @@ function resolveBrowserExecutable(resolved: ResolvedBrowserConfig): BrowserExecu
   return resolveBrowserExecutableForPlatform(resolved, process.platform);
 }
 
-export function resolveElysiaClawUserDataDir(profileName = DEFAULT_ELYSIACLAW_BROWSER_PROFILE_NAME) {
+export function resolveElysiaClawUserDataDir(
+  profileName = DEFAULT_ELYSIACLAW_BROWSER_PROFILE_NAME,
+) {
   return path.join(CONFIG_DIR, "browser", profileName, "user-data");
 }
 
@@ -346,14 +348,14 @@ export async function launchElysiaClawChrome(
       });
       log.info(`🌸 elysiaclaw browser profile decorated (${profile.color})`);
     } catch (err) {
-      log.warn(`openclaw browser profile decoration failed: ${String(err)}`);
+      log.warn(`elysiaclaw browser profile decoration failed: ${String(err)}`);
     }
   }
 
   try {
     ensureProfileCleanExit(userDataDir);
   } catch (err) {
-    log.warn(`openclaw browser clean-exit prefs failed: ${String(err)}`);
+    log.warn(`elysiaclaw browser clean-exit prefs failed: ${String(err)}`);
   }
 
   const proc = spawnOnce();

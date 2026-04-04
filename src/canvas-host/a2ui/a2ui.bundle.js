@@ -14787,7 +14787,7 @@ const statusShadow = isAndroid
   ? "0 2px 10px rgba(0, 0, 0, 0.18)"
   : "0 10px 24px rgba(0, 0, 0, 0.25)";
 const statusBlur = isAndroid ? "10px" : "14px";
-const openclawTheme = {
+const elysiaclawTheme = {
   components: {
     AudioPlayer: emptyClasses(),
     Button: emptyClasses(),
@@ -14943,7 +14943,7 @@ const openclawTheme = {
     Image: { borderRadius: "12px" },
   },
 };
-var OpenClawA2UIHost = class extends i$6 {
+var ElysiaClawA2UIHost = class extends i$6 {
   static properties = {
     surfaces: { state: true },
     pendingAction: { state: true },
@@ -14952,7 +14952,7 @@ var OpenClawA2UIHost = class extends i$6 {
   #processor = Data.createSignalA2uiMessageProcessor();
   themeProvider = new i$3(this, {
     context: themeContext,
-    initialValue: openclawTheme,
+    initialValue: elysiaclawTheme,
   });
   surfaces = [];
   pendingAction = null;
@@ -14965,10 +14965,10 @@ var OpenClawA2UIHost = class extends i$6 {
       position: relative;
       box-sizing: border-box;
       padding:
-        var(--openclaw-a2ui-inset-top, 0px)
-        var(--openclaw-a2ui-inset-right, 0px)
-        var(--openclaw-a2ui-inset-bottom, 0px)
-        var(--openclaw-a2ui-inset-left, 0px);
+        var(--elysiaclaw-a2ui-inset-top, 0px)
+        var(--elysiaclaw-a2ui-inset-right, 0px)
+        var(--elysiaclaw-a2ui-inset-bottom, 0px)
+        var(--elysiaclaw-a2ui-inset-left, 0px);
     }
 
     #surfaces {
@@ -14977,14 +14977,14 @@ var OpenClawA2UIHost = class extends i$6 {
       gap: 12px;
       height: 100%;
       overflow: auto;
-      padding-bottom: var(--openclaw-a2ui-scroll-pad-bottom, 0px);
+      padding-bottom: var(--elysiaclaw-a2ui-scroll-pad-bottom, 0px);
     }
 
     .status {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      top: var(--openclaw-a2ui-status-top, 12px);
+      top: var(--elysiaclaw-a2ui-status-top, 12px);
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -15005,7 +15005,7 @@ var OpenClawA2UIHost = class extends i$6 {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      bottom: var(--openclaw-a2ui-toast-bottom, 12px);
+      bottom: var(--elysiaclaw-a2ui-toast-bottom, 12px);
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -15031,7 +15031,7 @@ var OpenClawA2UIHost = class extends i$6 {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      top: var(--openclaw-a2ui-empty-top, var(--openclaw-a2ui-status-top, 12px));
+      top: var(--elysiaclaw-a2ui-empty-top, var(--elysiaclaw-a2ui-status-top, 12px));
       text-align: center;
       opacity: 0.8;
       padding: 10px 12px;
@@ -15068,17 +15068,17 @@ var OpenClawA2UIHost = class extends i$6 {
       reset: () => this.reset(),
       getSurfaces: () => Array.from(this.#processor.getSurfaces().keys()),
     };
-    globalThis.openclawA2UI = api;
+    globalThis.elysiaclawA2UI = api;
     this.addEventListener("a2uiaction", (evt) => this.#handleA2UIAction(evt));
     this.#statusListener = (evt) => this.#handleActionStatus(evt);
-    for (const eventName of ["openclaw:a2ui-action-status"])
+    for (const eventName of ["elysiaclaw:a2ui-action-status"])
       globalThis.addEventListener(eventName, this.#statusListener);
     this.#syncSurfaces();
   }
   disconnectedCallback() {
     super.disconnectedCallback();
     if (this.#statusListener) {
-      for (const eventName of ["openclaw:a2ui-action-status"])
+      for (const eventName of ["elysiaclaw:a2ui-action-status"])
         globalThis.removeEventListener(eventName, this.#statusListener);
       this.#statusListener = null;
     }
@@ -15184,13 +15184,13 @@ var OpenClawA2UIHost = class extends i$6 {
       timestamp: /* @__PURE__ */ new Date().toISOString(),
       ...(Object.keys(context).length ? { context } : {}),
     };
-    globalThis.__openclawLastA2UIAction = userAction;
+    globalThis.__elysiaclawLastA2UIAction = userAction;
     const handler =
-      globalThis.webkit?.messageHandlers?.openclawCanvasA2UIAction ??
-      globalThis.openclawCanvasA2UIAction;
+      globalThis.webkit?.messageHandlers?.elysiaclawCanvasA2UIAction ??
+      globalThis.elysiaclawCanvasA2UIAction;
     if (handler?.postMessage)
       try {
-        if (handler === globalThis.openclawCanvasA2UIAction)
+        if (handler === globalThis.elysiaclawCanvasA2UIAction)
           handler.postMessage(JSON.stringify({ userAction }));
         else handler.postMessage({ userAction });
       } catch (e) {
@@ -15268,5 +15268,5 @@ var OpenClawA2UIHost = class extends i$6 {
     </section>`;
   }
 };
-if (!customElements.get("openclaw-a2ui-host"))
-  customElements.define("openclaw-a2ui-host", OpenClawA2UIHost);
+if (!customElements.get("elysiaclaw-a2ui-host"))
+  customElements.define("elysiaclaw-a2ui-host", ElysiaClawA2UIHost);

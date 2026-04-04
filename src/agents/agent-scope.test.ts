@@ -33,7 +33,7 @@ describe("resolveAgentConfig", () => {
   it("should return undefined when agent id does not exist", () => {
     const cfg: ElysiaClawConfig = {
       agents: {
-        list: [{ id: "main", workspace: "~/openclaw" }],
+        list: [{ id: "main", workspace: "~/elysiaclaw" }],
       },
     };
     const result = resolveAgentConfig(cfg, "nonexistent");
@@ -47,7 +47,7 @@ describe("resolveAgentConfig", () => {
           {
             id: "main",
             name: "Main Agent",
-            workspace: "~/openclaw",
+            workspace: "~/elysiaclaw",
             agentDir: "~/.elysiaclaw/agents/main",
             model: "anthropic/claude-opus-4",
           },
@@ -57,7 +57,7 @@ describe("resolveAgentConfig", () => {
     const result = resolveAgentConfig(cfg, "main");
     expect(result).toEqual({
       name: "Main Agent",
-      workspace: "~/openclaw",
+      workspace: "~/elysiaclaw",
       agentDir: "~/.elysiaclaw/agents/main",
       model: "anthropic/claude-opus-4",
       identity: undefined,
@@ -326,7 +326,7 @@ describe("resolveAgentConfig", () => {
         list: [
           {
             id: "work",
-            workspace: "~/openclaw-work",
+            workspace: "~/elysiaclaw-work",
             sandbox: {
               mode: "all",
               scope: "agent",
@@ -354,7 +354,7 @@ describe("resolveAgentConfig", () => {
         list: [
           {
             id: "restricted",
-            workspace: "~/openclaw-restricted",
+            workspace: "~/elysiaclaw-restricted",
             tools: {
               allow: ["read"],
               deny: ["exec", "write", "edit"],
@@ -384,7 +384,7 @@ describe("resolveAgentConfig", () => {
         list: [
           {
             id: "family",
-            workspace: "~/openclaw-family",
+            workspace: "~/elysiaclaw-family",
             sandbox: {
               mode: "all",
               scope: "agent",
@@ -405,17 +405,17 @@ describe("resolveAgentConfig", () => {
   it("should normalize agent id", () => {
     const cfg: ElysiaClawConfig = {
       agents: {
-        list: [{ id: "main", workspace: "~/openclaw" }],
+        list: [{ id: "main", workspace: "~/elysiaclaw" }],
       },
     };
     // Should normalize to "main" (default)
     const result = resolveAgentConfig(cfg, "");
     expect(result).toBeDefined();
-    expect(result?.workspace).toBe("~/openclaw");
+    expect(result?.workspace).toBe("~/elysiaclaw");
   });
 
   it("uses ELYSIACLAW_HOME for default agent workspace", () => {
-    const home = path.join(path.sep, "srv", "openclaw-home");
+    const home = path.join(path.sep, "srv", "elysiaclaw-home");
     vi.stubEnv("ELYSIACLAW_HOME", home);
 
     const workspace = resolveAgentWorkspaceDir({} as ElysiaClawConfig, "main");
@@ -423,7 +423,7 @@ describe("resolveAgentConfig", () => {
   });
 
   it("uses ELYSIACLAW_HOME for default agentDir", () => {
-    const home = path.join(path.sep, "srv", "openclaw-home");
+    const home = path.join(path.sep, "srv", "elysiaclaw-home");
     vi.stubEnv("ELYSIACLAW_HOME", home);
     // Clear state dir so it falls back to ELYSIACLAW_HOME
     vi.stubEnv("ELYSIACLAW_STATE_DIR", "");
@@ -435,7 +435,7 @@ describe("resolveAgentConfig", () => {
 
 describe("resolveAgentIdByWorkspacePath", () => {
   it("returns the most specific workspace match for a directory", () => {
-    const workspaceRoot = `/tmp/openclaw-agent-scope-${Date.now()}-root`;
+    const workspaceRoot = `/tmp/elysiaclaw-agent-scope-${Date.now()}-root`;
     const opsWorkspace = `${workspaceRoot}/projects/ops`;
     const cfg: ElysiaClawConfig = {
       agents: {
@@ -450,7 +450,7 @@ describe("resolveAgentIdByWorkspacePath", () => {
   });
 
   it("returns undefined when directory has no matching workspace", () => {
-    const workspaceRoot = `/tmp/openclaw-agent-scope-${Date.now()}-root`;
+    const workspaceRoot = `/tmp/elysiaclaw-agent-scope-${Date.now()}-root`;
     const cfg: ElysiaClawConfig = {
       agents: {
         list: [
@@ -461,12 +461,12 @@ describe("resolveAgentIdByWorkspacePath", () => {
     };
 
     expect(
-      resolveAgentIdByWorkspacePath(cfg, `/tmp/openclaw-agent-scope-${Date.now()}-unrelated`),
+      resolveAgentIdByWorkspacePath(cfg, `/tmp/elysiaclaw-agent-scope-${Date.now()}-unrelated`),
     ).toBeUndefined();
   });
 
   it("matches workspace paths through symlink aliases", () => {
-    const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-agent-scope-"));
+    const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "elysiaclaw-agent-scope-"));
     const realWorkspaceRoot = path.join(tempRoot, "real-root");
     const realOpsWorkspace = path.join(realWorkspaceRoot, "projects", "ops");
     const aliasWorkspaceRoot = path.join(tempRoot, "alias-root");
@@ -501,7 +501,7 @@ describe("resolveAgentIdByWorkspacePath", () => {
 
 describe("resolveAgentIdsByWorkspacePath", () => {
   it("returns matching workspaces ordered by specificity", () => {
-    const workspaceRoot = `/tmp/openclaw-agent-scope-${Date.now()}-root`;
+    const workspaceRoot = `/tmp/elysiaclaw-agent-scope-${Date.now()}-root`;
     const opsWorkspace = `${workspaceRoot}/projects/ops`;
     const opsDevWorkspace = `${opsWorkspace}/dev`;
     const cfg: ElysiaClawConfig = {

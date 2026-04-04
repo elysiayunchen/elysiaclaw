@@ -2,7 +2,7 @@
   "name": "@elysiaclaw/signal",
   "version": "2026.3.13",
   "private": true,
-  "description": "OpenClaw Signal channel plugin",
+  "description": "ElysiaClaw Signal channel plugin",
   "type": "module",
   "elysiaclaw": {
     "extensions": [

@@ -21,7 +21,8 @@ import { normalizeProviderId, parseModelRef } from "./model-selection.js";
 import { ensureElysiaClawModelsJson } from "./models-config.js";
 import { discoverAuthStorage, discoverModels } from "./pi-model-discovery.js";
 
-const LIVE = isTruthyEnvValue(process.env.LIVE) || isTruthyEnvValue(process.env.ELYSIACLAW_LIVE_TEST);
+const LIVE =
+  isTruthyEnvValue(process.env.LIVE) || isTruthyEnvValue(process.env.ELYSIACLAW_LIVE_TEST);
 const SETUP_TOKEN_RAW = process.env.ELYSIACLAW_LIVE_SETUP_TOKEN?.trim() ?? "";
 const SETUP_TOKEN_VALUE = process.env.ELYSIACLAW_LIVE_SETUP_TOKEN_VALUE?.trim() ?? "";
 const SETUP_TOKEN_PROFILE = process.env.ELYSIACLAW_LIVE_SETUP_TOKEN_PROFILE?.trim() ?? "";
@@ -75,7 +76,7 @@ async function resolveTokenSource(): Promise<TokenSource> {
     if (error) {
       throw new Error(`Invalid setup-token: ${error}`);
     }
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-setup-token-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-setup-token-"));
     const profileId = `anthropic:setup-token-live-${randomUUID()}`;
     const store = ensureAuthProfileStore(tempDir, {
       allowKeychainPrompt: false,

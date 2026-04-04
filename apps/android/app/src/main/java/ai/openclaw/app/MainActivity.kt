@@ -1,4 +1,4 @@
-package ai.openclaw.app
+package ai.elysiaclaw.app
 
 import android.os.Bundle
 import android.view.WindowManager
@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import ai.openclaw.app.ui.RootScreen
-import ai.openclaw.app.ui.OpenClawTheme
+import ai.elysiaclaw.app.ui.RootScreen
+import ai.elysiaclaw.app.ui.ElysiaClawTheme
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
     }
 
     setContent {
-      OpenClawTheme {
+      ElysiaClawTheme {
         Surface(modifier = Modifier) {
           RootScreen(viewModel = viewModel)
         }

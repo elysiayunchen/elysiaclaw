@@ -118,7 +118,7 @@ jobs:
           context: .
           platforms: linux/amd64
           build-args: |
-            OPENCLAW_VARIANT=slim
+            ELYSIACLAW_VARIANT=slim
           tags: ${{ steps.tags.outputs.slim }}
           labels: ${{ steps.labels.outputs.value }}
           provenance: false
@@ -219,7 +219,7 @@ jobs:
           context: .
           platforms: linux/arm64
           build-args: |
-            OPENCLAW_VARIANT=slim
+            ELYSIACLAW_VARIANT=slim
           tags: ${{ steps.tags.outputs.slim }}
           labels: ${{ steps.labels.outputs.value }}
           provenance: false

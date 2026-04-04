@@ -157,7 +157,7 @@ describe("resolveConfiguredAcpBindingRecord", () => {
       createDiscordBinding({
         agentId: "codex",
         conversationId: defaultDiscordConversationId,
-        acp: { cwd: "/repo/openclaw" },
+        acp: { cwd: "/repo/elysiaclaw" },
       }),
     ]);
     const resolved = resolveBindingRecord(cfg);
@@ -392,7 +392,7 @@ describe("ensureConfiguredAcpBindingSession", () => {
     const spec = createDiscordPersistentSpec();
     const sessionKey = mockReadySession({
       spec,
-      cwd: "/workspace/openclaw",
+      cwd: "/workspace/elysiaclaw",
     });
 
     const ensured = await ensureConfiguredAcpBindingSession({

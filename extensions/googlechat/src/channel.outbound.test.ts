@@ -1,4 +1,4 @@
-import type { OpenClawConfig, PluginRuntime } from "elysiaclaw/plugin-sdk/googlechat";
+import type { ElysiaClawConfig, PluginRuntime } from "elysiaclaw/plugin-sdk/googlechat";
 import { describe, expect, it, vi } from "vitest";
 
 const uploadGoogleChatAttachmentMock = vi.hoisted(() => vi.fn());
@@ -12,7 +12,7 @@ vi.mock("./api.js", () => ({
 import { googlechatPlugin } from "./channel.js";
 import { setGoogleChatRuntime } from "./runtime.js";
 
-function createGoogleChatCfg(): OpenClawConfig {
+function createGoogleChatCfg(): ElysiaClawConfig {
   return {
     channels: {
       googlechat: {

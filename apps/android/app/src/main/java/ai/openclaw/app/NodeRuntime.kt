@@ -1,4 +1,4 @@
-package ai.openclaw.app
+package ai.elysiaclaw.app
 
 import android.Manifest
 import android.content.Context
@@ -6,22 +6,22 @@ import android.content.pm.PackageManager
 import android.os.SystemClock
 import android.util.Log
 import androidx.core.content.ContextCompat
-import ai.openclaw.app.chat.ChatController
-import ai.openclaw.app.chat.ChatMessage
-import ai.openclaw.app.chat.ChatPendingToolCall
-import ai.openclaw.app.chat.ChatSessionEntry
-import ai.openclaw.app.chat.OutgoingAttachment
-import ai.openclaw.app.gateway.DeviceAuthStore
-import ai.openclaw.app.gateway.DeviceIdentityStore
-import ai.openclaw.app.gateway.GatewayDiscovery
-import ai.openclaw.app.gateway.GatewayEndpoint
-import ai.openclaw.app.gateway.GatewaySession
-import ai.openclaw.app.gateway.probeGatewayTlsFingerprint
-import ai.openclaw.app.node.*
-import ai.openclaw.app.protocol.OpenClawCanvasA2UIAction
-import ai.openclaw.app.voice.MicCaptureManager
-import ai.openclaw.app.voice.TalkModeManager
-import ai.openclaw.app.voice.VoiceConversationEntry
+import ai.elysiaclaw.app.chat.ChatController
+import ai.elysiaclaw.app.chat.ChatMessage
+import ai.elysiaclaw.app.chat.ChatPendingToolCall
+import ai.elysiaclaw.app.chat.ChatSessionEntry
+import ai.elysiaclaw.app.chat.OutgoingAttachment
+import ai.elysiaclaw.app.gateway.DeviceAuthStore
+import ai.elysiaclaw.app.gateway.DeviceIdentityStore
+import ai.elysiaclaw.app.gateway.GatewayDiscovery
+import ai.elysiaclaw.app.gateway.GatewayEndpoint
+import ai.elysiaclaw.app.gateway.GatewaySession
+import ai.elysiaclaw.app.gateway.probeGatewayTlsFingerprint
+import ai.elysiaclaw.app.node.*
+import ai.elysiaclaw.app.protocol.ElysiaClawCanvasA2UIAction
+import ai.elysiaclaw.app.voice.MicCaptureManager
+import ai.elysiaclaw.app.voice.TalkModeManager
+import ai.elysiaclaw.app.voice.VoiceConversationEntry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -489,7 +489,7 @@ class NodeRuntime(context: Context) {
           _canvasRehydratePending.value = false
           _canvasRehydrateErrorText.value = "Failed to request restore. Tap to retry."
         }
-        Log.w("OpenClawCanvas", "canvas rehydrate request failed ($source): transport unavailable")
+        Log.w("ElysiaClawCanvas", "canvas rehydrate request failed ($source): transport unavailable")
         return@launch
       }
       scope.launch {
@@ -829,7 +829,7 @@ class NodeRuntime(context: Context) {
       val actionId = (userActionObj["id"] as? JsonPrimitive)?.content?.trim().orEmpty().ifEmpty {
         java.util.UUID.randomUUID().toString()
       }
-      val name = OpenClawCanvasA2UIAction.extractActionName(userActionObj) ?: return@launch
+      val name = ElysiaClawCanvasA2UIAction.extractActionName(userActionObj) ?: return@launch
 
       val surfaceId =
         (userActionObj["surfaceId"] as? JsonPrimitive)?.content?.trim().orEmpty().ifEmpty { "main" }
@@ -839,7 +839,7 @@ class NodeRuntime(context: Context) {
 
       val sessionKey = resolveMainSessionKey()
       val message =
-        OpenClawCanvasA2UIAction.formatAgentMessage(
+        ElysiaClawCanvasA2UIAction.formatAgentMessage(
           actionName = name,
           sessionKey = sessionKey,
           surfaceId = surfaceId,
@@ -873,7 +873,7 @@ class NodeRuntime(context: Context) {
 
       try {
         canvas.eval(
-          OpenClawCanvasA2UIAction.jsDispatchA2UIActionStatus(
+          ElysiaClawCanvasA2UIAction.jsDispatchA2UIActionStatus(
             actionId = actionId,
             ok = connected && error == null,
             error = error,
@@ -1017,7 +1017,7 @@ class NodeRuntime(context: Context) {
         HomeCanvasPayload(
           gatewayState = "connecting",
           eyebrow = "Reconnecting",
-          title = "OpenClaw is syncing back up",
+          title = "ElysiaClaw is syncing back up",
           subtitle =
             "The gateway session is coming back online. Agent shortcuts should settle automatically in a moment.",
           gatewayLabel = gatewayLabel,
@@ -1031,7 +1031,7 @@ class NodeRuntime(context: Context) {
       HomeCanvasGatewayState.Error, HomeCanvasGatewayState.Offline ->
         HomeCanvasPayload(
           gatewayState = if (state == HomeCanvasGatewayState.Error) "error" else "offline",
-          eyebrow = "Welcome to OpenClaw",
+          eyebrow = "Welcome to ElysiaClaw",
           title = "Your phone stays quiet until it is needed",
           subtitle =
             "Pair this device to your gateway to wake it only for real work, keep a live agent overview handy, and avoid battery-draining background loops.",

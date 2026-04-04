@@ -2,7 +2,7 @@
   "name": "@elysiaclaw/imessage",
   "version": "2026.3.13",
   "private": true,
-  "description": "OpenClaw iMessage channel plugin",
+  "description": "ElysiaClaw iMessage channel plugin",
   "type": "module",
   "elysiaclaw": {
     "extensions": [

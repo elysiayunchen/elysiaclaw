@@ -5,7 +5,7 @@ import {
   resolveStorePath,
   resolveStoredModelOverride,
   type ModelsProviderData,
-  type OpenClawConfig,
+  type ElysiaClawConfig,
 } from "elysiaclaw/plugin-sdk/mattermost";
 import type { MattermostInteractiveButtonInput } from "./interactions.js";
 
@@ -213,7 +213,7 @@ export function buildMattermostAllowedModelRefs(data: ModelsProviderData): Set<s
 }
 
 export function resolveMattermostModelPickerCurrentModel(params: {
-  cfg: OpenClawConfig;
+  cfg: ElysiaClawConfig;
   route: { agentId: string; sessionKey: string };
   data: ModelsProviderData;
   skipCache?: boolean;

@@ -45,13 +45,13 @@ Reference the nix-elysiaclaw README for module options.
 
 ## Nix Mode Runtime Behavior
 
-When `OPENCLAW_NIX_MODE=1` is set (automatic with nix-elysiaclaw):
+When `ELYSIACLAW_NIX_MODE=1` is set (automatic with nix-elysiaclaw):
 
 ElysiaClaw supports a **Nix mode** that makes configuration deterministic and disables auto-install flows.
 Enable it by exporting:
 
 ```bash
-OPENCLAW_NIX_MODE=1
+ELYSIACLAW_NIX_MODE=1
 ```
 
 On macOS, the GUI app does not automatically inherit shell env vars. You can
@@ -63,12 +63,12 @@ defaults write ai.elysiaclaw.mac elysiaclaw.nixMode -bool true
 
 ### Config + state paths
 
-ElysiaClaw reads JSON5 config from `OPENCLAW_CONFIG_PATH` and stores mutable data in `OPENCLAW_STATE_DIR`.
-When needed, you can also set `OPENCLAW_HOME` to control the base home directory used for internal path resolution.
+ElysiaClaw reads JSON5 config from `ELYSIACLAW_CONFIG_PATH` and stores mutable data in `ELYSIACLAW_STATE_DIR`.
+When needed, you can also set `ELYSIACLAW_HOME` to control the base home directory used for internal path resolution.
 
-- `OPENCLAW_HOME` (default precedence: `HOME` / `USERPROFILE` / `os.homedir()`)
-- `OPENCLAW_STATE_DIR` (default: `~/.elysiaclaw`)
-- `OPENCLAW_CONFIG_PATH` (default: `$OPENCLAW_STATE_DIR/elysiaclaw.json`)
+- `ELYSIACLAW_HOME` (default precedence: `HOME` / `USERPROFILE` / `os.homedir()`)
+- `ELYSIACLAW_STATE_DIR` (default: `~/.elysiaclaw`)
+- `ELYSIACLAW_CONFIG_PATH` (default: `$ELYSIACLAW_STATE_DIR/elysiaclaw.json`)
 
 When running under Nix, set these explicitly to Nix-managed locations so runtime state and config
 stay out of the immutable store.

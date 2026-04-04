@@ -128,8 +128,8 @@ describe("daemon-cli coverage", () => {
       "ELYSIACLAW_GATEWAY_PORT",
       "ELYSIACLAW_PROFILE",
     ]);
-    process.env.ELYSIACLAW_STATE_DIR = "/tmp/openclaw-cli-state";
-    process.env.ELYSIACLAW_CONFIG_PATH = "/tmp/openclaw-cli-state/openclaw.json";
+    process.env.ELYSIACLAW_STATE_DIR = "/tmp/elysiaclaw-cli-state";
+    process.env.ELYSIACLAW_CONFIG_PATH = "/tmp/elysiaclaw-cli-state/elysiaclaw.json";
     delete process.env.ELYSIACLAW_GATEWAY_PORT;
     delete process.env.ELYSIACLAW_PROFILE;
     serviceReadCommand.mockResolvedValue(null);
@@ -162,8 +162,8 @@ describe("daemon-cli coverage", () => {
       programArguments: ["/bin/node", "cli", "gateway", "--port", "19001"],
       environment: {
         ELYSIACLAW_PROFILE: "dev",
-        ELYSIACLAW_STATE_DIR: "/tmp/openclaw-daemon-state",
-        ELYSIACLAW_CONFIG_PATH: "/tmp/openclaw-daemon-state/openclaw.json",
+        ELYSIACLAW_STATE_DIR: "/tmp/elysiaclaw-daemon-state",
+        ELYSIACLAW_CONFIG_PATH: "/tmp/elysiaclaw-daemon-state/elysiaclaw.json",
         ELYSIACLAW_GATEWAY_PORT: "19001",
       },
       sourcePath: "/tmp/ai.elysiaclaw.gateway.plist",

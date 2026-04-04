@@ -156,7 +156,7 @@ describe("resolvePluginTools optional tools", () => {
 
   it("forwards an explicit env to plugin loading", () => {
     setOptionalDemoRegistry();
-    const env = { ELYSIACLAW_HOME: "/srv/openclaw-home" } as NodeJS.ProcessEnv;
+    const env = { ELYSIACLAW_HOME: "/srv/elysiaclaw-home" } as NodeJS.ProcessEnv;
 
     resolvePluginTools({
       context: createContext() as never,

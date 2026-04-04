@@ -1,7 +1,7 @@
-import type { OpenClawConfig } from "elysiaclaw/plugin-sdk/mattermost";
+import type { ElysiaClawConfig } from "elysiaclaw/plugin-sdk/mattermost";
 import { expect, vi } from "vitest";
 
-export function createMattermostTestConfig(): OpenClawConfig {
+export function createMattermostTestConfig(): ElysiaClawConfig {
   return {
     channels: {
       mattermost: {

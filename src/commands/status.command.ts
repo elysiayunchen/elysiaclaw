@@ -462,12 +462,14 @@ export async function statusCommand(
     if (pairingRecovery.requestId) {
       runtime.log(
         theme.muted(
-          `Recovery: ${formatCliCommand(`openclaw devices approve ${pairingRecovery.requestId}`)}`,
+          `Recovery: ${formatCliCommand(`elysiaclaw devices approve ${pairingRecovery.requestId}`)}`,
         ),
       );
     }
-    runtime.log(theme.muted(`Fallback: ${formatCliCommand("openclaw devices approve --latest")}`));
-    runtime.log(theme.muted(`Inspect: ${formatCliCommand("openclaw devices list")}`));
+    runtime.log(
+      theme.muted(`Fallback: ${formatCliCommand("elysiaclaw devices approve --latest")}`),
+    );
+    runtime.log(theme.muted(`Inspect: ${formatCliCommand("elysiaclaw devices list")}`));
   }
 
   runtime.log("");
@@ -513,8 +515,8 @@ export async function statusCommand(
       runtime.log(theme.muted(`… +${sorted.length - shown.length} more`));
     }
   }
-  runtime.log(theme.muted(`Full report: ${formatCliCommand("openclaw security audit")}`));
-  runtime.log(theme.muted(`Deep probe: ${formatCliCommand("openclaw security audit --deep")}`));
+  runtime.log(theme.muted(`Full report: ${formatCliCommand("elysiaclaw security audit")}`));
+  runtime.log(theme.muted(`Deep probe: ${formatCliCommand("elysiaclaw security audit --deep")}`));
 
   runtime.log("");
   runtime.log(theme.heading("Channels"));
@@ -676,7 +678,7 @@ export async function statusCommand(
   }
   runtime.log("Next steps:");
   runtime.log(`  Need to share?      ${formatCliCommand("elysiaclaw status --all")}`);
-  runtime.log(`  Need to debug live? ${formatCliCommand("openclaw logs --follow")}`);
+  runtime.log(`  Need to debug live? ${formatCliCommand("elysiaclaw logs --follow")}`);
   if (gatewayReachable) {
     runtime.log(`  Need to test channels? ${formatCliCommand("elysiaclaw status --deep")}`);
   } else {

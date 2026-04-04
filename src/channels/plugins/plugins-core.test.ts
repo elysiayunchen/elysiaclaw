@@ -112,7 +112,7 @@ describe("channel plugin registry", () => {
 describe("channel plugin catalog", () => {
   it("includes Microsoft Teams", () => {
     const entry = getChannelPluginCatalogEntry("msteams");
-    expect(entry?.install.npmSpec).toBe("@openclaw/msteams");
+    expect(entry?.install.npmSpec).toBe("@elysiaclaw/msteams");
     expect(entry?.meta.aliases).toContain("teams");
   });
 
@@ -122,15 +122,15 @@ describe("channel plugin catalog", () => {
   });
 
   it("includes external catalog entries", () => {
-    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-catalog-"));
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "elysiaclaw-catalog-"));
     const catalogPath = path.join(dir, "catalog.json");
     fs.writeFileSync(
       catalogPath,
       JSON.stringify({
         entries: [
           {
-            name: "@openclaw/demo-channel",
-            openclaw: {
+            name: "@elysiaclaw/demo-channel",
+            elysiaclaw: {
               channel: {
                 id: "demo-channel",
                 label: "Demo Channel",
@@ -140,7 +140,7 @@ describe("channel plugin catalog", () => {
                 order: 999,
               },
               install: {
-                npmSpec: "@openclaw/demo-channel",
+                npmSpec: "@elysiaclaw/demo-channel",
               },
             },
           },
@@ -155,15 +155,15 @@ describe("channel plugin catalog", () => {
   });
 
   it("uses the provided env for external catalog path resolution", () => {
-    const home = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-catalog-home-"));
+    const home = fs.mkdtempSync(path.join(os.tmpdir(), "elysiaclaw-catalog-home-"));
     const catalogPath = path.join(home, "catalog.json");
     fs.writeFileSync(
       catalogPath,
       JSON.stringify({
         entries: [
           {
-            name: "@openclaw/env-demo-channel",
-            openclaw: {
+            name: "@elysiaclaw/env-demo-channel",
+            elysiaclaw: {
               channel: {
                 id: "env-demo-channel",
                 label: "Env Demo Channel",
@@ -173,7 +173,7 @@ describe("channel plugin catalog", () => {
                 order: 1000,
               },
               install: {
-                npmSpec: "@openclaw/env-demo-channel",
+                npmSpec: "@elysiaclaw/env-demo-channel",
               },
             },
           },
@@ -193,7 +193,7 @@ describe("channel plugin catalog", () => {
   });
 
   it("uses the provided env for default catalog paths", () => {
-    const stateDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-catalog-state-"));
+    const stateDir = fs.mkdtempSync(path.join(os.tmpdir(), "elysiaclaw-catalog-state-"));
     const catalogPath = path.join(stateDir, "plugins", "catalog.json");
     fs.mkdirSync(path.dirname(catalogPath), { recursive: true });
     fs.writeFileSync(
@@ -201,8 +201,8 @@ describe("channel plugin catalog", () => {
       JSON.stringify({
         entries: [
           {
-            name: "@openclaw/default-env-demo",
-            openclaw: {
+            name: "@elysiaclaw/default-env-demo",
+            elysiaclaw: {
               channel: {
                 id: "default-env-demo",
                 label: "Default Env Demo",
@@ -211,7 +211,7 @@ describe("channel plugin catalog", () => {
                 blurb: "Default env demo entry",
               },
               install: {
-                npmSpec: "@openclaw/default-env-demo",
+                npmSpec: "@elysiaclaw/default-env-demo",
               },
             },
           },

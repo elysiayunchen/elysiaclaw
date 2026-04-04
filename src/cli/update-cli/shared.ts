@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { resolveStateDir } from "../../config/paths.js";
-import { resolveElysiaClawPackageRoot } from "../../infra/openclaw-root.js";
+import { resolveElysiaClawPackageRoot } from "../../infra/elysiaclaw-root.js";
 import { readPackageName, readPackageVersion } from "../../infra/package-json.js";
 import { normalizePackageTagInput } from "../../infra/package-tag.js";
 import { trimLogTail } from "../../infra/restart-sentinel.js";
@@ -52,7 +52,7 @@ export function parseTimeoutMsOrExit(timeout?: string): number | undefined | nul
   return timeoutMs;
 }
 
-const ELYSIACLAW_REPO_URL = "https://github.com/elysiaclaw/openclaw.git";
+const ELYSIACLAW_REPO_URL = "https://github.com/elysiaclaw/elysiaclaw.git";
 const MAX_LOG_CHARS = 8000;
 
 export const DEFAULT_PACKAGE_NAME = "elysiaclaw";
@@ -203,7 +203,7 @@ export async function ensureGitCheckout(params: {
     const empty = await isEmptyDir(params.dir);
     if (!empty) {
       throw new Error(
-        `ELYSIACLAW_GIT_DIR points at a non-git directory: ${params.dir}. Set ELYSIACLAW_GIT_DIR to an empty folder or an openclaw checkout.`,
+        `ELYSIACLAW_GIT_DIR points at a non-git directory: ${params.dir}. Set ELYSIACLAW_GIT_DIR to an empty folder or an elysiaclaw checkout.`,
       );
     }
 
@@ -246,7 +246,7 @@ export async function resolveGlobalManager(params: {
 }
 
 export async function tryWriteCompletionCache(root: string, jsonMode: boolean): Promise<void> {
-  const binPath = path.join(root, "openclaw.mjs");
+  const binPath = path.join(root, "elysiaclaw.mjs");
   if (!(await pathExists(binPath))) {
     return;
   }

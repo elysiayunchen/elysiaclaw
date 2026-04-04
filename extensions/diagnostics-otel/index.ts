@@ -1,4 +1,4 @@
-import type { OpenClawPluginApi } from "elysiaclaw/plugin-sdk/diagnostics-otel";
+import type { ElysiaClawPluginApi } from "elysiaclaw/plugin-sdk/diagnostics-otel";
 import { emptyPluginConfigSchema } from "elysiaclaw/plugin-sdk/diagnostics-otel";
 import { createDiagnosticsOtelService } from "./src/service.js";
 
@@ -7,7 +7,7 @@ const plugin = {
   name: "Diagnostics OpenTelemetry",
   description: "Export diagnostics events to OpenTelemetry",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: ElysiaClawPluginApi) {
     api.registerService(createDiagnosticsOtelService());
   },
 };

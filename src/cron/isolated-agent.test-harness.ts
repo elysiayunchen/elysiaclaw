@@ -5,7 +5,7 @@ import type { ElysiaClawConfig } from "../config/config.js";
 import type { CronJob } from "./types.js";
 
 export async function withTempCronHome<T>(fn: (home: string) => Promise<T>): Promise<T> {
-  return withTempHomeBase(fn, { prefix: "openclaw-cron-" });
+  return withTempHomeBase(fn, { prefix: "elysiaclaw-cron-" });
 }
 
 export async function writeSessionStore(

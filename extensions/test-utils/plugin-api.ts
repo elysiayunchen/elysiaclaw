@@ -1,9 +1,9 @@
-import type { OpenClawPluginApi } from "../../src/plugins/types.js";
+import type { ElysiaClawPluginApi } from "../../src/plugins/types.js";
 
-type TestPluginApiInput = Partial<OpenClawPluginApi> &
-  Pick<OpenClawPluginApi, "id" | "name" | "source" | "config" | "runtime">;
+type TestPluginApiInput = Partial<ElysiaClawPluginApi> &
+  Pick<ElysiaClawPluginApi, "id" | "name" | "source" | "config" | "runtime">;
 
-export function createTestPluginApi(api: TestPluginApiInput): OpenClawPluginApi {
+export function createTestPluginApi(api: TestPluginApiInput): ElysiaClawPluginApi {
   return {
     logger: { info() {}, warn() {}, error() {}, debug() {} },
     registerTool() {},

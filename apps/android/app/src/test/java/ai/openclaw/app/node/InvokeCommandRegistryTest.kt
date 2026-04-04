@@ -1,16 +1,16 @@
-package ai.openclaw.app.node
+package ai.elysiaclaw.app.node
 
-import ai.openclaw.app.protocol.OpenClawCalendarCommand
-import ai.openclaw.app.protocol.OpenClawCameraCommand
-import ai.openclaw.app.protocol.OpenClawCapability
-import ai.openclaw.app.protocol.OpenClawContactsCommand
-import ai.openclaw.app.protocol.OpenClawDeviceCommand
-import ai.openclaw.app.protocol.OpenClawLocationCommand
-import ai.openclaw.app.protocol.OpenClawMotionCommand
-import ai.openclaw.app.protocol.OpenClawNotificationsCommand
-import ai.openclaw.app.protocol.OpenClawPhotosCommand
-import ai.openclaw.app.protocol.OpenClawSmsCommand
-import ai.openclaw.app.protocol.OpenClawSystemCommand
+import ai.elysiaclaw.app.protocol.ElysiaClawCalendarCommand
+import ai.elysiaclaw.app.protocol.ElysiaClawCameraCommand
+import ai.elysiaclaw.app.protocol.ElysiaClawCapability
+import ai.elysiaclaw.app.protocol.ElysiaClawContactsCommand
+import ai.elysiaclaw.app.protocol.ElysiaClawDeviceCommand
+import ai.elysiaclaw.app.protocol.ElysiaClawLocationCommand
+import ai.elysiaclaw.app.protocol.ElysiaClawMotionCommand
+import ai.elysiaclaw.app.protocol.ElysiaClawNotificationsCommand
+import ai.elysiaclaw.app.protocol.ElysiaClawPhotosCommand
+import ai.elysiaclaw.app.protocol.ElysiaClawSmsCommand
+import ai.elysiaclaw.app.protocol.ElysiaClawSystemCommand
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -18,49 +18,49 @@ import org.junit.Test
 class InvokeCommandRegistryTest {
   private val coreCapabilities =
     setOf(
-      OpenClawCapability.Canvas.rawValue,
-      OpenClawCapability.Device.rawValue,
-      OpenClawCapability.Notifications.rawValue,
-      OpenClawCapability.System.rawValue,
-      OpenClawCapability.Photos.rawValue,
-      OpenClawCapability.Contacts.rawValue,
-      OpenClawCapability.Calendar.rawValue,
+      ElysiaClawCapability.Canvas.rawValue,
+      ElysiaClawCapability.Device.rawValue,
+      ElysiaClawCapability.Notifications.rawValue,
+      ElysiaClawCapability.System.rawValue,
+      ElysiaClawCapability.Photos.rawValue,
+      ElysiaClawCapability.Contacts.rawValue,
+      ElysiaClawCapability.Calendar.rawValue,
     )
 
   private val optionalCapabilities =
     setOf(
-      OpenClawCapability.Camera.rawValue,
-      OpenClawCapability.Location.rawValue,
-      OpenClawCapability.Sms.rawValue,
-      OpenClawCapability.VoiceWake.rawValue,
-      OpenClawCapability.Motion.rawValue,
+      ElysiaClawCapability.Camera.rawValue,
+      ElysiaClawCapability.Location.rawValue,
+      ElysiaClawCapability.Sms.rawValue,
+      ElysiaClawCapability.VoiceWake.rawValue,
+      ElysiaClawCapability.Motion.rawValue,
     )
 
   private val coreCommands =
     setOf(
-      OpenClawDeviceCommand.Status.rawValue,
-      OpenClawDeviceCommand.Info.rawValue,
-      OpenClawDeviceCommand.Permissions.rawValue,
-      OpenClawDeviceCommand.Health.rawValue,
-      OpenClawNotificationsCommand.List.rawValue,
-      OpenClawNotificationsCommand.Actions.rawValue,
-      OpenClawSystemCommand.Notify.rawValue,
-      OpenClawPhotosCommand.Latest.rawValue,
-      OpenClawContactsCommand.Search.rawValue,
-      OpenClawContactsCommand.Add.rawValue,
-      OpenClawCalendarCommand.Events.rawValue,
-      OpenClawCalendarCommand.Add.rawValue,
+      ElysiaClawDeviceCommand.Status.rawValue,
+      ElysiaClawDeviceCommand.Info.rawValue,
+      ElysiaClawDeviceCommand.Permissions.rawValue,
+      ElysiaClawDeviceCommand.Health.rawValue,
+      ElysiaClawNotificationsCommand.List.rawValue,
+      ElysiaClawNotificationsCommand.Actions.rawValue,
+      ElysiaClawSystemCommand.Notify.rawValue,
+      ElysiaClawPhotosCommand.Latest.rawValue,
+      ElysiaClawContactsCommand.Search.rawValue,
+      ElysiaClawContactsCommand.Add.rawValue,
+      ElysiaClawCalendarCommand.Events.rawValue,
+      ElysiaClawCalendarCommand.Add.rawValue,
     )
 
   private val optionalCommands =
     setOf(
-      OpenClawCameraCommand.Snap.rawValue,
-      OpenClawCameraCommand.Clip.rawValue,
-      OpenClawCameraCommand.List.rawValue,
-      OpenClawLocationCommand.Get.rawValue,
-      OpenClawMotionCommand.Activity.rawValue,
-      OpenClawMotionCommand.Pedometer.rawValue,
-      OpenClawSmsCommand.Send.rawValue,
+      ElysiaClawCameraCommand.Snap.rawValue,
+      ElysiaClawCameraCommand.Clip.rawValue,
+      ElysiaClawCameraCommand.List.rawValue,
+      ElysiaClawLocationCommand.Get.rawValue,
+      ElysiaClawMotionCommand.Activity.rawValue,
+      ElysiaClawMotionCommand.Pedometer.rawValue,
+      ElysiaClawSmsCommand.Send.rawValue,
     )
 
   private val debugCommands = setOf("debug.logs", "debug.ed25519")
@@ -130,8 +130,8 @@ class InvokeCommandRegistryTest {
         ),
       )
 
-    assertTrue(commands.contains(OpenClawMotionCommand.Activity.rawValue))
-    assertFalse(commands.contains(OpenClawMotionCommand.Pedometer.rawValue))
+    assertTrue(commands.contains(ElysiaClawMotionCommand.Activity.rawValue))
+    assertFalse(commands.contains(ElysiaClawMotionCommand.Pedometer.rawValue))
   }
 
   private fun defaultFlags(

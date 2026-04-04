@@ -1,18 +1,18 @@
-# OpenClaw gateway — Podman Quadlet (rootless)
-# Installed by setup-podman.sh into openclaw's ~/.config/containers/systemd/
-# {{OPENCLAW_HOME}} is replaced at install time.
+# elysiaclaw gateway — Podman Quadlet (rootless)
+# Installed by setup-podman.sh into elysiaclaw's ~/.config/containers/systemd/
+# {{elysiaclaw_HOME}} is replaced at install time.
 
 [Unit]
-Description=OpenClaw gateway (rootless Podman)
+Description=elysiaclaw gateway (rootless Podman)
 
 [Container]
-Image=openclaw:local
-ContainerName=openclaw
+Image=elysiaclaw:local
+ContainerName=elysiaclaw
 UserNS=keep-id
 # Keep container UID/GID aligned with the invoking user so mounted config is readable.
 User=%U:%G
-Volume={{OPENCLAW_HOME}}/.openclaw:/home/node/.openclaw:Z
-EnvironmentFile={{OPENCLAW_HOME}}/.openclaw/.env
+Volume={{elysiaclaw_HOME}}/.elysiaclaw:/home/node/.elysiaclaw:Z
+EnvironmentFile={{elysiaclaw_HOME}}/.elysiaclaw/.env
 Environment=HOME=/home/node
 Environment=TERM=xterm-256color
 PublishPort=18789:18789

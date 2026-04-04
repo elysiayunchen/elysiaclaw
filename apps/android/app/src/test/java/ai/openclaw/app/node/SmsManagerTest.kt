@@ -1,4 +1,4 @@
-package ai.openclaw.app.node
+package ai.elysiaclaw.app.node
 
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive

@@ -32,7 +32,7 @@ async function withTempDir<T>(
 
 describe("ensureDir", () => {
   it("creates nested directory", async () => {
-    await withTempDir("openclaw-test-", async (tmp) => {
+    await withTempDir("elysiaclaw-test-", async (tmp) => {
       const target = path.join(tmp, "nested", "dir");
       await ensureDir(target);
       expect(fs.existsSync(target)).toBe(true);
@@ -88,7 +88,7 @@ describe("jidToE164", () => {
   });
 
   it("maps @lid from authDir mapping files", async () => {
-    await withTempDir("openclaw-auth-", (authDir) => {
+    await withTempDir("elysiaclaw-auth-", (authDir) => {
       const mappingPath = path.join(authDir, "lid-mapping-456_reverse.json");
       fs.writeFileSync(mappingPath, JSON.stringify("5559876"));
       expect(jidToE164("456@lid", { authDir })).toBe("+5559876");
@@ -96,7 +96,7 @@ describe("jidToE164", () => {
   });
 
   it("maps @hosted.lid from authDir mapping files", async () => {
-    await withTempDir("openclaw-auth-", (authDir) => {
+    await withTempDir("elysiaclaw-auth-", (authDir) => {
       const mappingPath = path.join(authDir, "lid-mapping-789_reverse.json");
       fs.writeFileSync(mappingPath, JSON.stringify(4440001));
       expect(jidToE164("789@hosted.lid", { authDir })).toBe("+4440001");
@@ -108,8 +108,8 @@ describe("jidToE164", () => {
   });
 
   it("falls back through lidMappingDirs in order", async () => {
-    await withTempDir("openclaw-lid-a-", async (first) => {
-      await withTempDir("openclaw-lid-b-", (second) => {
+    await withTempDir("elysiaclaw-lid-a-", async (first) => {
+      await withTempDir("elysiaclaw-lid-b-", (second) => {
         const mappingPath = path.join(second, "lid-mapping-321_reverse.json");
         fs.writeFileSync(mappingPath, JSON.stringify("123321"));
         expect(jidToE164("321@lid", { lidMappingDirs: [first, second] })).toBe("+123321");
@@ -120,7 +120,7 @@ describe("jidToE164", () => {
 
 describe("resolveConfigDir", () => {
   it("prefers ~/.elysiaclaw when legacy dir is missing", async () => {
-    const root = await fs.promises.mkdtemp(path.join(os.tmpdir(), "openclaw-config-dir-"));
+    const root = await fs.promises.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-config-dir-"));
     try {
       const newDir = path.join(root, ".elysiaclaw");
       await fs.promises.mkdir(newDir, { recursive: true });
@@ -133,20 +133,20 @@ describe("resolveConfigDir", () => {
 
   it("expands ELYSIACLAW_STATE_DIR using the provided env", () => {
     const env = {
-      HOME: "/tmp/openclaw-home",
+      HOME: "/tmp/elysiaclaw-home",
       ELYSIACLAW_STATE_DIR: "~/state",
     } as NodeJS.ProcessEnv;
 
-    expect(resolveConfigDir(env)).toBe(path.resolve("/tmp/openclaw-home", "state"));
+    expect(resolveConfigDir(env)).toBe(path.resolve("/tmp/elysiaclaw-home", "state"));
   });
 });
 
 describe("resolveHomeDir", () => {
   it("prefers ELYSIACLAW_HOME over HOME", () => {
-    vi.stubEnv("ELYSIACLAW_HOME", "/srv/openclaw-home");
+    vi.stubEnv("ELYSIACLAW_HOME", "/srv/elysiaclaw-home");
     vi.stubEnv("HOME", "/home/other");
 
-    expect(resolveHomeDir()).toBe(path.resolve("/srv/openclaw-home"));
+    expect(resolveHomeDir()).toBe(path.resolve("/srv/elysiaclaw-home"));
 
     vi.unstubAllEnvs();
   });
@@ -154,12 +154,12 @@ describe("resolveHomeDir", () => {
 
 describe("shortenHomePath", () => {
   it("uses $ELYSIACLAW_HOME prefix when ELYSIACLAW_HOME is set", () => {
-    vi.stubEnv("ELYSIACLAW_HOME", "/srv/openclaw-home");
+    vi.stubEnv("ELYSIACLAW_HOME", "/srv/elysiaclaw-home");
     vi.stubEnv("HOME", "/home/other");
 
-    expect(shortenHomePath(`${path.resolve("/srv/openclaw-home")}/.elysiaclaw/openclaw.json`)).toBe(
-      "$ELYSIACLAW_HOME/.elysiaclaw/openclaw.json",
-    );
+    expect(
+      shortenHomePath(`${path.resolve("/srv/elysiaclaw-home")}/.elysiaclaw/elysiaclaw.json`),
+    ).toBe("$ELYSIACLAW_HOME/.elysiaclaw/elysiaclaw.json");
 
     vi.unstubAllEnvs();
   });
@@ -167,12 +167,14 @@ describe("shortenHomePath", () => {
 
 describe("shortenHomeInString", () => {
   it("uses $ELYSIACLAW_HOME replacement when ELYSIACLAW_HOME is set", () => {
-    vi.stubEnv("ELYSIACLAW_HOME", "/srv/openclaw-home");
+    vi.stubEnv("ELYSIACLAW_HOME", "/srv/elysiaclaw-home");
     vi.stubEnv("HOME", "/home/other");
 
     expect(
-      shortenHomeInString(`config: ${path.resolve("/srv/openclaw-home")}/.elysiaclaw/openclaw.json`),
-    ).toBe("config: $ELYSIACLAW_HOME/.elysiaclaw/openclaw.json");
+      shortenHomeInString(
+        `config: ${path.resolve("/srv/elysiaclaw-home")}/.elysiaclaw/elysiaclaw.json`,
+      ),
+    ).toBe("config: $ELYSIACLAW_HOME/.elysiaclaw/elysiaclaw.json");
 
     vi.unstubAllEnvs();
   });
@@ -210,7 +212,7 @@ describe("resolveUserPath", () => {
   });
 
   it("expands ~/ to home dir", () => {
-    expect(resolveUserPath("~/openclaw")).toBe(path.resolve(os.homedir(), "elysiaclaw"));
+    expect(resolveUserPath("~/elysiaclaw")).toBe(path.resolve(os.homedir(), "elysiaclaw"));
   });
 
   it("resolves relative paths", () => {
@@ -218,21 +220,25 @@ describe("resolveUserPath", () => {
   });
 
   it("prefers ELYSIACLAW_HOME for tilde expansion", () => {
-    vi.stubEnv("ELYSIACLAW_HOME", "/srv/openclaw-home");
+    vi.stubEnv("ELYSIACLAW_HOME", "/srv/elysiaclaw-home");
     vi.stubEnv("HOME", "/home/other");
 
-    expect(resolveUserPath("~/openclaw")).toBe(path.resolve("/srv/openclaw-home", "elysiaclaw"));
+    expect(resolveUserPath("~/elysiaclaw")).toBe(
+      path.resolve("/srv/elysiaclaw-home", "elysiaclaw"),
+    );
 
     vi.unstubAllEnvs();
   });
 
   it("uses the provided env for tilde expansion", () => {
     const env = {
-      HOME: "/tmp/openclaw-home",
-      ELYSIACLAW_HOME: "/srv/openclaw-home",
+      HOME: "/tmp/elysiaclaw-home",
+      ELYSIACLAW_HOME: "/srv/elysiaclaw-home",
     } as NodeJS.ProcessEnv;
 
-    expect(resolveUserPath("~/openclaw", env)).toBe(path.resolve("/srv/openclaw-home", "elysiaclaw"));
+    expect(resolveUserPath("~/elysiaclaw", env)).toBe(
+      path.resolve("/srv/elysiaclaw-home", "elysiaclaw"),
+    );
   });
 
   it("keeps blank paths blank", () => {

@@ -1,5 +1,5 @@
-import OpenClawKit
-import OpenClawProtocol
+import ElysiaClawKit
+import ElysiaClawProtocol
 
-typealias ProtoAnyCodable = OpenClawProtocol.AnyCodable
-typealias KitAnyCodable = OpenClawKit.AnyCodable
+typealias ProtoAnyCodable = ElysiaClawProtocol.AnyCodable
+typealias KitAnyCodable = ElysiaClawKit.AnyCodable

@@ -10,8 +10,8 @@ export async function withTempConfig(params: {
   const prevConfigPath = process.env.ELYSIACLAW_CONFIG_PATH;
   const prevDisableCache = process.env.ELYSIACLAW_DISABLE_CONFIG_CACHE;
 
-  const dir = await mkdtemp(path.join(os.tmpdir(), params.prefix ?? "openclaw-test-config-"));
-  const configPath = path.join(dir, "openclaw.json");
+  const dir = await mkdtemp(path.join(os.tmpdir(), params.prefix ?? "elysiaclaw-test-config-"));
+  const configPath = path.join(dir, "elysiaclaw.json");
 
   process.env.ELYSIACLAW_CONFIG_PATH = configPath;
   process.env.ELYSIACLAW_DISABLE_CONFIG_CACHE = "1";

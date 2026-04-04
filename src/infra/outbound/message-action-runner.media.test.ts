@@ -9,7 +9,7 @@ import type { ElysiaClawConfig } from "../../config/config.js";
 import { setActivePluginRegistry } from "../../plugins/runtime.js";
 import { createTestRegistry } from "../../test-utils/channel-plugins.js";
 import { loadWebMedia } from "../../web/media.js";
-import { resolvePreferredElysiaClawTmpDir } from "../tmp-openclaw-dir.js";
+import { resolvePreferredElysiaClawTmpDir } from "../tmp-elysiaclaw-dir.js";
 import { runMessageAction } from "./message-action-runner.js";
 
 vi.mock("../../web/media.js", async () => {
@@ -399,7 +399,11 @@ describe("runMessageAction media behavior", () => {
           throw new Error("expected send result");
         }
         expect(result.sendResult?.mediaUrl).toBe(path.resolve(tmpFile));
-        const hostTmpOutsideElysiaClaw = path.join(os.tmpdir(), "outside-openclaw", "test-media.png");
+        const hostTmpOutsideElysiaClaw = path.join(
+          os.tmpdir(),
+          "outside-elysiaclaw",
+          "test-media.png",
+        );
         await expect(
           runMessageAction({
             cfg: slackConfig,

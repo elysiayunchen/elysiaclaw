@@ -1,6 +1,8 @@
 import type { ElysiaClawConfig } from "../../config/config.js";
 
-type AgentToolsConfig = NonNullable<NonNullable<ElysiaClawConfig["agents"]>["list"]>[number]["tools"];
+type AgentToolsConfig = NonNullable<
+  NonNullable<ElysiaClawConfig["agents"]>["list"]
+>[number]["tools"];
 type SandboxToolsConfig = {
   allow?: string[];
   deny?: string[];
@@ -22,7 +24,7 @@ export function createRestrictedAgentSandboxConfig(params: {
       list: [
         {
           id: "restricted",
-          workspace: params.workspace ?? "~/openclaw-restricted",
+          workspace: params.workspace ?? "~/elysiaclaw-restricted",
           sandbox: {
             mode: "all",
             scope: "agent",

@@ -26,8 +26,8 @@ const serviceReadCommand = vi.fn<
 >(async (_env?: NodeJS.ProcessEnv) => ({
   programArguments: ["/bin/node", "cli", "gateway", "--port", "19001"],
   environment: {
-    ELYSIACLAW_STATE_DIR: "/tmp/openclaw-daemon",
-    ELYSIACLAW_CONFIG_PATH: "/tmp/openclaw-daemon/openclaw.json",
+    ELYSIACLAW_STATE_DIR: "/tmp/elysiaclaw-daemon",
+    ELYSIACLAW_CONFIG_PATH: "/tmp/elysiaclaw-daemon/elysiaclaw.json",
   },
 }));
 const resolveGatewayBindHost = vi.fn(
@@ -36,10 +36,10 @@ const resolveGatewayBindHost = vi.fn(
 const pickPrimaryTailnetIPv4 = vi.fn(() => "100.64.0.9");
 const resolveGatewayPort = vi.fn((_cfg?: unknown, _env?: unknown) => 18789);
 const resolveStateDir = vi.fn(
-  (env: NodeJS.ProcessEnv) => env.ELYSIACLAW_STATE_DIR ?? "/tmp/openclaw-cli",
+  (env: NodeJS.ProcessEnv) => env.ELYSIACLAW_STATE_DIR ?? "/tmp/elysiaclaw-cli",
 );
 const resolveConfigPath = vi.fn((env: NodeJS.ProcessEnv, stateDir: string) => {
-  return env.ELYSIACLAW_CONFIG_PATH ?? `${stateDir}/openclaw.json`;
+  return env.ELYSIACLAW_CONFIG_PATH ?? `${stateDir}/elysiaclaw.json`;
 });
 let daemonLoadedConfig: Record<string, unknown> = {
   gateway: {
@@ -56,7 +56,7 @@ let cliLoadedConfig: Record<string, unknown> = {
 
 vi.mock("../../config/config.js", () => ({
   createConfigIO: ({ configPath }: { configPath: string }) => {
-    const isDaemon = configPath.includes("/openclaw-daemon/");
+    const isDaemon = configPath.includes("/elysiaclaw-daemon/");
     return {
       readConfigFileSnapshot: async () => ({
         path: configPath,
@@ -131,8 +131,8 @@ describe("gatherDaemonStatus", () => {
       "DAEMON_GATEWAY_TOKEN",
       "DAEMON_GATEWAY_PASSWORD",
     ]);
-    process.env.ELYSIACLAW_STATE_DIR = "/tmp/openclaw-cli";
-    process.env.ELYSIACLAW_CONFIG_PATH = "/tmp/openclaw-cli/openclaw.json";
+    process.env.ELYSIACLAW_STATE_DIR = "/tmp/elysiaclaw-cli";
+    process.env.ELYSIACLAW_CONFIG_PATH = "/tmp/elysiaclaw-cli/elysiaclaw.json";
     delete process.env.ELYSIACLAW_GATEWAY_TOKEN;
     delete process.env.ELYSIACLAW_GATEWAY_PASSWORD;
     delete process.env.DAEMON_GATEWAY_TOKEN;
@@ -200,8 +200,8 @@ describe("gatherDaemonStatus", () => {
       programArguments: ["/bin/node", "cli", "gateway", "--port", "19001"],
       environment: {
         ELYSIACLAW_GATEWAY_PORT: "19001",
-        ELYSIACLAW_CONFIG_PATH: "/tmp/openclaw-daemon/openclaw.json",
-        ELYSIACLAW_STATE_DIR: "/tmp/openclaw-daemon",
+        ELYSIACLAW_CONFIG_PATH: "/tmp/elysiaclaw-daemon/elysiaclaw.json",
+        ELYSIACLAW_STATE_DIR: "/tmp/elysiaclaw-daemon",
       } as Record<string, string>,
     });
     serviceReadRuntime.mockImplementationOnce(async (env?: NodeJS.ProcessEnv) => ({

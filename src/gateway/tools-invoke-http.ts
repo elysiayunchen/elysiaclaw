@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
-import { createElysiaClawTools } from "../agents/openclaw-tools.js";
+import { createElysiaClawTools } from "../agents/elysiaclaw-tools.js";
 import { runBeforeToolCallHook } from "../agents/pi-tools.before-tool-call.js";
 import { resolveToolLoopDetectionConfig } from "../agents/pi-tools.js";
 import {
@@ -212,11 +212,11 @@ export async function handleToolsInvokeHttpRequest(
 
   // Resolve message channel/account hints (optional headers) for policy inheritance.
   const messageChannel = normalizeMessageChannel(
-    getHeader(req, "x-openclaw-message-channel") ?? "",
+    getHeader(req, "x-elysiaclaw-message-channel") ?? "",
   );
-  const accountId = getHeader(req, "x-openclaw-account-id")?.trim() || undefined;
-  const agentTo = getHeader(req, "x-openclaw-message-to")?.trim() || undefined;
-  const agentThreadId = getHeader(req, "x-openclaw-thread-id")?.trim() || undefined;
+  const accountId = getHeader(req, "x-elysiaclaw-account-id")?.trim() || undefined;
+  const agentTo = getHeader(req, "x-elysiaclaw-message-to")?.trim() || undefined;
+  const agentThreadId = getHeader(req, "x-elysiaclaw-thread-id")?.trim() || undefined;
 
   const {
     agentId,

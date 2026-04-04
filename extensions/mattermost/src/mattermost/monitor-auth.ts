@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "elysiaclaw/plugin-sdk/mattermost";
+import type { ElysiaClawConfig } from "elysiaclaw/plugin-sdk/mattermost";
 import {
   evaluateSenderGroupAccessForPolicy,
   isDangerousNameMatchingEnabled,
@@ -108,7 +108,7 @@ export type MattermostCommandAuthDecision =
 
 export function authorizeMattermostCommandInvocation(params: {
   account: ResolvedMattermostAccount;
-  cfg: OpenClawConfig;
+  cfg: ElysiaClawConfig;
   senderId: string;
   senderName: string;
   channelId: string;

@@ -216,7 +216,7 @@ export function buildGatewayConnectionDetails(
         allowPrivateWs
           ? undefined
           : "Break-glass (trusted private networks only): set ELYSIACLAW_ALLOW_INSECURE_PRIVATE_WS=1",
-        "Doctor: openclaw doctor --fix",
+        "Doctor: elysiaclaw doctor --fix",
         "Docs: https://docs.elysiaclaw.ai/gateway/remote",
       ].join("\n"),
     );

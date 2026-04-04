@@ -17,7 +17,7 @@ describe("resolveProviderAuths key normalization", () => {
   } satisfies Record<string, string | undefined>;
 
   beforeAll(async () => {
-    suiteRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-provider-auth-suite-"));
+    suiteRoot = await fs.mkdtemp(path.join(os.tmpdir(), "elysiaclaw-provider-auth-suite-"));
   });
 
   afterAll(async () => {
@@ -32,7 +32,9 @@ describe("resolveProviderAuths key normalization", () => {
   ): Promise<T> {
     const base = path.join(suiteRoot, `case-${++suiteCase}`);
     await fs.mkdir(base, { recursive: true });
-    await fs.mkdir(path.join(base, ".elysiaclaw", "agents", "main", "sessions"), { recursive: true });
+    await fs.mkdir(path.join(base, ".elysiaclaw", "agents", "main", "sessions"), {
+      recursive: true,
+    });
 
     const keysToRestore = new Set<string>([
       "HOME",
@@ -86,7 +88,7 @@ describe("resolveProviderAuths key normalization", () => {
     const stateDir = path.join(home, ".elysiaclaw");
     await fs.mkdir(stateDir, { recursive: true });
     await fs.writeFile(
-      path.join(stateDir, "openclaw.json"),
+      path.join(stateDir, "elysiaclaw.json"),
       `${JSON.stringify(config, null, 2)}\n`,
       "utf8",
     );

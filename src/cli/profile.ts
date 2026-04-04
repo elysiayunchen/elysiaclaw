@@ -94,7 +94,10 @@ function resolveProfileStateDir(
   homedir: () => string,
 ): string {
   const suffix = profile.toLowerCase() === "default" ? "" : `-${profile}`;
-  return path.join(resolveRequiredHomeDir(env as NodeJS.ProcessEnv, homedir), `.elysiaclaw${suffix}`);
+  return path.join(
+    resolveRequiredHomeDir(env as NodeJS.ProcessEnv, homedir),
+    `.elysiaclaw${suffix}`,
+  );
 }
 
 export function applyCliProfileEnv(params: {
@@ -112,13 +115,14 @@ export function applyCliProfileEnv(params: {
   // Convenience only: fill defaults, never override explicit env values.
   env.ELYSIACLAW_PROFILE = profile;
 
-  const stateDir = env.ELYSIACLAW_STATE_DIR?.trim() || resolveProfileStateDir(profile, env, homedir);
+  const stateDir =
+    env.ELYSIACLAW_STATE_DIR?.trim() || resolveProfileStateDir(profile, env, homedir);
   if (!env.ELYSIACLAW_STATE_DIR?.trim()) {
     env.ELYSIACLAW_STATE_DIR = stateDir;
   }
 
   if (!env.ELYSIACLAW_CONFIG_PATH?.trim()) {
-    env.ELYSIACLAW_CONFIG_PATH = path.join(stateDir, "openclaw.json");
+    env.ELYSIACLAW_CONFIG_PATH = path.join(stateDir, "elysiaclaw.json");
   }
 
   if (profile === "dev" && !env.ELYSIACLAW_GATEWAY_PORT?.trim()) {

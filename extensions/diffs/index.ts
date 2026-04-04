@@ -1,6 +1,6 @@
 import path from "node:path";
-import type { OpenClawPluginApi } from "elysiaclaw/plugin-sdk/diffs";
-import { resolvePreferredOpenClawTmpDir } from "elysiaclaw/plugin-sdk/diffs";
+import type { ElysiaClawPluginApi } from "elysiaclaw/plugin-sdk/diffs";
+import { resolvePreferredElysiaClawTmpDir } from "elysiaclaw/plugin-sdk/diffs";
 import {
   diffsPluginConfigSchema,
   resolveDiffsPluginDefaults,
@@ -16,11 +16,11 @@ const plugin = {
   name: "Diffs",
   description: "Read-only diff viewer and PNG/PDF renderer for agents.",
   configSchema: diffsPluginConfigSchema,
-  register(api: OpenClawPluginApi) {
+  register(api: ElysiaClawPluginApi) {
     const defaults = resolveDiffsPluginDefaults(api.pluginConfig);
     const security = resolveDiffsPluginSecurity(api.pluginConfig);
     const store = new DiffArtifactStore({
-      rootDir: path.join(resolvePreferredOpenClawTmpDir(), "openclaw-diffs"),
+      rootDir: path.join(resolvePreferredElysiaClawTmpDir(), "elysiaclaw-diffs"),
       logger: api.logger,
     });
 

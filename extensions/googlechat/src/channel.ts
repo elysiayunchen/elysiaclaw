@@ -27,7 +27,7 @@ import {
   type ChannelMessageActionAdapter,
   type ChannelPlugin,
   type ChannelStatusIssue,
-  type OpenClawConfig,
+  type ElysiaClawConfig,
 } from "elysiaclaw/plugin-sdk/googlechat";
 import { GoogleChatConfigSchema } from "elysiaclaw/plugin-sdk/googlechat";
 import { buildPassiveProbedChannelStatusSummary } from "../../shared/channel-status-summary.js";

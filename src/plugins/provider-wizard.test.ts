@@ -107,7 +107,7 @@ describe("provider wizard boundaries", () => {
       }),
     ]);
 
-    const env = { ELYSIACLAW_HOME: "/tmp/openclaw-home" } as NodeJS.ProcessEnv;
+    const env = { ELYSIACLAW_HOME: "/tmp/elysiaclaw-home" } as NodeJS.ProcessEnv;
     await runProviderModelSelectedHook({
       config: {},
       model: "vllm/qwen3-coder",

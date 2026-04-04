@@ -1,4 +1,4 @@
-package ai.openclaw.app.node
+package ai.elysiaclaw.app.node
 
 import android.Manifest
 import android.content.Context

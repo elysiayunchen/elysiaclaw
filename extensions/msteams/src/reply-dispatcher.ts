@@ -3,7 +3,7 @@ import {
   createTypingCallbacks,
   logTypingFailure,
   resolveChannelMediaMaxBytes,
-  type OpenClawConfig,
+  type ElysiaClawConfig,
   type MSTeamsReplyStyle,
   type RuntimeEnv,
 } from "elysiaclaw/plugin-sdk/msteams";
@@ -26,7 +26,7 @@ import { getMSTeamsRuntime } from "./runtime.js";
 import type { MSTeamsTurnContext } from "./sdk-types.js";
 
 export function createMSTeamsReplyDispatcher(params: {
-  cfg: OpenClawConfig;
+  cfg: ElysiaClawConfig;
   agentId: string;
   accountId?: string;
   runtime: RuntimeEnv;

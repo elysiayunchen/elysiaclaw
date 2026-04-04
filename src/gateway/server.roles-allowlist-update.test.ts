@@ -324,7 +324,7 @@ describe("gateway node command allowlist", () => {
     const { loadOrCreateDeviceIdentity } = await import("../infra/device-identity.js");
     const deviceIdentityPath = path.join(
       os.tmpdir(),
-      `openclaw-spoof-test-device-${Date.now()}-${Math.random().toString(36).slice(2)}.json`,
+      `elysiaclaw-spoof-test-device-${Date.now()}-${Math.random().toString(36).slice(2)}.json`,
     );
     const deviceIdentity = loadOrCreateDeviceIdentity(deviceIdentityPath);
 
@@ -385,7 +385,7 @@ describe("gateway node command allowlist", () => {
     for (const testCase of cases) {
       const deviceIdentityPath = path.join(
         os.tmpdir(),
-        `openclaw-confusable-node-${testCase.label}-${Date.now()}-${Math.random().toString(36).slice(2)}.json`,
+        `elysiaclaw-confusable-node-${testCase.label}-${Date.now()}-${Math.random().toString(36).slice(2)}.json`,
       );
       const deviceIdentity = loadOrCreateDeviceIdentity(deviceIdentityPath);
       const displayName = `node-${testCase.label}`;

@@ -11,13 +11,13 @@ const readConfigFileSnapshotForWrite = vi.fn().mockResolvedValue({
 });
 const setRuntimeConfigSnapshot = vi.fn();
 const ensureElysiaClawModelsJson = vi.fn().mockResolvedValue(undefined);
-const resolveElysiaClawAgentDir = vi.fn().mockReturnValue("/tmp/openclaw-agent");
+const resolveElysiaClawAgentDir = vi.fn().mockReturnValue("/tmp/elysiaclaw-agent");
 const ensureAuthProfileStore = vi.fn().mockReturnValue({ version: 1, profiles: {} });
 const listProfilesForProvider = vi.fn().mockReturnValue([]);
 const resolveAuthProfileDisplayLabel = vi.fn(({ profileId }: { profileId: string }) => profileId);
 const resolveAuthStorePathForDisplay = vi
   .fn()
-  .mockReturnValue("/tmp/openclaw-agent/auth-profiles.json");
+  .mockReturnValue("/tmp/elysiaclaw-agent/auth-profiles.json");
 const resolveProfileUnusableUntilForDisplay = vi.fn().mockReturnValue(null);
 const resolveEnvApiKey = vi.fn().mockReturnValue(undefined);
 const resolveAwsSdkEnvVarName = vi.fn().mockReturnValue(undefined);
@@ -33,8 +33,8 @@ const modelRegistryState = {
 let previousExitCode: typeof process.exitCode;
 
 vi.mock("../config/config.js", () => ({
-  CONFIG_PATH: "/tmp/openclaw.json",
-  STATE_DIR: "/tmp/openclaw-state",
+  CONFIG_PATH: "/tmp/elysiaclaw.json",
+  STATE_DIR: "/tmp/elysiaclaw-state",
   loadConfig,
   readConfigFileSnapshotForWrite,
   setRuntimeConfigSnapshot,

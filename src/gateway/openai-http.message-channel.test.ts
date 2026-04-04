@@ -22,7 +22,7 @@ async function runOpenAiMessageChannelRequest(params?: { messageChannelHeader?: 
         authorization: "Bearer secret",
       };
       if (params?.messageChannelHeader) {
-        headers["x-openclaw-message-channel"] = params.messageChannelHeader;
+        headers["x-elysiaclaw-message-channel"] = params.messageChannelHeader;
       }
       const res = await fetch(`http://127.0.0.1:${port}/v1/chat/completions`, {
         method: "POST",
@@ -45,7 +45,7 @@ async function runOpenAiMessageChannelRequest(params?: { messageChannelHeader?: 
 }
 
 describe("OpenAI HTTP message channel", () => {
-  it("passes x-openclaw-message-channel through to agentCommand", async () => {
+  it("passes x-elysiaclaw-message-channel through to agentCommand", async () => {
     const firstCall = await runOpenAiMessageChannelRequest({
       messageChannelHeader: "custom-client-channel",
     });

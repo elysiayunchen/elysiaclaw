@@ -25,7 +25,7 @@ const runtime: RuntimeEnv = {
 };
 
 async function withTempHome<T>(fn: (home: string) => Promise<T>): Promise<T> {
-  return withTempHomeBase(fn, { prefix: "openclaw-agent-acp-" });
+  return withTempHomeBase(fn, { prefix: "elysiaclaw-agent-acp-" });
 }
 
 function createAcpEnabledConfig(home: string, storePath: string): ElysiaClawConfig {

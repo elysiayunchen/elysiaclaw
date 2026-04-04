@@ -19,7 +19,7 @@ vi.mock("./trash.js", () => ({
 }));
 
 vi.mock("./chrome.js", () => ({
-  resolveElysiaClawUserDataDir: vi.fn(() => "/tmp/openclaw-test/elysiaclaw/user-data"),
+  resolveElysiaClawUserDataDir: vi.fn(() => "/tmp/elysiaclaw-test/elysiaclaw/user-data"),
 }));
 
 import { loadConfig, writeConfigFile } from "../config/config.js";
@@ -229,7 +229,7 @@ describe("BrowserProfilesService", () => {
       browser: {
         defaultProfile: "elysiaclaw",
         profiles: {
-          openclaw: { cdpPort: 18800, color: "#FF4500" },
+          elysiaclaw: { cdpPort: 18800, color: "#FF4500" },
           remote: { cdpUrl: "http://10.0.0.42:9222", color: "#0066CC" },
         },
       },
@@ -255,13 +255,13 @@ describe("BrowserProfilesService", () => {
       browser: {
         defaultProfile: "elysiaclaw",
         profiles: {
-          openclaw: { cdpPort: 18800, color: "#FF4500" },
+          elysiaclaw: { cdpPort: 18800, color: "#FF4500" },
           work: { cdpPort: 18801, color: "#0066CC" },
         },
       },
     });
 
-    const tempDir = fs.mkdtempSync(path.join("/tmp", "openclaw-profile-"));
+    const tempDir = fs.mkdtempSync(path.join("/tmp", "elysiaclaw-profile-"));
     const userDataDir = path.join(tempDir, "work", "user-data");
     fs.mkdirSync(path.dirname(userDataDir), { recursive: true });
     vi.mocked(resolveElysiaClawUserDataDir).mockReturnValue(userDataDir);
@@ -290,7 +290,7 @@ describe("BrowserProfilesService", () => {
       browser: {
         defaultProfile: "elysiaclaw",
         profiles: {
-          openclaw: { cdpPort: 18800, color: "#FF4500" },
+          elysiaclaw: { cdpPort: 18800, color: "#FF4500" },
           "chrome-live": {
             cdpPort: 18801,
             color: "#0066CC",

@@ -1,4 +1,4 @@
-package ai.openclaw.app.voice
+package ai.elysiaclaw.app.voice
 
 object VoiceWakeCommandExtractor {
   fun extractCommand(text: String, triggerWords: List<String>): String? {

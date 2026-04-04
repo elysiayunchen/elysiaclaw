@@ -33,7 +33,7 @@ describe("probeSlack", () => {
     authTestMock.mockResolvedValue({
       ok: true,
       user_id: "U123",
-      user: "openclaw-bot",
+      user: "elysiaclaw-bot",
       team_id: "T123",
       team: "ElysiaClaw",
     });
@@ -42,7 +42,7 @@ describe("probeSlack", () => {
       ok: true,
       status: 200,
       elapsedMs: 45,
-      bot: { id: "U123", name: "openclaw-bot" },
+      bot: { id: "U123", name: "elysiaclaw-bot" },
       team: { id: "T123", name: "ElysiaClaw" },
     });
     expect(createSlackWebClientMock).toHaveBeenCalledWith("xoxb-test");

@@ -8,7 +8,7 @@ import type { ElysiaClawConfig } from "../../config/config.js";
 import { logVerbose } from "../../globals.js";
 import { copyFileWithinRoot, SafeOpenError } from "../../infra/fs-safe.js";
 import { normalizeScpRemoteHost, normalizeScpRemotePath } from "../../infra/scp-host.js";
-import { resolvePreferredElysiaClawTmpDir } from "../../infra/tmp-openclaw-dir.js";
+import { resolvePreferredElysiaClawTmpDir } from "../../infra/tmp-elysiaclaw-dir.js";
 import {
   isInboundPathAllowed,
   resolveIMessageRemoteAttachmentRoots,

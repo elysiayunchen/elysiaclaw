@@ -4,7 +4,7 @@ import {
   markElysiaClawExecEnv,
   ELYSIACLAW_CLI_ENV_VALUE,
   ELYSIACLAW_CLI_ENV_VAR,
-} from "./openclaw-exec-env.js";
+} from "./elysiaclaw-exec-env.js";
 
 describe("markElysiaClawExecEnv", () => {
   it("returns a cloned env object with the exec marker set", () => {

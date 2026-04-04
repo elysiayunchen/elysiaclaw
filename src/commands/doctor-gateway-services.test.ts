@@ -119,7 +119,7 @@ async function runRepair(cfg: ElysiaClawConfig) {
 
 const gatewayProgramArguments = [
   "/usr/bin/node",
-  "/usr/local/bin/openclaw",
+  "/usr/local/bin/elysiaclaw",
   "gateway",
   "--port",
   "18789",
@@ -154,12 +154,14 @@ describe("maybeRepairGatewayServiceConfig", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     fsMocks.realpath.mockImplementation(async (value: string) => value);
-    mocks.resolveGatewayAuthTokenForService.mockImplementation(async (cfg: ElysiaClawConfig, env) => {
-      const configToken =
-        typeof cfg.gateway?.auth?.token === "string" ? cfg.gateway.auth.token.trim() : undefined;
-      const envToken = env.ELYSIACLAW_GATEWAY_TOKEN?.trim() || undefined;
-      return { token: configToken || envToken };
-    });
+    mocks.resolveGatewayAuthTokenForService.mockImplementation(
+      async (cfg: ElysiaClawConfig, env) => {
+        const configToken =
+          typeof cfg.gateway?.auth?.token === "string" ? cfg.gateway.auth.token.trim() : undefined;
+        const envToken = env.ELYSIACLAW_GATEWAY_TOKEN?.trim() || undefined;
+        return { token: configToken || envToken };
+      },
+    );
   });
 
   it("treats gateway.auth.token as source of truth for service token repairs", async () => {
@@ -253,7 +255,7 @@ describe("maybeRepairGatewayServiceConfig", () => {
     mocks.buildGatewayInstallPlan.mockResolvedValue({
       programArguments: [
         "/usr/bin/node",
-        "/Users/test/Library/pnpm/global/5/node_modules/.pnpm/openclaw@2026.3.12/node_modules/elysiaclaw/dist/index.js",
+        "/Users/test/Library/pnpm/global/5/node_modules/.pnpm/elysiaclaw@2026.3.12/node_modules/elysiaclaw/dist/index.js",
         "gateway",
         "--port",
         "18789",
@@ -264,7 +266,7 @@ describe("maybeRepairGatewayServiceConfig", () => {
       if (value.includes("/global/5/node_modules/elysiaclaw/")) {
         return value.replace(
           "/global/5/node_modules/elysiaclaw/",
-          "/global/5/node_modules/.pnpm/openclaw@2026.3.12/node_modules/elysiaclaw/",
+          "/global/5/node_modules/.pnpm/elysiaclaw@2026.3.12/node_modules/elysiaclaw/",
         );
       }
       return value;

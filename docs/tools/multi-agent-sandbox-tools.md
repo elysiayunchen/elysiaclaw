@@ -365,7 +365,7 @@ After configuring multi-agent sandbox and tools:
 4. **Monitor logs:**
 
    ```exec
-   tail -f "${OPENCLAW_STATE_DIR:-$HOME/.elysiaclaw}/logs/gateway.log" | grep -E "routing|sandbox|tools"
+   tail -f "${ELYSIACLAW_STATE_DIR:-$HOME/.elysiaclaw}/logs/gateway.log" | grep -E "routing|sandbox|tools"
    ```
 
 ---

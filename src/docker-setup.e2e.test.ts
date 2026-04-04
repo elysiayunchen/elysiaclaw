@@ -49,7 +49,7 @@ exit 0
 }
 
 async function createDockerSetupSandbox(): Promise<DockerSetupSandbox> {
-  const rootDir = await mkdtemp(join(tmpdir(), "openclaw-docker-setup-"));
+  const rootDir = await mkdtemp(join(tmpdir(), "elysiaclaw-docker-setup-"));
   const scriptPath = join(rootDir, "docker-setup.sh");
   const dockerfilePath = join(rootDir, "Dockerfile");
   const composePath = join(rootDir, "docker-compose.yml");
@@ -61,7 +61,7 @@ async function createDockerSetupSandbox(): Promise<DockerSetupSandbox> {
   await writeFile(dockerfilePath, "FROM scratch\n");
   await writeFile(
     composePath,
-    "services:\n  elysiaclaw-gateway:\n    image: noop\n  openclaw-cli:\n    image: noop\n",
+    "services:\n  elysiaclaw-gateway:\n    image: noop\n  elysiaclaw-cli:\n    image: noop\n",
   );
   await writeDockerStub(binDir, logPath);
 
@@ -189,25 +189,25 @@ describe("docker-setup.sh", () => {
     const result = runDockerSetup(activeSandbox, {
       ELYSIACLAW_DOCKER_APT_PACKAGES: "ffmpeg build-essential",
       ELYSIACLAW_EXTRA_MOUNTS: undefined,
-      ELYSIACLAW_HOME_VOLUME: "openclaw-home",
+      ELYSIACLAW_HOME_VOLUME: "elysiaclaw-home",
     });
     expect(result.status).toBe(0);
     const envFile = await readFile(join(activeSandbox.rootDir, ".env"), "utf8");
     expect(envFile).toContain("ELYSIACLAW_DOCKER_APT_PACKAGES=ffmpeg build-essential");
     expect(envFile).toContain("ELYSIACLAW_EXTRA_MOUNTS=");
-    expect(envFile).toContain("ELYSIACLAW_HOME_VOLUME=openclaw-home"); // pragma: allowlist secret
+    expect(envFile).toContain("ELYSIACLAW_HOME_VOLUME=elysiaclaw-home"); // pragma: allowlist secret
     const extraCompose = await readFile(
       join(activeSandbox.rootDir, "docker-compose.extra.yml"),
       "utf8",
     );
-    expect(extraCompose).toContain("openclaw-home:/home/node");
+    expect(extraCompose).toContain("elysiaclaw-home:/home/node");
     expect(extraCompose).toContain("volumes:");
-    expect(extraCompose).toContain("openclaw-home:");
+    expect(extraCompose).toContain("elysiaclaw-home:");
     const log = await readFile(activeSandbox.logPath, "utf8");
     expect(log).toContain("--build-arg ELYSIACLAW_DOCKER_APT_PACKAGES=ffmpeg build-essential");
-    expect(log).toContain("run --rm openclaw-cli onboard --mode local --no-install-daemon");
-    expect(log).toContain("run --rm openclaw-cli config set gateway.mode local");
-    expect(log).toContain("run --rm openclaw-cli config set gateway.bind lan");
+    expect(log).toContain("run --rm elysiaclaw-cli onboard --mode local --no-install-daemon");
+    expect(log).toContain("run --rm elysiaclaw-cli config set gateway.mode local");
+    expect(log).toContain("run --rm elysiaclaw-cli config set gateway.bind lan");
   });
 
   it("precreates config identity dir for CLI device auth writes", async () => {
@@ -268,7 +268,7 @@ describe("docker-setup.sh", () => {
       "token-reuse",
       async (configDir) => {
         await writeFile(
-          join(configDir, "openclaw.json"),
+          join(configDir, "elysiaclaw.json"),
           JSON.stringify({ gateway: { auth: { mode: "token", token: "config-token-123" } } }),
         );
       },
@@ -380,7 +380,7 @@ describe("docker-setup.sh", () => {
         );
       expect(gatewayStarts).toHaveLength(2);
       expect(log).toContain(
-        "run --rm --no-deps openclaw-cli config set agents.defaults.sandbox.mode non-main",
+        "run --rm --no-deps elysiaclaw-cli config set agents.defaults.sandbox.mode non-main",
       );
       expect(log).toContain("config set agents.defaults.sandbox.mode off");
       const forceRecreateLine = log
@@ -478,9 +478,9 @@ describe("docker-setup.sh", () => {
 
   it("keeps docker-compose gateway token env defaults aligned across services", async () => {
     const compose = await readFile(join(repoRoot, "docker-compose.yml"), "utf8");
-    expect(compose.match(/ELYSIACLAW_GATEWAY_TOKEN: \$\{ELYSIACLAW_GATEWAY_TOKEN:-\}/g)).toHaveLength(
-      2,
-    );
+    expect(
+      compose.match(/ELYSIACLAW_GATEWAY_TOKEN: \$\{ELYSIACLAW_GATEWAY_TOKEN:-\}/g),
+    ).toHaveLength(2);
   });
 
   it("keeps docker-compose timezone env defaults aligned across services", async () => {

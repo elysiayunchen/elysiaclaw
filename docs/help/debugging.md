@@ -60,7 +60,7 @@ Recommended flow (dev profile + dev bootstrap):
 
 ```bash
 pnpm gateway:dev
-OPENCLAW_PROFILE=dev elysiaclaw tui
+ELYSIACLAW_PROFILE=dev elysiaclaw tui
 ```
 
 If you don’t have a global install yet, run the CLI via `pnpm elysiaclaw ...`.
@@ -68,10 +68,10 @@ If you don’t have a global install yet, run the CLI via `pnpm elysiaclaw ...`.
 What this does:
 
 1. **Profile isolation** (global `--dev`)
-   - `OPENCLAW_PROFILE=dev`
-   - `OPENCLAW_STATE_DIR=~/.elysiaclaw-dev`
-   - `OPENCLAW_CONFIG_PATH=~/.elysiaclaw-dev/elysiaclaw.json`
-   - `OPENCLAW_GATEWAY_PORT=19001` (browser/canvas shift accordingly)
+   - `ELYSIACLAW_PROFILE=dev`
+   - `ELYSIACLAW_STATE_DIR=~/.elysiaclaw-dev`
+   - `ELYSIACLAW_CONFIG_PATH=~/.elysiaclaw-dev/elysiaclaw.json`
+   - `ELYSIACLAW_GATEWAY_PORT=19001` (browser/canvas shift accordingly)
 
 2. **Dev bootstrap** (`gateway --dev`)
    - Writes a minimal config if missing (`gateway.mode=local`, bind loopback).
@@ -80,7 +80,7 @@ What this does:
    - Seeds the workspace files if missing:
      `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `IDENTITY.md`, `USER.md`, `HEARTBEAT.md`.
    - Default identity: **C3‑PO** (protocol droid).
-   - Skips channel providers in dev mode (`OPENCLAW_SKIP_CHANNELS=1`).
+   - Skips channel providers in dev mode (`ELYSIACLAW_SKIP_CHANNELS=1`).
 
 Reset flow (fresh start):
 
@@ -92,7 +92,7 @@ Note: `--dev` is a **global** profile flag and gets eaten by some runners.
 If you need to spell it out, use the env var form:
 
 ```bash
-OPENCLAW_PROFILE=dev elysiaclaw gateway --dev --reset
+ELYSIACLAW_PROFILE=dev elysiaclaw gateway --dev --reset
 ```
 
 `--reset` wipes config, credentials, sessions, and the dev workspace (using
@@ -125,8 +125,8 @@ pnpm gateway:watch --raw-stream --raw-stream-path ~/.elysiaclaw/logs/raw-stream.
 Equivalent env vars:
 
 ```bash
-OPENCLAW_RAW_STREAM=1
-OPENCLAW_RAW_STREAM_PATH=~/.elysiaclaw/logs/raw-stream.jsonl
+ELYSIACLAW_RAW_STREAM=1
+ELYSIACLAW_RAW_STREAM_PATH=~/.elysiaclaw/logs/raw-stream.jsonl
 ```
 
 Default file:

@@ -1,4 +1,4 @@
-package ai.openclaw.app.ui.chat
+package ai.elysiaclaw.app.ui.chat
 
 import android.content.ContentResolver
 import android.net.Uri
@@ -32,18 +32,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ai.openclaw.app.MainViewModel
-import ai.openclaw.app.chat.ChatSessionEntry
-import ai.openclaw.app.chat.OutgoingAttachment
-import ai.openclaw.app.ui.mobileAccent
-import ai.openclaw.app.ui.mobileBorder
-import ai.openclaw.app.ui.mobileBorderStrong
-import ai.openclaw.app.ui.mobileCallout
-import ai.openclaw.app.ui.mobileCaption1
-import ai.openclaw.app.ui.mobileCaption2
-import ai.openclaw.app.ui.mobileDanger
-import ai.openclaw.app.ui.mobileText
-import ai.openclaw.app.ui.mobileTextSecondary
+import ai.elysiaclaw.app.MainViewModel
+import ai.elysiaclaw.app.chat.ChatSessionEntry
+import ai.elysiaclaw.app.chat.OutgoingAttachment
+import ai.elysiaclaw.app.ui.mobileAccent
+import ai.elysiaclaw.app.ui.mobileBorder
+import ai.elysiaclaw.app.ui.mobileBorderStrong
+import ai.elysiaclaw.app.ui.mobileCallout
+import ai.elysiaclaw.app.ui.mobileCaption1
+import ai.elysiaclaw.app.ui.mobileCaption2
+import ai.elysiaclaw.app.ui.mobileDanger
+import ai.elysiaclaw.app.ui.mobileText
+import ai.elysiaclaw.app.ui.mobileTextSecondary
 import java.io.ByteArrayOutputStream
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

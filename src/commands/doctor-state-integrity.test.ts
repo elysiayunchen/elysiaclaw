@@ -85,7 +85,7 @@ describe("doctor state integrity oauth dir checks", () => {
 
   beforeEach(() => {
     envSnapshot = captureEnv();
-    tempHome = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-doctor-state-integrity-"));
+    tempHome = fs.mkdtempSync(path.join(os.tmpdir(), "elysiaclaw-doctor-state-integrity-"));
     process.env.HOME = tempHome;
     process.env.ELYSIACLAW_HOME = tempHome;
     process.env.ELYSIACLAW_STATE_DIR = path.join(tempHome, ".elysiaclaw");
@@ -158,7 +158,7 @@ describe("doctor state integrity oauth dir checks", () => {
     expect(files.some((name) => name.startsWith("orphan-session.jsonl.deleted."))).toBe(true);
   });
 
-  it("prints openclaw-only verification hints when recent sessions are missing transcripts", async () => {
+  it("prints elysiaclaw-only verification hints when recent sessions are missing transcripts", async () => {
     const cfg: ElysiaClawConfig = {};
     writeSessionStore(cfg, {
       "agent:main:main": {
@@ -168,10 +168,10 @@ describe("doctor state integrity oauth dir checks", () => {
     });
     const text = await runStateIntegrityText(cfg);
     expect(text).toContain("recent sessions are missing transcripts");
-    expect(text).toMatch(/openclaw sessions --store ".*sessions\.json"/);
-    expect(text).toMatch(/openclaw sessions cleanup --store ".*sessions\.json" --dry-run/);
+    expect(text).toMatch(/elysiaclaw sessions --store ".*sessions\.json"/);
+    expect(text).toMatch(/elysiaclaw sessions cleanup --store ".*sessions\.json" --dry-run/);
     expect(text).toMatch(
-      /openclaw sessions cleanup --store ".*sessions\.json" --enforce --fix-missing/,
+      /elysiaclaw sessions cleanup --store ".*sessions\.json" --enforce --fix-missing/,
     );
     expect(text).not.toContain("--active");
     expect(text).not.toContain(" ls ");

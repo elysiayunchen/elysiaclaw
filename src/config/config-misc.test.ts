@@ -6,17 +6,21 @@ import {
   unsetConfigValueAtPath,
 } from "./config-paths.js";
 import { readConfigFileSnapshot, validateConfigObject } from "./config.js";
-import { buildWebSearchProviderConfig, withTempHome, writeElysiaClawConfig } from "./test-helpers.js";
+import {
+  buildWebSearchProviderConfig,
+  withTempHome,
+  writeElysiaClawConfig,
+} from "./test-helpers.js";
 import { ElysiaClawSchema } from "./zod-schema.js";
 
 describe("$schema key in config (#14998)", () => {
   it("accepts config with $schema string", () => {
     const result = ElysiaClawSchema.safeParse({
-      $schema: "https://openclaw.ai/config.json",
+      $schema: "https://elysiaclaw.ai/config.json",
     });
     expect(result.success).toBe(true);
     if (result.success) {
-      expect(result.data.$schema).toBe("https://openclaw.ai/config.json");
+      expect(result.data.$schema).toBe("https://elysiaclaw.ai/config.json");
     }
   });
 

@@ -4,7 +4,7 @@ import {
   collectReleaseTagErrors,
   parseReleaseVersion,
   utcCalendarDayDistance,
-} from "../scripts/openclaw-npm-release-check.ts";
+} from "../scripts/elysiaclaw-npm-release-check.ts";
 
 describe("parseReleaseVersion", () => {
   it("parses stable CalVer releases", () => {
@@ -81,11 +81,11 @@ describe("collectReleasePackageMetadataErrors", () => {
   it("validates the expected npm package metadata", () => {
     expect(
       collectReleasePackageMetadataErrors({
-        name: "openclaw",
+        name: "elysiaclaw",
         description: "Multi-channel AI gateway with extensible messaging integrations",
         license: "MIT",
-        repository: { url: "git+https://github.com/openclaw/openclaw.git" },
-        bin: { openclaw: "openclaw.mjs" },
+        repository: { url: "git+https://github.com/elysiaclaw/elysiaclaw.git" },
+        bin: { elysiaclaw: "elysiaclaw.mjs" },
         peerDependencies: { "node-llama-cpp": "3.16.2" },
         peerDependenciesMeta: { "node-llama-cpp": { optional: true } },
       }),
@@ -95,11 +95,11 @@ describe("collectReleasePackageMetadataErrors", () => {
   it("requires node-llama-cpp to stay an optional peer", () => {
     expect(
       collectReleasePackageMetadataErrors({
-        name: "openclaw",
+        name: "elysiaclaw",
         description: "Multi-channel AI gateway with extensible messaging integrations",
         license: "MIT",
-        repository: { url: "git+https://github.com/openclaw/openclaw.git" },
-        bin: { openclaw: "openclaw.mjs" },
+        repository: { url: "git+https://github.com/elysiaclaw/elysiaclaw.git" },
+        bin: { elysiaclaw: "elysiaclaw.mjs" },
         peerDependencies: { "node-llama-cpp": "3.16.2" },
       }),
     ).toContain('package.json peerDependenciesMeta["node-llama-cpp"].optional must be true.');

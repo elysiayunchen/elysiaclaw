@@ -76,7 +76,7 @@ const baseEntry: ChannelPluginCatalogEntry = {
     blurb: "Test",
   },
   install: {
-    npmSpec: "@openclaw/zalo",
+    npmSpec: "@elysiaclaw/zalo",
     localPath: "extensions/zalo",
   },
 };
@@ -145,10 +145,10 @@ describe("ensureOnboardingPluginInstalled", () => {
     expect(result.cfg.plugins?.entries?.zalo?.enabled).toBe(true);
     expect(result.cfg.plugins?.allow).toContain("zalo");
     expect(result.cfg.plugins?.installs?.zalo?.source).toBe("npm");
-    expect(result.cfg.plugins?.installs?.zalo?.spec).toBe("@openclaw/zalo");
+    expect(result.cfg.plugins?.installs?.zalo?.spec).toBe("@elysiaclaw/zalo");
     expect(result.cfg.plugins?.installs?.zalo?.installPath).toBe("/tmp/zalo");
     expect(installPluginFromNpmSpec).toHaveBeenCalledWith(
-      expect.objectContaining({ spec: "@openclaw/zalo" }),
+      expect.objectContaining({ spec: "@elysiaclaw/zalo" }),
     );
   });
 
@@ -192,7 +192,7 @@ describe("ensureOnboardingPluginInstalled", () => {
           {
             pluginId: "zalo",
             localPath: "/opt/elysiaclaw/extensions/zalo",
-            npmSpec: "@openclaw/zalo",
+            npmSpec: "@elysiaclaw/zalo",
           },
         ],
       ]),
@@ -253,14 +253,14 @@ describe("ensureOnboardingPluginInstalled", () => {
     reloadOnboardingPluginRegistry({
       cfg,
       runtime,
-      workspaceDir: "/tmp/openclaw-workspace",
+      workspaceDir: "/tmp/elysiaclaw-workspace",
     });
 
     expect(clearPluginDiscoveryCache).toHaveBeenCalledTimes(1);
     expect(loadElysiaClawPlugins).toHaveBeenCalledWith(
       expect.objectContaining({
         config: cfg,
-        workspaceDir: "/tmp/openclaw-workspace",
+        workspaceDir: "/tmp/elysiaclaw-workspace",
         cache: false,
       }),
     );

@@ -197,7 +197,7 @@ describe("cdp.helpers", () => {
 
   it("does not add relay header for unknown loopback ports", () => {
     const headers = getHeadersWithAuth("http://127.0.0.1:19444/json/version");
-    expect(headers["x-openclaw-relay-token"]).toBeUndefined();
+    expect(headers["x-elysiaclaw-relay-token"]).toBeUndefined();
   });
 
   it("adds relay header for known relay ports", async () => {
@@ -208,8 +208,8 @@ describe("cdp.helpers", () => {
     try {
       await ensureChromeExtensionRelayServer({ cdpUrl });
       const headers = getHeadersWithAuth(`${cdpUrl}/json/version`);
-      expect(headers["x-openclaw-relay-token"]).toBeTruthy();
-      expect(headers["x-openclaw-relay-token"]).not.toBe("test-gateway-token");
+      expect(headers["x-elysiaclaw-relay-token"]).toBeTruthy();
+      expect(headers["x-elysiaclaw-relay-token"]).not.toBe("test-gateway-token");
     } finally {
       await stopChromeExtensionRelayServer({ cdpUrl }).catch(() => {});
       if (prev === undefined) {
@@ -243,12 +243,12 @@ describe("browser server-context listKnownProfileNames", () => {
     const resolved = resolveBrowserConfig({
       defaultProfile: "elysiaclaw",
       profiles: {
-        openclaw: { cdpPort: 18800, color: "#FF4500" },
+        elysiaclaw: { cdpPort: 18800, color: "#FF4500" },
       },
     });
-    const openclaw = resolveProfile(resolved, "elysiaclaw");
-    if (!openclaw) {
-      throw new Error("expected openclaw profile");
+    const elysiaclaw = resolveProfile(resolved, "elysiaclaw");
+    if (!elysiaclaw) {
+      throw new Error("expected elysiaclaw profile");
     }
 
     const state: BrowserServerState = {
