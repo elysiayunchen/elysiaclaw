@@ -269,6 +269,20 @@ export function buildAgentSystemPrompt(params: {
     session_status:
       "Show a /status-equivalent status card (usage + time + Reasoning/Verbose/Elevated); use for model-use questions (📊 session_status); optional per-session model override",
     image: "Analyze an image with the configured image model",
+    // Team mode (in-process teammates)
+    team_create: "Create a new in-process AI teammate with a custom system prompt.",
+    team_list: "List all active in-process teammates for this session.",
+    team_delete: "Delete an in-process teammate and free its resources.",
+    send_message: "Send a message to an in-process AI teammate and receive its response.",
+    // Task management
+    task_create: "Create a new persistent task.",
+    task_get:
+      "Retrieve a single task by ID including its full description, status, output, and blocking relationships.",
+    task_update: "Update a task's status, output, blocking relationships, or any other field.",
+    task_list:
+      "List all tasks in the current session with their statuses and blocking relationships.",
+    task_stop: "Stop a running background task.",
+    task_output: "Retrieve the stdout/stderr output of a background task.",
   };
 
   const toolOrder = [
@@ -296,6 +310,18 @@ export function buildAgentSystemPrompt(params: {
     "subagents",
     "session_status",
     "image",
+    // Team mode
+    "team_create",
+    "team_list",
+    "team_delete",
+    "send_message",
+    // Task management
+    "task_create",
+    "task_get",
+    "task_update",
+    "task_list",
+    "task_stop",
+    "task_output",
   ];
 
   const rawToolNames = (params.toolNames ?? []).map((tool) => tool.trim());
@@ -583,6 +609,20 @@ export function buildAgentSystemPrompt(params: {
     "When approvals are required, preserve and show the full command/script exactly as provided (including chained operators like &&, ||, |, ;, or multiline shells) so the user can approve what will actually run.",
     "",
     ...safetySection,
+    // ════════════════════════════════════════════
+    // COLLABORATION: Team + Sub-Agent + Tasks
+    // ════════════════════════════════════════════
+    hasSessionsSpawn || availableTools.has("team_create") ? "## Collaboration" : "",
+    hasSessionsSpawn
+      ? "For one-off parallel work, use sessions_spawn to create an isolated sub-agent. Sub-agents report back automatically (push-based). Do NOT poll subagents list in a loop."
+      : "",
+    availableTools.has("team_create")
+      ? "For persistent teammates you'll work with repeatedly: use team_create to create a teammate with a specific role, task_assign to assign work (set worktree: true for isolated work), send_message to communicate, team_list/team_delete to manage."
+      : "",
+    availableTools.has("task_create") || availableTools.has("todo_write")
+      ? "For task tracking: use todo_write for in-session step-by-step plans, task_create for tasks that need status tracking across turns or assignment to teammates."
+      : "",
+    hasSessionsSpawn || availableTools.has("team_create") ? "" : "",
     "## ElysiaClaw CLI Quick Reference",
     "ElysiaClaw is controlled via subcommands. Do not invent commands.",
     "To manage the Gateway daemon service (start/stop/restart):",

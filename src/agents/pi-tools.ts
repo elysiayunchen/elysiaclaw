@@ -1,4 +1,19 @@
-import { codingTools, createReadTool, readTool } from "@mariozechner/pi-coding-agent";
+import {
+  codingTools,
+  createReadTool,
+  readTool,
+  teamCreateTool,
+  teamListTool,
+  teamDeleteTool,
+  sendMessageTool,
+  taskAssignTool,
+  taskCreateTool,
+  taskGetTool,
+  taskListTool,
+  taskStopTool,
+  taskUpdateTool,
+  taskOutputTool,
+} from "@mariozechner/pi-coding-agent";
 import type { ElysiaClawConfig } from "../config/config.js";
 import type { ToolLoopDetectionConfig } from "../config/types.tools.js";
 import { resolveMergedSafeBinProfileFixtures } from "../infra/exec-safe-bin-runtime-policy.js";
@@ -534,6 +549,19 @@ export function createElysiaClawCodingTools(options?: {
       sessionId: options?.sessionId,
       onYield: options?.onYield,
     }),
+    // Team mode: in-process AI teammates
+    teamCreateTool as unknown as AnyAgentTool,
+    teamListTool as unknown as AnyAgentTool,
+    teamDeleteTool as unknown as AnyAgentTool,
+    sendMessageTool as unknown as AnyAgentTool,
+    // Task management
+    taskAssignTool as unknown as AnyAgentTool,
+    taskCreateTool as unknown as AnyAgentTool,
+    taskGetTool as unknown as AnyAgentTool,
+    taskListTool as unknown as AnyAgentTool,
+    taskStopTool as unknown as AnyAgentTool,
+    taskUpdateTool as unknown as AnyAgentTool,
+    taskOutputTool as unknown as AnyAgentTool,
   ];
   const toolsForMemoryFlush =
     isMemoryFlushRun && memoryFlushWritePath
