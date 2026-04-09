@@ -2355,6 +2355,53 @@ export async function runEmbeddedAttempt(
           }
         }
 
+        // Code mode: detect /code and /exit commands, inject system prompt
+        const CODE_MODE_PROMPT =
+          "\n\n## CODE MODE ACTIVE\n\n" +
+          "You are a focused coding assistant in Code Mode.\n\n" +
+          "### Your Role\n" +
+          "- Write clean, well-tested, production-quality code\n" +
+          "- Follow existing project patterns and conventions\n" +
+          "- Use read/write/edit/bash/grep/find/ls tools\n" +
+          "- Use todo_write to track multi-step work\n" +
+          "- Use enter_plan_mode for complex tasks before coding\n\n" +
+          "### Constraints\n" +
+          "- No user memory or chat history is loaded\n" +
+          "- Project-level skills and CLAUDE.md are available\n" +
+          "- Focus purely on the coding task at hand\n" +
+          "- Call exit_code_mode when finished to return to normal mode";
+        const trimmedPrompt = params.prompt.trim();
+        const codeSession = activeSession as unknown as Record<string, unknown>;
+        if (trimmedPrompt === "/code" || trimmedPrompt.startsWith("/code ")) {
+          if (typeof codeSession["setCodeMode"] === "function") {
+            (codeSession["setCodeMode"] as (v: boolean) => void)(true);
+          }
+          if (!systemPromptText.includes("## CODE MODE ACTIVE")) {
+            systemPromptText = systemPromptText + CODE_MODE_PROMPT;
+            applySystemPromptOverrideToSession(activeSession, systemPromptText);
+          }
+          effectivePrompt = "Code mode activated. What coding task would you like me to work on?";
+          log.debug("code mode: activated via /code command");
+        } else if (trimmedPrompt === "/exit") {
+          if (
+            typeof (codeSession["getCodeMode"] as (() => boolean) | undefined) === "function" &&
+            (codeSession["getCodeMode"] as (() => boolean) | undefined)()
+          ) {
+            if (typeof codeSession["setCodeMode"] === "function") {
+              (codeSession["setCodeMode"] as (v: boolean) => void)(false);
+            }
+            log.debug("code mode: deactivated via /exit command");
+          }
+        } else if (
+          typeof (codeSession["getCodeMode"] as (() => boolean) | undefined) === "function" &&
+          (codeSession["getCodeMode"] as (() => boolean) | undefined)()
+        ) {
+          if (!systemPromptText.includes("## CODE MODE ACTIVE")) {
+            systemPromptText = systemPromptText + CODE_MODE_PROMPT;
+            applySystemPromptOverrideToSession(activeSession, systemPromptText);
+          }
+        }
+
         log.debug(`embedded run prompt start: runId=${params.runId} sessionId=${params.sessionId}`);
         cacheTrace?.recordStage("prompt:before", {
           prompt: effectivePrompt,

@@ -81,20 +81,14 @@ export type GatewayConnectionDetails = {
   message: string;
 };
 
-function shouldAttachDeviceIdentityForGatewayCall(params: {
+function shouldAttachDeviceIdentityForGatewayCall(_params: {
   url: string;
   token?: string;
   password?: string;
 }): boolean {
-  if (!(params.token || params.password)) {
-    return true;
-  }
-  try {
-    const parsed = new URL(params.url);
-    return !["127.0.0.1", "::1", "localhost"].includes(parsed.hostname);
-  } catch {
-    return true;
-  }
+  // Always attach device identity so token-authenticated connections
+  // (including localhost) retain proper scopes via device pairing.
+  return true;
 }
 
 export type ExplicitGatewayAuth = {

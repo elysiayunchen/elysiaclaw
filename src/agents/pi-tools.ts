@@ -13,6 +13,19 @@ import {
   taskStopTool,
   taskUpdateTool,
   taskOutputTool,
+  grepTool,
+  findTool,
+  lsTool,
+  enterPlanModeTool,
+  exitPlanModeTool,
+  enterCodeModeTool,
+  exitCodeModeTool,
+  todoWriteTool,
+  enterWorktreeTool,
+  exitWorktreeTool,
+  undoActionTool,
+  fileHistoryListTool,
+  modelSpeedProbeTool,
 } from "@mariozechner/pi-coding-agent";
 import type { ElysiaClawConfig } from "../config/config.js";
 import type { ToolLoopDetectionConfig } from "../config/types.tools.js";
@@ -499,6 +512,20 @@ export function createElysiaClawCodingTools(options?: {
         : []
       : []),
     ...(applyPatchTool ? [applyPatchTool as unknown as AnyAgentTool] : []),
+    // === pi-coding-agent 12-layer tools ===
+    grepTool as unknown as AnyAgentTool,
+    findTool as unknown as AnyAgentTool,
+    lsTool as unknown as AnyAgentTool,
+    enterPlanModeTool as unknown as AnyAgentTool,
+    exitPlanModeTool as unknown as AnyAgentTool,
+    enterCodeModeTool as unknown as AnyAgentTool,
+    exitCodeModeTool as unknown as AnyAgentTool,
+    todoWriteTool as unknown as AnyAgentTool,
+    enterWorktreeTool as unknown as AnyAgentTool,
+    exitWorktreeTool as unknown as AnyAgentTool,
+    undoActionTool as unknown as AnyAgentTool,
+    fileHistoryListTool as unknown as AnyAgentTool,
+    modelSpeedProbeTool as unknown as AnyAgentTool,
     execTool as unknown as AnyAgentTool,
     processTool as unknown as AnyAgentTool,
     // Channel docking: include channel-defined agent tools (login, etc.).
