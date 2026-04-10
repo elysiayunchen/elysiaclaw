@@ -26,6 +26,7 @@ import {
   undoActionTool,
   fileHistoryListTool,
   modelSpeedProbeTool,
+  webFetchTool,
 } from "@mariozechner/pi-coding-agent";
 import type { ElysiaClawConfig } from "../config/config.js";
 import type { ToolLoopDetectionConfig } from "../config/types.tools.js";
@@ -526,6 +527,7 @@ export function createElysiaClawCodingTools(options?: {
     undoActionTool as unknown as AnyAgentTool,
     fileHistoryListTool as unknown as AnyAgentTool,
     modelSpeedProbeTool as unknown as AnyAgentTool,
+    webFetchTool as unknown as AnyAgentTool,
     execTool as unknown as AnyAgentTool,
     processTool as unknown as AnyAgentTool,
     // Channel docking: include channel-defined agent tools (login, etc.).
